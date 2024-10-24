@@ -1,16 +1,72 @@
 ﻿@inherits LayoutComponentBase
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+<MudThemeProvider />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudThemeProvider Theme="PricelyTheme" />
+@code {
+
+    MudTheme PricelyTheme = new MudTheme()
+        {
+            PaletteLight = new PaletteLight()
+            {
+                Primary = Colors.Teal.Lighten1,
+                Secondary = Colors.Green.Accent4,
+                AppbarBackground = Colors.Green.Default,
+            },
+            PaletteDark = new PaletteDark()
+            {
+                Primary = Colors.Gray.Lighten1
+            },
+
+            LayoutProperties = new LayoutProperties()
+            {
+                DrawerWidthLeft = "260px",
+                DrawerWidthRight = "300px"
+            }
+        };
+}
+
+
+<MudLayout>
+    <MudAppBar Class="bg-[#292a2d]">
+        <div class="flex w-full items-center justify-between">
+            <!-- Left-aligned -->
+            <div class="flex items-center">
+                <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+                <span class="ml-4">Pricely 1.0</span>
+            </div>
+
+            <!-- Right-aligned -->
+            <div class="flex flex-row">
+            <MudButton Class="rounded-[20px] bg-[#324435] pl-4 pr-4 text-[#5bd361]">
+                Hvad er nyt?
+            </MudButton>
+
+            <MudText Class="ml-2 mt-2">Version 1.0 (Sidst Opdateret 24-10-2024)</MudText>
+            </div>
+
+            
         </div>
+    </MudAppBar>
 
-        <article class="content px-4">
+    <MudDrawer @bind-Open="@_drawerOpen">
+        <NavMenu/>
+    </MudDrawer>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.Medium">
             @Body
-        </article>
-    </main>
-</div>
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    bool _drawerOpen = true;
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+}

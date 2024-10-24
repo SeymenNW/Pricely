@@ -2,6 +2,10 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+.custom-label .mud-input-label {
+    color:red; 
+}
+
 h1:focus {
     outline: none;
 }
