@@ -4,6 +4,11 @@ using PricelyAPI.Services.PricerunnerService;
 
 PricerunnerService prService = new();
 
-var product = await prService.GetProductsFromSearch("PS5");
+var products = await prService.GetProductsFromSearch("PS5");
 
-Console.WriteLine(product.Products[0].LowestPrice.Amount);
+foreach (var item in products.ProductResults)
+{
+    Console.WriteLine(item.Name + " " + item.LowestPrice + $" ({item.LowestPrice})");
+
+}
+

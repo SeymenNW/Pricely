@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Pricely.Libraries.Services.Models
 {
-    public class Merchants
+    public class PricerunnerSearchResults
     {
-        public string Name { get; set; }
-        public string Id { get; set; }
-        public string ProductUrl { get; set; }
+        public string SearchQuery { get; set; }
+
+        public List<PricerunnerSearchProduct> ProductResults { get; set; } = new();
     }
 }

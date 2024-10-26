@@ -1,5 +1,6 @@
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
+using Pricely.Libraries.Services.Models;
 using PricelyAPI.ServiceModels.Pricerunner;
 using PricelyAPI.Services.PricerunnerService;
 
@@ -28,7 +29,7 @@ namespace PricelyAPI.Controllers
         /// Henter prisdata for de produkter man søger på.
         /// </summary>
         /// <returns>JSON-fil med produkt og søgnings data.</returns>
-        public async Task<PricerunnerProductSearch> Get(string search)
+        public async Task<PricerunnerSearchResults> Get(string search)
         {
 
         return    await  _pricerunnerService.GetProductsFromSearch(search);

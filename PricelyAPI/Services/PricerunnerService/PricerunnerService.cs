@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Pricely.Libraries.Services.Models;
 using PricelyAPI.Helpers.Extensions;
 using PricelyAPI.ServiceModels.Pricerunner;
 using System.IO.Compression;
@@ -9,7 +10,7 @@ namespace PricelyAPI.Services.PricerunnerService
     {
 
         //Eksempel Søgning: https://www.pricerunner.dk/dk/api/search-compare-gateway/public/search/v5/DK?q=IPHONE&suggestionsActive=true&suggestionClicked=false&suggestionReverted=false&carouselSize=10
-        public async Task<PricerunnerProductSearch> GetProductsFromSearch(string search)
+        public async Task<PricerunnerSearchResults> GetProductsFromSearch(string search)
         {
             string searchToUrl = search.Replace(" ", "%20");
 
@@ -36,7 +37,26 @@ namespace PricelyAPI.Services.PricerunnerService
 
                   
                         PricerunnerProductSearch prSearch = JsonConvert.DeserializeObject<PricerunnerProductSearch>(jsonString, jsonSettings);
-                        return prSearch;
+
+                    PricerunnerSearchResults results = new();
+                    results.SearchQuery = prSearch.SearchQuery;
+
+                    foreach (var priceRunnerProduct in prSearch.Products)
+                    {
+                        PricerunnerSearchProduct pricelyProduct = new();
+                        pricelyProduct.Name = priceRunnerProduct.Name;
+                        pricelyProduct.Description = priceRunnerProduct.Description;
+                        pricelyProduct.Id = priceRunnerProduct.Id;
+                        pricelyProduct.ImageUrl = $"https://owp.klarna.com{priceRunnerProduct.Image.Path}";
+                        pricelyProduct.LowestPrice = priceRunnerProduct.LowestPrice.Amount;
+
+                        results.ProductResults.Add(pricelyProduct);
+
+                    }
+                    
+
+
+                        return results;
 
                     
 
