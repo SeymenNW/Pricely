@@ -2,6 +2,11 @@
 
 # Pricely 1.0 - Prissamenlignings værktøj!
 Pricely er udviklet med .NET 8, Blazor WebAssembly (Standalone) og ASP.NET Web API. Formålet har været at skrive det hele i .NET.
+# Hvad gør Pricely?
+- **Ingen Sporing**
+- Henter produktdata ned fra Pricerunner uden alle former for trackere. Det vil sige du kan søge frit og enkelt uden at du bliver tracket. Alt prishentning foregår på serveren. Altså data bliver først hentet ned på serveren og derefter videresendt til forbrugere. Så undgår du bla. tracking fra: Klarna, Google, Adform, yahoo, Facebook, TikTok og meget mere.
+
+I første omgang vil Pricely inkludere prisdata fra PriceRunner, men med tiden vil øvrige virksomheder blive tilføjet. Den gamle Pricely kørte med Powers API, men den nye kører på PriceRunners API.
 
 # Hvorfor Pricely?
 
@@ -10,11 +15,11 @@ Pricely anvender  **ikke** tracking (sporing). Se produkter og priser uden spori
 
 Så selvom Pricely på nuværende tidspunkt ikke kan erstatte andre prissammenligningsværktøjer, kan det stadig bruges, hvis man ønsker at undgå at blive sporet 🙂  
   
-**Hvad er fordelen med ingen sporing?  
-**Fordelen er at du som bruger ikke vil opleve at se annoncer for de produkter du søger på. Derudover kan tredjeparter heller ikke indsamle oplysninger om dig.
+### Hvad er fordelen med ingen sporing? 
+Fordelen er at du som bruger ikke vil opleve at se annoncer for de produkter du søger på. Derudover kan tredjeparter heller ikke indsamle oplysninger om dig.
 
-**Din klient (Browser) kommunikerer kun med Pricelys server  
-**En anden fordel er, at der kun sker kommunikation med vores servere. Det betyder, at din klient (browser) ikke kommunikerer direkte med de forskellige API'er. Alt data hentes fra serveren.
+### Din klient (Browser) kommunikerer kun med Pricelys server  
+En anden fordel er, at der kun sker kommunikation med vores servere. Det betyder, at din klient (browser) ikke kommunikerer direkte med de forskellige API'er. Alt data hentes fra serveren.
 
 ### Fair
 
