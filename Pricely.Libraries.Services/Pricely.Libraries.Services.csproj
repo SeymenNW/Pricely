@@ -7,7 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Extensions\HttpClient\HttpClient.Extensions.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Extensions\HttpClient\HttpClient.Extensions.cs" />
   </ItemGroup>
 
 </Project>
