@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pricely", "Pricely\Pricely.csproj", "{348BA655-C7C8-40BA-9A2F-9F8A92A41C72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PricelyOld", "Pricely\PricelyOld.csproj", "{348BA655-C7C8-40BA-9A2F-9F8A92A41C72}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pricely.Libraries.Services", "Pricely.Libraries.Services\Pricely.Libraries.Services.csproj", "{75AA4B60-BE35-47D7-BBAF-A097BA95DB17}"
 EndProject
@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Noter", "Noter", "{CF001FC8
 		Endpoints.txt = Endpoints.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManuelTests", "ManuelTests\ManuelTests.csproj", "{A9053ABD-D14C-4E49-8AA2-19923979DF10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManuelTests", "ManuelTests\ManuelTests.csproj", "{A9053ABD-D14C-4E49-8AA2-19923979DF10}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
