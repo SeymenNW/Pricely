@@ -1,0 +1,7 @@
+Her er en lille liste af de Endpoints som jeg har kunne få fat i.
+
+# Søgning i Pricerunner
+https://www.pricerunner.dk/dk/api/search-compare-gateway/public/search/suggest/DK?q=Computer
+
+
+Jeg vil prøve på at lave en Markdown fil hvor jeg understreger præcist hvordan tingene fungerer. (Fandt ud af det her nok ikke fungerer, mens jeg skrev)
