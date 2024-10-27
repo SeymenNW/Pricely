@@ -14,52 +14,50 @@ namespace PricelyAPI.Services.ElgigantenService
         #region Produktsøgning funktion
         public async Task<ElgigantenSearchResults> GetProductsFromSearch(string search)
         {
-            string egApiUrl = $"https://www.elgiganten.dk/api/search";
+            string elgiSearchUrl = "https://www.elgiganten.dk/api/search";
 
-            var jsonSettings = new JsonSerializerSettings
-            {
-                DateTimeZoneHandling = DateTimeZoneHandling.Utc
-            };
+            EGProductSearch payload = new(search);
+            string jsonPayload = JsonConvert.SerializeObject(payload).ToString();
 
-            using (HttpClient httpClient = new())
+
+            using (HttpClient client = new HttpClient())
             {
-                try
+                
+                var response = await client.PostAsync(elgiSearchUrl, new StringContent(jsonPayload, Encoding.UTF8, "application/json"));
+                var jsonString = await response.Content.ReadAsStringAsync();
+
+                dynamic egSr = JsonConvert.DeserializeObject<dynamic>(jsonString);
+
+                ElgigantenSearchResults elgiResults = new();
+                elgiResults.SearchQuery = search;
+
+                List<ElgigantenSearchResultProduct> elgiSearchProductsList = new();
+
+                /*
+                 * Lille problem med image Url: Det er ikke altid selve imageUrl som har linket, men nogen responser har yderligere 
+                 * property members som skal hentes.
+                 * 
+                 * Skal undersøges hvordan man gør med dynamiske objekter.
+                 */
+
+                foreach (var product in egSr.data.records)
                 {
-
-                    EGProductSearch payload = new(search);
-                    string jsonPayload = JsonConvert.SerializeObject(payload).ToString();
-
-                    HttpResponseMessage httpResponseMsg = await httpClient.PostAsync(egApiUrl, new StringContent(jsonPayload, Encoding.UTF8, "application/json"));
-                    string jsonString = await httpResponseMsg.GetJsonAsString();
-
-
-                    dynamic egSearch = JsonConvert.DeserializeObject<dynamic>(jsonString, jsonSettings);
-
-
-                    ElgigantenSearchResults egToPricelyResults = new();
-                    egToPricelyResults.SearchQuery = search;
-
-                    foreach (var egProduct in egSearch.data.records)
+                    ElgigantenSearchResultProduct elgiToPricely = new ElgigantenSearchResultProduct
                     {
-                        ElgigantenSearchResultProduct pricelyProduct = new();
-                        pricelyProduct.Name = (string)egProduct?.name;
-                        //pricelyProduct.Description = egProduct?.Description;
-                        //pricelyProduct.Id = egProduct.Id;
-                        //pricelyProduct.ImageUrl Fungerer ikke lige nu.
-                        pricelyProduct.CurrentPrice = (string)egProduct?.price?.current[0];
-
-                        egToPricelyResults.ProductResults.Add(pricelyProduct);
-
-                    }
-
-                    return egToPricelyResults;
-
+                        Name = (string)product?.name,
+                        ImageUrl = (string)product?.imageUrl.ToString(),
+                        CurrentPrice = (string)product?.price?.current[0],
+                        Sku = (string)product?.sku
+                    };
+                    elgiSearchProductsList.Add(elgiToPricely);
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine($"Fejl, kan ikke hente data. {e.Message}");
-                    return null;
-                }
+
+                elgiResults.ProductResults = elgiSearchProductsList;
+
+                return elgiResults;
+
+
+
             }
         }
         #endregion

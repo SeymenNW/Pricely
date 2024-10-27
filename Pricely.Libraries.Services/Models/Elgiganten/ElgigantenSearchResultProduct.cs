@@ -8,7 +8,7 @@ namespace Pricely.Libraries.Services.Models.Elgiganten
 {
     public class ElgigantenSearchResultProduct
     {
-        public string? Id { get; set; }
+        public string? Sku { get; set; }
         public string? Name { get; set; }
         public string? ImageUrl { get; set; }
 

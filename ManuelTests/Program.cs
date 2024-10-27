@@ -24,9 +24,9 @@ public class Program
     {
         var url = "https://www.elgiganten.dk/api/search"; 
 
-        EGProductSearch payload = new("IpHOne 14");
+        EGProductSearch payload = new("Black Ops 6");
 
-        
+
         
 
 
@@ -42,10 +42,12 @@ public class Program
 
             dynamic egSr = JsonConvert.DeserializeObject<dynamic>(responseContent);
 
-            foreach (var product in egSr.data.records)
-            {
-                Console.WriteLine((string)product?.imageUrl + " - " + (string)product?.sellerName + " - " + (string)product?.price?.current[0] );
-            }
+            Console.WriteLine(responseContent);
+
+            //foreach (var product in egSr.data.records)
+            //{
+            //    Console.WriteLine((string)product?.imageUrl + " - " + (string)product?.sellerName + " - " + (string)product?.price?.current[0] );
+            //}
 
      
 
