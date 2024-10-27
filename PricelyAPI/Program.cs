@@ -1,6 +1,7 @@
 using Asp.Versioning;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using PricelyAPI.Services.ElgigantenService;
 using PricelyAPI.Services.PricerunnerService;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddTransient<IPriceRunnerService, PriceRunnerService>();
+builder.Services.AddTransient<IElgigantenService, ElgigantenService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -40,7 +42,7 @@ builder.Services.AddSwaggerGen(
     {
         Version = "v1",
         Title = "Pricely API",
-        Description = "Dette er den første version af Pricely API. Du kan selv bruge det i dine egne applikationer.",
+        Description = "Dette er den første version af Pricely API. Du kan selv bruge det i dine egne applikationer.\nI den første periode her vil der nok komme nogle ændringer.",
     });
 
     //options.SwaggerDoc("v2", new Microsoft.OpenApi.Models.OpenApiInfo

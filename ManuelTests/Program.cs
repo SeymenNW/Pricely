@@ -44,7 +44,7 @@ public class Program
 
             foreach (var product in egSr.data.records)
             {
-                Console.WriteLine((string)product?.name + " - " + (string)product?.sellerName + " - " + (string)product?.price?.current[0] );
+                Console.WriteLine((string)product?.imageUrl + " - " + (string)product?.sellerName + " - " + (string)product?.price?.current[0] );
             }
 
      

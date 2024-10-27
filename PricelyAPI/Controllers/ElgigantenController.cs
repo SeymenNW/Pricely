@@ -1,8 +1,7 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using Pricely.Libraries.Services.Models.PriceRunner;
-using PricelyAPI.ServiceModels.Pricerunner;
-using PricelyAPI.Services.PricerunnerService;
+using Pricely.Libraries.Services.Models.Elgiganten;
+using PricelyAPI.Services.ElgigantenService;
 
 namespace PricelyAPI.Controllers
 {
@@ -12,10 +11,24 @@ namespace PricelyAPI.Controllers
     public class ElgigantenController : ControllerBase
     {
 
-        [HttpGet(Name = "GetInt")]
-        public int Get()
+        private readonly ILogger<ElgigantenController> _logger;
+        private readonly IElgigantenService _elgigantenService;
+        public ElgigantenController(ILogger<ElgigantenController> logger, IElgigantenService elgigantenService)
         {
-            return 100;
+            _logger = logger;
+            _elgigantenService = elgigantenService;
+
+        }
+
+
+      
+        [HttpGet("search/{search}", Name = "ElgiSearch")]
+
+        public async Task<ElgigantenSearchResults> GetSearch(string search)
+        {
+
+            return await _elgigantenService.GetProductsFromSearch(search);
+
         }
     }
 }
