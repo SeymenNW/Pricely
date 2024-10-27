@@ -1,6 +1,6 @@
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using Pricely.Libraries.Services.Models;
+using Pricely.Libraries.Services.Models.PriceRunner;
 using PricelyAPI.ServiceModels.Pricerunner;
 using PricelyAPI.Services.PricerunnerService;
 
@@ -14,8 +14,8 @@ namespace PricelyAPI.Controllers
     
 
         private readonly ILogger<PriceRunnerController> _logger;
-        private readonly IPricerunnerService _pricerunnerService;
-        public PriceRunnerController(ILogger<PriceRunnerController> logger, IPricerunnerService pricerunnerService)
+        private readonly IPriceRunnerService _pricerunnerService;
+        public PriceRunnerController(ILogger<PriceRunnerController> logger, IPriceRunnerService pricerunnerService)
         {
             _logger = logger;
             _pricerunnerService = pricerunnerService;
@@ -29,7 +29,7 @@ namespace PricelyAPI.Controllers
         /// </summary>
         [HttpGet("search/{search}", Name = "Search")]
        
-        public async Task<PricerunnerSearchResults> GetSearch(string search)
+        public async Task<PriceRunnerSearchResults> GetSearch(string search)
         {
 
         return    await  _pricerunnerService.GetProductsFromSearch(search);
@@ -39,7 +39,7 @@ namespace PricelyAPI.Controllers
         }
 
         [HttpGet("details/{productId}", Name = "Details")]
-        public async Task<PricerunnerProduct> GetProductDetails(string productId)
+        public async Task<PriceRunnerProductDetails> GetProductDetails(string productId)
         {
             return await _pricerunnerService.GetProductDetailsFromId(productId);
 

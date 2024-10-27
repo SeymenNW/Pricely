@@ -5,7 +5,7 @@
 
     //Klasser for deserializering af følgende Endpoint: Search (Søgning)
     //https://www.pricerunner.dk/dk/api/search-compare-gateway/public/search/suggest/DK?q={søgning}
-    public class PricerunnerProductSearch
+    public class PRProductSearch
     {
         [JsonProperty("searchQuery")]
         public string? SearchQuery { get; set; }

@@ -1,11 +1,11 @@
-﻿using Pricely.Libraries.Services.Models;
+﻿using Pricely.Libraries.Services.Models.PriceRunner;
 using PricelyAPI.ServiceModels.Pricerunner;
 
 namespace PricelyAPI.Services.PricerunnerService
 {
-    public interface IPricerunnerService
+    public interface IPriceRunnerService
     {
-        Task<PricerunnerSearchResults> GetProductsFromSearch(string search);
-        Task<PricerunnerProduct> GetProductDetailsFromId(string productId);
+        Task<PriceRunnerSearchResults> GetProductsFromSearch(string search);
+        Task<PriceRunnerProductDetails> GetProductDetailsFromId(string productId);
     }
 }

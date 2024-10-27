@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pricely.Libraries.Services.Models
+namespace Pricely.Libraries.Services.Models.PriceRunner
 {
-    public class PricerunnerSearchProduct
+    public class PriceRunnerSearchResultProduct
     {
         public string Id { get; set; }
         public string Name { get; set; }

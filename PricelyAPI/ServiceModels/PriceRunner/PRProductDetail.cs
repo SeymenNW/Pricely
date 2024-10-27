@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PricelyAPI.ServiceModels.Pricerunner
 {
-    public class PricerunnerProductDetail
+    public class PRProductDetail
     {
         [JsonProperty("filters")]
         public List<PDFilter> Filters { get; set; }

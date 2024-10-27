@@ -10,7 +10,7 @@ namespace PricelyAPI.ServiceModels.Pricerunner
     //{
     //}
 
-    public class PricerunnerProductListing
+    public class PRProductListing
     {
         [JsonProperty("product")]
         public ProductDetails ProductDetails { get; set; }

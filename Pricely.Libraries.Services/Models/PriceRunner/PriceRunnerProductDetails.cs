@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pricely.Libraries.Services.Models
+namespace Pricely.Libraries.Services.Models.PriceRunner
 {
-    public class PricerunnerProduct
+    public class PriceRunnerProductDetails
     {
         public string? Name { get; set; }
         public string? Description { get; set; }
@@ -17,7 +17,7 @@ namespace Pricely.Libraries.Services.Models
         public string? Brand { get; set; }
 
         //Dette er for butikkerne.
-        public List<Merchants>? Merchants { get; set; }
+        public List<PriceRunnerMerchants>? Merchants { get; set; }
 
         //Kan tilføjes: Relaterede produkter (members)
 

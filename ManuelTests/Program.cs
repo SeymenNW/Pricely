@@ -2,7 +2,7 @@
 using PricelyAPI.Services.PricerunnerService;
 
 
-PricerunnerService prService = new();
+PriceRunnerService prService = new();
 
 var products = await prService.GetProductDetailsFromId("3331926710");
 

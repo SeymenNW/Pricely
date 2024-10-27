@@ -1,16 +1,16 @@
 ﻿using Newtonsoft.Json;
-using Pricely.Libraries.Services.Models;
+using Pricely.Libraries.Services.Models.PriceRunner;
 using PricelyAPI.Helpers.Extensions;
 using PricelyAPI.ServiceModels.Pricerunner;
 using System.IO.Compression;
 
 namespace PricelyAPI.Services.PricerunnerService
 {
-    public class PricerunnerService : IPricerunnerService
+    public class PriceRunnerService : IPriceRunnerService
     {
 
         //Eksempel Søgning: https://www.pricerunner.dk/dk/api/search-compare-gateway/public/search/v5/DK?q=IPHONE&suggestionsActive=true&suggestionClicked=false&suggestionReverted=false&carouselSize=10
-        public async Task<PricerunnerSearchResults> GetProductsFromSearch(string search)
+        public async Task<PriceRunnerSearchResults> GetProductsFromSearch(string search)
         {
             string searchToUrl = search.Replace(" ", "%20");
 
@@ -34,14 +34,14 @@ namespace PricelyAPI.Services.PricerunnerService
 
                     //Tjekker om responsen er Json, Gzip eller Deflate og decompresser hvis det er GZip eller deflate. Extension metode til HttpResponseMessage
                     string jsonString = await httpResponseMsg.GetJsonAsString();
-                    PricerunnerProductSearch prSearch = JsonConvert.DeserializeObject<PricerunnerProductSearch>(jsonString, jsonSettings);
+                    PRProductSearch prSearch = JsonConvert.DeserializeObject<PRProductSearch>(jsonString, jsonSettings);
 
-                    PricerunnerSearchResults prToPricelyResults = new();
+                    PriceRunnerSearchResults prToPricelyResults = new();
                     prToPricelyResults.SearchQuery = prSearch.SearchQuery;
 
                     foreach (var prProduct in prSearch.Products)
                     {
-                        PricerunnerSearchProduct pricelyProduct = new();
+                        PriceRunnerSearchResultProduct pricelyProduct = new();
                         pricelyProduct.Name = prProduct.Name;
                         pricelyProduct.Description = prProduct.Description;
                         pricelyProduct.Id = prProduct.Id;
@@ -63,7 +63,7 @@ namespace PricelyAPI.Services.PricerunnerService
             }
         }
 
-        public async Task<PricerunnerProduct> GetProductDetailsFromId(string productId)
+        public async Task<PriceRunnerProductDetails> GetProductDetailsFromId(string productId)
         {
 
 
@@ -87,9 +87,9 @@ namespace PricelyAPI.Services.PricerunnerService
 
                     //Tjekker om responsen er Json, Gzip eller Deflate og decompresser hvis det er GZip eller deflate. Extension metode til HttpResponseMessage
                     string jsonString = await httpResponseMsg.GetJsonAsString();
-                    PricerunnerProductDetail prProductDetail = JsonConvert.DeserializeObject<PricerunnerProductDetail>(jsonString, jsonSettings);
+                    PRProductDetail prProductDetail = JsonConvert.DeserializeObject<PRProductDetail>(jsonString, jsonSettings);
 
-                    return new PricerunnerProduct
+                    return new PriceRunnerProductDetails
                     {
                         Name = prProductDetail.Images[0].Description, //Dette er en midlertidig løsning
                         Brand = "Ikke specifieret endnu",
