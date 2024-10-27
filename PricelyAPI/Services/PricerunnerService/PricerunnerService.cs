@@ -8,7 +8,7 @@ namespace PricelyAPI.Services.PricerunnerService
 {
     public class PriceRunnerService : IPriceRunnerService
     {
-
+        #region Produktsøgning funktion
         //Eksempel Søgning: https://www.pricerunner.dk/dk/api/search-compare-gateway/public/search/v5/DK?q=IPHONE&suggestionsActive=true&suggestionClicked=false&suggestionReverted=false&carouselSize=10
         public async Task<PriceRunnerSearchResults> GetProductsFromSearch(string search)
         {
@@ -62,7 +62,9 @@ namespace PricelyAPI.Services.PricerunnerService
                 }
             }
         }
+        #endregion
 
+        #region Produkt detaljer funktion
         public async Task<PriceRunnerProductDetails> GetProductDetailsFromId(string productId)
         {
 
@@ -89,11 +91,30 @@ namespace PricelyAPI.Services.PricerunnerService
                     string jsonString = await httpResponseMsg.GetJsonAsString();
                     PRProductDetail prProductDetail = JsonConvert.DeserializeObject<PRProductDetail>(jsonString, jsonSettings);
 
+                    List<PriceRunnerMerchants> merchantsList = new();
+
+                    foreach (var offer in prProductDetail.Offers)
+                    {
+                        PriceRunnerMerchants merchants = new PriceRunnerMerchants
+                        {
+                            Id = offer.Id,
+                            Name = prProductDetail.Merchants[offer.MerchantId].Name,
+                            MerchantProductName = offer.Name,
+                            ProductUrl = offer.Url
+                        };
+
+                        merchantsList.Add(merchants);
+                    }
+
+                   
+
                     return new PriceRunnerProductDetails
                     {
                         Name = prProductDetail.Images[0].Description, //Dette er en midlertidig løsning
                         Brand = "Ikke specifieret endnu",
-                        ImageUrls = prProductDetail.Images.Select(imageUrl => "https://owp.klarna.com"+imageUrl.Path).ToList(),
+                        ImageUrls = prProductDetail.Images.Select(imageUrl => $"https://owp.klarna.com{imageUrl.Path}").ToList(),
+                        Merchants = merchantsList
+                        
                         
                     };
 
@@ -111,6 +132,6 @@ namespace PricelyAPI.Services.PricerunnerService
 
             }
         }
-
+        #endregion
     }
 }
