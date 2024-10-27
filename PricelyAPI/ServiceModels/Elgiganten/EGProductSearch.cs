@@ -127,7 +127,7 @@ namespace PricelyAPI.ServiceModels.Elgiganten
         public bool EnableTextChat { get; set; } = true;
 
         [JsonProperty("enable-third-party")]
-        public bool EnableThirdParty { get; set; } = true;
+        public bool EnableThirdParty { get; set; } = false;
 
         [JsonProperty("enable-tradein-calculator")]
         public bool EnableTradeinCalculator { get; set; } = true;
