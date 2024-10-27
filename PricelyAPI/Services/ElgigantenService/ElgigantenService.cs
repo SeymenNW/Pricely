@@ -45,10 +45,17 @@ namespace PricelyAPI.Services.ElgigantenService
                     ElgigantenSearchResultProduct elgiToPricely = new ElgigantenSearchResultProduct
                     {
                         Name = (string)product?.name,
-                        ImageUrl = (string)product?.imageUrl.ToString(),
                         CurrentPrice = (string)product?.price?.current[0],
-                        Sku = (string)product?.sku
+                        Sku = (string)product?.sku,
+                        StoreUrl = $"https://www.elgiganten.dk{(string)product?.href}",
+                        ImageUrl = (string)product?.imageUrl.ToString(),
+
                     };
+
+
+
+
+
                     elgiSearchProductsList.Add(elgiToPricely);
                 }
 

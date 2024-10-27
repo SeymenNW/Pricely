@@ -1,7 +1,27 @@
 ﻿@page "/"
+@using Pricely.Libraries.Services.Models.PriceRunner
+@using Pricely.Libraries.Services.Services
+@inject IGetPriceRunnerResults _getPriceRunnerResults
 
 <PageTitle>Hjem</PageTitle>
 
 <MudText Typo="Typo.h4" GutterBottom="true">Søg med Pricely!</MudText>
 <MudText Class="mb-8">Dette er den nyeste og bedste version af Pricely nogensinde!</MudText>
 
+
+@foreach (var item in Results.ProductResults)
+{
+    <MudText>@item.Name</MudText>
+}
+
+
+@code{
+    public PriceRunnerSearchResults Results { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+     
+        Results =  await _getPriceRunnerResults.GetProductsFromSearch("PS5");
+    }
+
+}

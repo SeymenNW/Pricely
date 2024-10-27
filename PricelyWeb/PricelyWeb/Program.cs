@@ -1,4 +1,5 @@
 using MudBlazor.Services;
+using Pricely.Libraries.Services.Services;
 using PricelyWeb.Client.Pages;
 using PricelyWeb.Components;
 
@@ -6,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add MudBlazor services
 builder.Services.AddMudServices();
+
+builder.Services.AddTransient<IGetPriceRunnerResults, GetPriceRunnerResults>();
+
 
 // Add services to the container.
 builder.Services.AddRazorComponents()

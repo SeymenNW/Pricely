@@ -11,6 +11,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddTransient<IPriceRunnerService, PriceRunnerService>();
 builder.Services.AddTransient<IElgigantenService, ElgigantenService>();
 
+builder.Services.AddCors(o => o.AddPolicy("EZPolicy", builder =>
+{
+    builder.AllowAnyOrigin()  // Allow requests from any origin
+           .AllowAnyMethod()  // Allow any HTTP method (GET, POST, etc.)
+           .AllowAnyHeader(); // Allow any header
+}));
+
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -61,6 +69,8 @@ builder.Services.AddSwaggerGen(
 
 var app = builder.Build();
 
+
+app.UseCors("EZPolicy");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

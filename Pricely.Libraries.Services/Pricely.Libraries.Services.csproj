@@ -11,11 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <None Include="Extensions\HttpClient\HttpClient.Extensions.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Extensions\HttpClient\HttpClient.Extensions.cs" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>

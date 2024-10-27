@@ -83,8 +83,7 @@ namespace PricelyAPI.Services.PricerunnerService
                     //Tilføjer NØDVENDIGE headers med en extension metode (i mappen Extensions)
                     httpClient.AddHeaders();
 
-                    HttpRequestMessage httpRequestMsg = new(HttpMethod.Get, prDetailsUrl);
-                    HttpResponseMessage httpResponseMsg = await httpClient.SendAsync(httpRequestMsg);
+                    HttpResponseMessage httpResponseMsg = await httpClient.GetAsync(prDetailsUrl);
                     httpResponseMsg.EnsureSuccessStatusCode();
 
                     //Tjekker om responsen er Json, Gzip eller Deflate og decompresser hvis det er GZip eller deflate. Extension metode til HttpResponseMessage
@@ -95,12 +94,22 @@ namespace PricelyAPI.Services.PricerunnerService
 
                     foreach (var offer in prProductDetail.Offers)
                     {
+                        string productUrl = "https://www.pricerunner.dk/dk/api/search-compare-gateway" + offer.Url;
+
+                        HttpResponseMessage productUrlResponse = await httpClient.GetAsync(productUrl);
+                        productUrl = productUrlResponse.RequestMessage.RequestUri.ToString();
+
+
+                        //https://www.pricerunner.dk/dk/api/search-compare-gateway/gotostore/v1/DK/be2c34f405440ab76ef658e6987c635f?productId=3211644574
+
+
                         PriceRunnerMerchants merchants = new PriceRunnerMerchants
                         {
                             Id = offer.Id,
                             Name = prProductDetail.Merchants[offer.MerchantId].Name,
                             MerchantProductName = offer.Name,
-                            ProductUrl = offer.Url
+                            ProductUrl = productUrl,
+                            
                         };
 
                         merchantsList.Add(merchants);

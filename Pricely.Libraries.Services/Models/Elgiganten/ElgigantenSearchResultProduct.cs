@@ -12,7 +12,7 @@ namespace Pricely.Libraries.Services.Models.Elgiganten
         public string? Name { get; set; }
         public string? ImageUrl { get; set; }
 
-        public string? Description { get; set; }
+        public string? StoreUrl { get; set; }
         public string? CurrentPrice { get; set; }
     }
 }

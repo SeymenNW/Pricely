@@ -1,57 +1,31 @@
-﻿using Newtonsoft.Json;
-using PricelyAPI.ServiceModels.Elgiganten;
-using PricelyAPI.ServiceModels.Pricerunner;
-using System;
-using System.Dynamic;
+﻿using System;
+using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
-/*
-Projektet her bliver kun brugt til at teste et par ting manuelt, inden de bliver implementeret.
-Brugbare links:
-https://jsonformatter.org/json-pretty-print
- https://json2csharp.com (Man kan også bruge Paste Special i Visual Studio)
-
-Tree View for JSON:
-https://codebeautify.org/jsonviewer
-
- */
-
-public class Program
+public class RedirectExample
 {
     public static async Task Main(string[] args)
     {
-        var url = "https://www.elgiganten.dk/api/search"; 
+        var originalUrl = "https://www.pricerunner.dk/dk/api/search-compare-gateway/gotostore/v1/DK/be2c34f405440ab76ef658e6987c635f?productId=3211644574"; // Replace with your URL
+        var (finalUrl, statusCode) = await GetFinalUrlAsync(originalUrl);
+        Console.WriteLine($"Final URL: {finalUrl}, Status Code: {statusCode}");
+    }
 
-        EGProductSearch payload = new("Black Ops 6");
+    public static async Task<(string FinalUrl, HttpStatusCode StatusCode)> GetFinalUrlAsync(string url)
+    {
+        using var httpClient = new HttpClient(new HttpClientHandler { AllowAutoRedirect = true });
 
+        // Send the request
+        var response = await httpClient.GetAsync(url);
 
-        
+        // Wait for 1 second to ensure the page has loaded (if necessary)
+        await Task.Delay(1000);
 
+        // Get the final URL and the status code
+        string finalUrl = response.RequestMessage.RequestUri.ToString();
+        HttpStatusCode statusCode = response.StatusCode;
 
-        var jsonPayload = JsonConvert.SerializeObject(payload).ToString();
-
-        using (var client = new HttpClient())
-        {
-            var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
-
-            var response = await client.PostAsync(url, content);
-
-            var responseContent = await response.Content.ReadAsStringAsync();
-
-            dynamic egSr = JsonConvert.DeserializeObject<dynamic>(responseContent);
-
-            Console.WriteLine(responseContent);
-
-            //foreach (var product in egSr.data.records)
-            //{
-            //    Console.WriteLine((string)product?.imageUrl + " - " + (string)product?.sellerName + " - " + (string)product?.price?.current[0] );
-            //}
-
-     
-
-
-        }
+        return (finalUrl, statusCode);
     }
 }
