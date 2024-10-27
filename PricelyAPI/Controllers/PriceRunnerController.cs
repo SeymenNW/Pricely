@@ -8,14 +8,14 @@ namespace PricelyAPI.Controllers
 {
     [ApiVersion("1.0")]
     [ApiController]
-    [Route("api/v1/[controller]")]
-    public class MainPriceController : ControllerBase
+    [Route("v1/pr")]
+    public class PriceRunnerController : ControllerBase
     {
     
 
-        private readonly ILogger<MainPriceController> _logger;
+        private readonly ILogger<PriceRunnerController> _logger;
         private readonly IPricerunnerService _pricerunnerService;
-        public MainPriceController(ILogger<MainPriceController> logger, IPricerunnerService pricerunnerService)
+        public PriceRunnerController(ILogger<PriceRunnerController> logger, IPricerunnerService pricerunnerService)
         {
             _logger = logger;
             _pricerunnerService = pricerunnerService;
@@ -23,13 +23,13 @@ namespace PricelyAPI.Controllers
         }
 
 
-
-        [HttpGet("GetPrice", Name = "GetPrice")]
+        //Eksempel: https://localhost:7036/v1/pr/search/{search}
         /// <summary>
         /// Henter prisdata for de produkter man søger på.
         /// </summary>
-        /// <returns>JSON-fil med produkt og søgnings data.</returns>
-        public async Task<PricerunnerSearchResults> Get(string search)
+        [HttpGet("search/{search}", Name = "Search")]
+       
+        public async Task<PricerunnerSearchResults> GetSearch(string search)
         {
 
         return    await  _pricerunnerService.GetProductsFromSearch(search);
@@ -38,10 +38,11 @@ namespace PricelyAPI.Controllers
             //return Ok("Prisdata er hentet");
         }
 
-        [HttpGet("GetPric2e", Name = "GetPrice2")]
-        public IActionResult Get2()
+        [HttpGet("details/{productId}", Name = "Details")]
+        public async Task<PricerunnerProduct> GetProductDetails(string productId)
         {
-            return Ok("Prisdata er hentet");
+            return await _pricerunnerService.GetProductDetailsFromId(productId);
+
         }
     }
 }

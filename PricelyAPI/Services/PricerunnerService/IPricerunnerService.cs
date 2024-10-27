@@ -6,5 +6,6 @@ namespace PricelyAPI.Services.PricerunnerService
     public interface IPricerunnerService
     {
         Task<PricerunnerSearchResults> GetProductsFromSearch(string search);
+        Task<PricerunnerProduct> GetProductDetailsFromId(string productId);
     }
 }

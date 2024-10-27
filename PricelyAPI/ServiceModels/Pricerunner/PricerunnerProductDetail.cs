@@ -1,33 +1,31 @@
-﻿namespace PricelyAPI.ServiceModels.Pricerunner
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+
+namespace PricelyAPI.ServiceModels.Pricerunner
 {
-    using Newtonsoft.Json;
-    using System.Collections.Generic;
-
-    //Klasser for deserializering af følgende Endpoint: Product Detail (Produkt Detaljer)
-    //https://www.pricerunner.dk/dk/api/search-compare-gateway/public/product-detail/v0/offers/DK/{productId}
-
     public class PricerunnerProductDetail
     {
         [JsonProperty("filters")]
-        public List<Filter> Filters { get; set; }
+        public List<PDFilter> Filters { get; set; }
 
         [JsonProperty("images")]
-        public List<ProductDetailImage> Images { get; set; }
+        public List<PDImage> Images { get; set; }
 
         [JsonProperty("merchants")]
-        public Dictionary<string, Merchant> Merchants { get; set; }
+        public Dictionary<string, PDMerchant> Merchants { get; set; }
 
         [JsonProperty("offers")]
-        public List<ProductDetailOffer> Offers { get; set; }
+        public List<PDOffer> Offers { get; set; }
 
         [JsonProperty("excludedOffers")]
         public List<object> ExcludedOffers { get; set; }
 
         [JsonProperty("staticOffers")]
         public List<object> StaticOffers { get; set; }
+
     }
 
-    public class Filter
+    public class PDFilter
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -36,13 +34,13 @@
         public string Name { get; set; }
 
         [JsonProperty("filterOptions")]
-        public List<FilterOption> FilterOptions { get; set; }
+        public List<PDFilterOption> FilterOptions { get; set; }
 
         [JsonProperty("type")]
         public string Type { get; set; }
     }
 
-    public class FilterOption
+    public class PDFilterOption
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -54,13 +52,22 @@
         public int Count { get; set; }
 
         [JsonProperty("lowestPrice")]
-        public Price LowestPrice { get; set; }
+        public PDPrice LowestPrice { get; set; }
 
         [JsonProperty("state")]
         public string State { get; set; }
     }
 
-    public class ProductDetailImage
+    public class PDPrice
+    {
+        [JsonProperty("amount")]
+        public string Amount { get; set; }
+
+        [JsonProperty("currency")]
+        public string Currency { get; set; }
+    }
+
+    public class PDImage
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -72,7 +79,7 @@
         public string Description { get; set; }
     }
 
-    public class Merchant
+    public class PDMerchant
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -84,7 +91,7 @@
         public string Name { get; set; }
 
         [JsonProperty("logo")]
-        public MerchantLogo Logo { get; set; }
+        public PDLogo Logo { get; set; }
 
         [JsonProperty("countryCode")]
         public string CountryCode { get; set; }
@@ -93,7 +100,7 @@
         public string InternationalCountryCode { get; set; }
 
         [JsonProperty("rating")]
-        public MerchantRating Rating { get; set; }
+        public PDRating Rating { get; set; }
 
         [JsonProperty("urlHandling")]
         public string UrlHandling { get; set; }
@@ -105,13 +112,13 @@
         public List<string> Labels { get; set; }
 
         [JsonProperty("certificates")]
-        public List<Certificate> Certificates { get; set; }
+        public List<PDCertificate> Certificates { get; set; }
 
         [JsonProperty("paymentMethods")]
-        public List<PaymentMethod> PaymentMethods { get; set; }
+        public List<PDPaymentMethod> PaymentMethods { get; set; }
     }
 
-    public class MerchantLogo
+    public class PDLogo
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -120,7 +127,7 @@
         public string Path { get; set; }
     }
 
-    public class MerchantRating
+    public class PDRating
     {
         [JsonProperty("count")]
         public int Count { get; set; }
@@ -129,7 +136,7 @@
         public string Average { get; set; }
     }
 
-    public class Certificate
+    public class PDCertificate
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -141,7 +148,7 @@
         public string Logo { get; set; }
     }
 
-    public class PaymentMethod
+    public class PDPaymentMethod
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -156,7 +163,7 @@
         public int Order { get; set; }
     }
 
-    public class ProductDetailOffer
+    public class PDOffer
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -180,13 +187,13 @@
         public object ShippingCost { get; set; }
 
         [JsonProperty("price")]
-        public string Price { get; set; }
+        public PDPrice Price { get; set; }
 
         [JsonProperty("merchantId")]
         public string MerchantId { get; set; }
 
         [JsonProperty("labels")]
-        public OfferLabels Labels { get; set; }
+        public PDLabels Labels { get; set; }
 
         [JsonProperty("pricePerUnit")]
         public object PricePerUnit { get; set; }
@@ -195,7 +202,7 @@
         public object InstallmentPrice { get; set; }
     }
 
-    public class OfferLabels
+    public class PDLabels
     {
         [JsonProperty("propertyLabels")]
         public List<object> PropertyLabels { get; set; }
@@ -203,5 +210,4 @@
         [JsonProperty("attributeLabels")]
         public List<object> AttributeLabels { get; set; }
     }
-
 }

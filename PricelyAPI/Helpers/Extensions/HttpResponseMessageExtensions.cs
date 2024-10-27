@@ -4,7 +4,7 @@ namespace PricelyAPI.Helpers.Extensions
 {
     public static class HttpResponseMessageExtensions
     {
-        public static async Task<string> GetJsonString(this HttpResponseMessage httpResponseMsg)
+        public static async Task<string> GetJsonAsString(this HttpResponseMessage httpResponseMsg)
         {
             //Pricerunner compresser med GZIP, Men denne metode inkluderer både GZip og Deflate decompression.
             if (httpResponseMsg.Content.Headers.ContentEncoding.Contains("gzip"))
