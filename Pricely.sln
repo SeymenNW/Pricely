@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pricely.Libraries.Services", "Pricely.Libraries.Services\Pricely.Libraries.Services.csproj", "{75AA4B60-BE35-47D7-BBAF-A097BA95DB17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pricely.Libraries.Shared", "Pricely.Libraries.Services\Pricely.Libraries.Shared.csproj", "{75AA4B60-BE35-47D7-BBAF-A097BA95DB17}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PricelyAPI", "PricelyAPI\PricelyAPI.csproj", "{818C1906-58F5-4B24-A873-FBF171C2FB8F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Noter", "Noter", "{CF001FC8-8451-4C04-ADFD-48FBFB972617}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestsNotes", "TestsNotes", "{CF001FC8-8451-4C04-ADFD-48FBFB972617}"
 	ProjectSection(SolutionItems) = preProject
 		Endpoints.txt = Endpoints.txt
 	EndProjectSection
@@ -17,6 +17,14 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PricelyWeb", "PricelyWeb\PricelyWeb\PricelyWeb.csproj", "{D72D27A4-65C6-417D-8B9B-B77ABCBD0F06}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PricelyWeb.Client", "PricelyWeb\PricelyWeb.Client\PricelyWeb.Client.csproj", "{E003C4DD-CBF5-4D40-A79B-8B1B61FFA601}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pricely Backend", "Pricely Backend", "{AF33D500-9AD4-4363-A754-7DC14AA6D40C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pricely Frontend", "Pricely Frontend", "{DDE181A1-B9D5-4828-8645-1DAE1F21356D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PricelyWeb.Services", "PricelyWeb.Services\PricelyWeb.Services.csproj", "{ABEBF580-DCBF-4875-887E-3FBE34E087B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{07211036-938C-4DCD-B316-01C18FA971E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,9 +52,21 @@ Global
 		{E003C4DD-CBF5-4D40-A79B-8B1B61FFA601}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E003C4DD-CBF5-4D40-A79B-8B1B61FFA601}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E003C4DD-CBF5-4D40-A79B-8B1B61FFA601}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABEBF580-DCBF-4875-887E-3FBE34E087B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABEBF580-DCBF-4875-887E-3FBE34E087B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABEBF580-DCBF-4875-887E-3FBE34E087B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABEBF580-DCBF-4875-887E-3FBE34E087B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{75AA4B60-BE35-47D7-BBAF-A097BA95DB17} = {07211036-938C-4DCD-B316-01C18FA971E5}
+		{818C1906-58F5-4B24-A873-FBF171C2FB8F} = {AF33D500-9AD4-4363-A754-7DC14AA6D40C}
+		{A9053ABD-D14C-4E49-8AA2-19923979DF10} = {CF001FC8-8451-4C04-ADFD-48FBFB972617}
+		{D72D27A4-65C6-417D-8B9B-B77ABCBD0F06} = {DDE181A1-B9D5-4828-8645-1DAE1F21356D}
+		{E003C4DD-CBF5-4D40-A79B-8B1B61FFA601} = {DDE181A1-B9D5-4828-8645-1DAE1F21356D}
+		{ABEBF580-DCBF-4875-887E-3FBE34E087B8} = {DDE181A1-B9D5-4828-8645-1DAE1F21356D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A2844700-9FA1-4C72-AC33-EA89EBF7D3B9}
