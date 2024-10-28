@@ -22,7 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pricely Backend", "Pricely 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pricely Frontend", "Pricely Frontend", "{DDE181A1-B9D5-4828-8645-1DAE1F21356D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PricelyWeb.Services", "PricelyWeb.Services\PricelyWeb.Services.csproj", "{ABEBF580-DCBF-4875-887E-3FBE34E087B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PricelyWeb.Services", "PricelyWeb.Services\PricelyWeb.Services.csproj", "{ABEBF580-DCBF-4875-887E-3FBE34E087B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{07211036-938C-4DCD-B316-01C18FA971E5}"
 EndProject
