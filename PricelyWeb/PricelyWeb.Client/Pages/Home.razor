@@ -7,23 +7,30 @@
 <PageTitle>Hjem</PageTitle>
 
 <MudText Typo="Typo.h4" GutterBottom="true">Søg med Pricely (Beta, designet skal forbedres.)</MudText>
-<MudText Class="mb-8">Pricely 0.7! Pricely Søgning henter data ned fra alle understøttede butikker.</MudText>
-    <MudTextField @bind-Value="SearchText"  Label="Søg på over 4 millioner produkter..." Variant="Variant.Outlined"></MudTextField>
-<MudButton Variant="Variant.Filled" @onclick="() =>  GetPrices(SearchText)" DropShadow="false" Color="Color.Primary">SØG PRICELY</MudButton>
+<MudText Class="mb-8">Pricely 1.0 (beta1). Pricely Søgning henter data ned fra alle understøttede butikker.</MudText>
+<MudTextField @bind-Value="@SearchText"
+              OnAdornmentClick="() => GetPrices(SearchText)"
+              Label="Søg på over 3 millioner produkter..."
+              Variant="Variant.Outlined"
+              Adornment="Adornment.End"
+              AdornmentIcon="@Icons.Material.Filled.Search"
+              AdornmentColor="Color.Secondary"
+              Style="border-radius: 12px;"
+              Class="rounded-full" />
 
-<br/>
-<br/>
-<br/>
-<br/>
+<br />
+<br />
+<br />
+<br />
 
 <MudGrid Spacing="0" Justify="Justify.SpaceBetween">
-@foreach (var item in Results.ProductResults)
-{
-   <PricelyWeb.Client.Pages.ProductComponents.ProductListingCard Title="@item.Name" Price="@item.LowestPrice" ImageLink="@item.ImageUrl"/>
-}
-    </MudGrid>
+    @foreach (var item in Results.ProductResults)
+    {
+        <PricelyWeb.Client.Pages.ProductComponents.ProductListingCard Title="@item.Name" Price="@item.LowestPrice" ImageLink="@item.ImageUrl" />
+    }
+</MudGrid>
 
-@code{
+@code {
     public PriceRunnerSearchResults Results { get; set; } = new();
     public string SearchText { get; set; }
 
@@ -35,7 +42,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-     
+
         // Results =  await _getPriceRunnerResults.GetProductsFromSearch("");
     }
 
