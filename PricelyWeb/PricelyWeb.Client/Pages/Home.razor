@@ -6,8 +6,9 @@
 <PageTitle>Hjem</PageTitle>
 
 <MudText Typo="Typo.h4" GutterBottom="true">Søg med Pricely!</MudText>
-<MudText Class="mb-8">Dette er den nyeste og bedste version af Pricely nogensinde!</MudText>
-
+<MudText Class="mb-8">Pricely 1.0.</MudText>
+    <MudTextField @bind-Value="SearchText"  Label="Søg på over 4 millioner produkter..." Variant="Variant.Outlined"></MudTextField>
+<MudButton Variant="Variant.Filled" @onclick="() =>  GetPrices(SearchText)" DropShadow="false" Color="Color.Primary">SØG PRICELY</MudButton>
 
 @foreach (var item in Results.ProductResults)
 {
@@ -17,6 +18,13 @@
 
 @code{
     public PriceRunnerSearchResults Results { get; set; } = new();
+    public string SearchText { get; set; }
+
+    public async Task GetPrices(string search)
+    {
+        Results = await _getPriceRunnerResults.GetProductsFromSearch(search);
+        StateHasChanged();
+    }
 
     protected override async Task OnInitializedAsync()
     {
