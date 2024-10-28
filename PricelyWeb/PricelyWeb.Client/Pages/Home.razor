@@ -7,7 +7,7 @@
 <PageTitle>Hjem</PageTitle>
 
 <MudText Typo="Typo.h4" GutterBottom="true">Søg med Pricely!</MudText>
-<MudText Class="mb-8">Pricely 1.0.</MudText>
+<MudText Class="mb-8">Pricely 1.0. Pricely Søgning henter data ned fra alle understøttede butikker.</MudText>
     <MudTextField @bind-Value="SearchText"  Label="Søg på over 4 millioner produkter..." Variant="Variant.Outlined"></MudTextField>
 <MudButton Variant="Variant.Filled" @onclick="() =>  GetPrices(SearchText)" DropShadow="false" Color="Color.Primary">SØG PRICELY</MudButton>
 
@@ -30,7 +30,7 @@
     protected override async Task OnInitializedAsync()
     {
      
-        Results =  await _getPriceRunnerResults.GetProductsFromSearch("PS5");
+        // Results =  await _getPriceRunnerResults.GetProductsFromSearch("");
     }
 
 }
