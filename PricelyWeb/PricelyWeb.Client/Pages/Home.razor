@@ -2,6 +2,7 @@
 @using Pricely.Libraries.Services.Models.PriceRunner
 @using Pricely.Libraries.Services.Services
 
+@inject HttpClient httpClient
 @inject IGetPriceRunnerResults _getPriceRunnerResults
 
 <PageTitle>Hjem</PageTitle>
@@ -36,7 +37,9 @@
 
     public async Task GetPrices(string search)
     {
-        Results = await _getPriceRunnerResults.GetProductsFromSearch(search);
+        // Results = await _getPriceRunnerResults.GetProductsFromSearch(search);
+
+        Results  = await httpClient.GetFromJsonAsync<PriceRunnerSearchResults>($"https://localhost:7036/v1/pr/search/{search}");
         StateHasChanged();
     }
 
