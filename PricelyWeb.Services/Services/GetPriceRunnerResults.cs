@@ -50,5 +50,43 @@ namespace Pricely.Libraries.Services.Services
             }
         }
         #endregion
+
+
+        #region Produktsøgning funktion
+        public async Task<PriceRunnerProductDetails> GetProductDetailsFromId(string productId)
+        {
+            
+
+            string pricelySearchUrl = $"https://localhost:7036/v1/pr/details/{productId}";
+
+            var jsonSettings = new JsonSerializerSettings
+            {
+                DateTimeZoneHandling = DateTimeZoneHandling.Utc
+            };
+
+            using (HttpClient httpClient = new())
+            {
+                try
+                {
+
+                    HttpRequestMessage httpRequestMsg = new(HttpMethod.Get, pricelySearchUrl);
+                    HttpResponseMessage httpResponseMsg = await httpClient.SendAsync(httpRequestMsg);
+                    httpResponseMsg.EnsureSuccessStatusCode();
+                    string jsonString = await httpResponseMsg.Content.ReadAsStringAsync();
+
+
+                    PriceRunnerProductDetails results = JsonConvert.DeserializeObject<PriceRunnerProductDetails>(jsonString);
+
+                    return results;
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Fejl, kan ikke hente data. {e.Message}");
+                    return null;
+                }
+            }
+        }
+        #endregion
     }
 }

@@ -1,0 +1,124 @@
+﻿@page "/pr/details/{productId}"
+@using Pricely.Libraries.Services.Models.PriceRunner
+@using Pricely.Libraries.Services.Services
+@inject IGetPriceRunnerResults _priceRunnerResults
+
+@if (Details != null)
+{
+    <!-- Er stadig under udviklingbesked.. -->
+    <div class="absolute left-2 top-2 rounded-full bg-green-200 px-2 py-1 text-sm font-medium text-green-700">
+        Denne side er stadig under udvikling.. (Ratings osv fungerer ikke indtil videre.)
+    </div>
+
+    <MudContainer MaxWidth="MaxWidth.Large" Class="border-0 mx-auto mt-10 space-y-6 p-4">
+
+        <!-- MudCard oversigt over produkt detaljer. -->
+        <MudCard Class="@CardFullTailwind">
+
+            <MudGrid Spacing="0">
+
+                <!-- Produktbillede -->
+                <MudItem xs="4">
+                    <MudImage Src="@Details.ImageUrls[0]" Alt="Product Image" Class="w-full rounded-tl-lg" />
+                </MudItem>
+
+                <!-- Indhold -->
+                <MudItem xs="8">
+                    <MudCardContent Class="px-4 py-3">
+                        <!-- Title -->
+                        <MudText Color="Color.Primary" Typo="Typo.h5">@Details.Name</MudText>
+
+                        <!-- Rating (Ikke implementeret) -->
+                        <div class="mt-1 flex items-center space-x-1 text-yellow-500">
+                            <MudRating Value="4.5" MaxValue="5" ReadOnly="true" Size="Size.Small" />
+                            <MudText Color="Color.Primary" Typo="Typo.body2">4.5 (fx)</MudText>
+                        </div>
+
+                        <!-- Beskrivelse -->
+                        <MudText Color="Color.Primary" Typo="Typo.body1">@Details.Description</MudText>
+
+                            <MudLink Href="@Details.PriceRunnerUrl" Color="Color.Surface" Class="text-blue-500">Se på PriceRunner..</MudLink>
+
+                        <!-- Fra X til Y pris.. -->
+                        <div class="mt-4 flex items-center space-x-2">
+                            <MudText Color="Color.Primary" Typo="Typo.body2">Sammenlign priser fra</MudText>
+                            <MudText Color="Color.Secondary" Typo="Typo.body2">@Details.MinPrice</MudText>
+                            <MudText Color="Color.Primary" Typo="Typo.body2">til</MudText>
+                            <MudText Color="Color.Secondary" Typo="Typo.body2">@Details.MaxPrice</MudText>
+                        </div>
+                    </MudCardContent>
+                </MudItem>
+
+            </MudGrid>
+        </MudCard>
+
+    </MudContainer>
+
+    @foreach (var merchant in Details.Merchants)
+    {
+        <MudContainer MaxWidth="MaxWidth.Large" Class="mx-auto mt-5">
+            <MudCard Class="flex items-center justify-between rounded-lg border border-gray-200 p-3 shadow-sm">
+
+                <!-- Left Section: Seller Logo, Name, and Rating -->
+                <div class="flex items-center space-x-3">
+                    <!-- Butik logo ligeså snart det er implementeret. -->
+                    <MudAvatar Image="" Size="Size.Medium" Class="border border-gray-300" />
+
+                    <!-- Butik navn / Rating -->
+                    <div class="flex flex-col">
+                        <MudText Color="Color.Primary" Typo="Typo.h4">@merchant.Name</MudText>
+                            <MudRating Value="4.3" MaxValue="5" ReadOnly="true" Size="Size.Small" />
+                         
+                    </div>
+                </div>
+
+                <!-- Produktnavn (måske link skal implementeres her) -->
+                <div class="ml-4 flex-grow">
+                    <MudText Typo="Typo.h5" Class="cursor-pointer font-medium text-blue-500 hover:underline">
+                        @merchant.MerchantProductName
+                    </MudText>
+                </div>
+
+                <!-- Fragtinformation, leveringstid, pris. (Skal implementeres) -->
+                <div class="text-right">
+                    <span class="block text-sm text-gray-600">Fri fragt, 1-3 dage</span>
+                    <span class="block text-xl font-bold text-gray-900">4.199 kr.</span>
+                </div>
+
+                <!-- Gå til butik knap.. -->
+                <MudButton Href="@merchant.ProductUrl">GÅ TIL BUTIK</MudButton>
+
+            </MudCard>
+        </MudContainer>
+    }
+   
+
+}else
+{
+    <MudText>Produktet er ikke indlæst..</MudText>
+
+}
+
+
+
+
+@code {
+    [Parameter]
+    public string ProductId { get; set; }
+
+
+    [CascadingParameter(Name = "IsDarkMode")]
+    public bool IsDarkMode { get; set; }
+
+    private string CardBackground => IsDarkMode ? "bg-[#292a2d]" : "bg-[#f7f7fa]";
+
+    private string CardFullTailwind => $"rounded-lg border-1  shadow-lg {CardBackground}";
+
+    public PriceRunnerProductDetails Details { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        Details = await _priceRunnerResults.GetProductDetailsFromId(ProductId);
+    }
+}

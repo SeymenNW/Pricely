@@ -10,11 +10,13 @@ namespace Pricely.Libraries.Services.Models.PriceRunner
     {
         public string? Name { get; set; }
         public string? Description { get; set; }
-        public string? Url { get; set; }
+        public string? PriceRunnerUrl { get; set; }
 
         public List<string>? ImageUrls { get; set; }
 
         public string? Brand { get; set; }
+        public string? MinPrice { get; set; }
+        public string? MaxPrice { get; set; }
 
         //Dette er for butikkerne.
         public List<PriceRunnerMerchants>? Merchants { get; set; }

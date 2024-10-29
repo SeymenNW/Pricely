@@ -3,6 +3,7 @@ using Pricely.Libraries.Services.Models.PriceRunner;
 using PricelyAPI.Helpers.Extensions;
 using PricelyAPI.ServiceModels.Pricerunner;
 using System.IO.Compression;
+using static System.Net.WebRequestMethods;
 
 namespace PricelyAPI.Services.PricerunnerService
 {
@@ -70,6 +71,7 @@ namespace PricelyAPI.Services.PricerunnerService
 
 
             string prDetailsUrl = $"https://www.pricerunner.dk/dk/api/search-compare-gateway/public/product-detail/v0/offers/DK/{productId}";
+            string prListingUrl = $"https://www.pricerunner.dk/dk/api/search-compare-gateway/public/productlistings/pl/initial/52-{productId}/DK";
 
             var jsonSettings = new JsonSerializerSettings
             {
@@ -83,12 +85,21 @@ namespace PricelyAPI.Services.PricerunnerService
                     //Tilføjer NØDVENDIGE headers med en extension metode (i mappen Extensions)
                     httpClient.AddHeaders();
 
-                    HttpResponseMessage httpResponseMsg = await httpClient.GetAsync(prDetailsUrl);
-                    httpResponseMsg.EnsureSuccessStatusCode();
+                    HttpResponseMessage httpResponseDetails = await httpClient.GetAsync(prDetailsUrl);
+                    HttpResponseMessage httpResponseListing = await httpClient.GetAsync(prListingUrl);
+
+                    httpResponseDetails.EnsureSuccessStatusCode();
+                    httpResponseListing.EnsureSuccessStatusCode();
 
                     //Tjekker om responsen er Json, Gzip eller Deflate og decompresser hvis det er GZip eller deflate. Extension metode til HttpResponseMessage
-                    string jsonString = await httpResponseMsg.GetJsonAsString();
-                    PRProductDetail prProductDetail = JsonConvert.DeserializeObject<PRProductDetail>(jsonString, jsonSettings);
+                    string detailsJsonResponse = await httpResponseDetails.GetJsonAsString();
+                    string listingJsonResponse = await httpResponseListing.GetJsonAsString();
+
+                    PRProductDetail prProductDetail = JsonConvert.DeserializeObject<PRProductDetail>(detailsJsonResponse, jsonSettings);
+                    PRProductListing prProductListing = JsonConvert.DeserializeObject<PRProductListing>(listingJsonResponse, jsonSettings);
+
+
+
 
                     List<PriceRunnerMerchants> merchantsList = new();
 
@@ -109,25 +120,30 @@ namespace PricelyAPI.Services.PricerunnerService
                             Name = prProductDetail.Merchants[offer.MerchantId].Name,
                             MerchantProductName = offer.Name,
                             ProductUrl = productUrl,
-                            
+
                         };
 
                         merchantsList.Add(merchants);
                     }
 
-                   
+
 
                     return new PriceRunnerProductDetails
                     {
-                        Name = prProductDetail.Images[0].Description, //Dette er en midlertidig løsning
-                        Brand = "Ikke specifieret endnu",
+                        Name = prProductListing.ProductDetails.Name,
+                        Brand = prProductListing.Brand.Name,
                         ImageUrls = prProductDetail.Images.Select(imageUrl => $"https://owp.klarna.com{imageUrl.Path}").ToList(),
-                        Merchants = merchantsList
-                        
-                        
+                        Merchants = merchantsList,
+                        Description = prProductListing.ProductDetails.Description,
+                        MinPrice = prProductListing.PrioritizedMinPrice.Amount,
+                        MaxPrice = prProductListing.PrioritizedMaxPrice.Amount,
+                        PriceRunnerUrl = "https://www.pricerunner.dk"+prProductListing.ProductDetails.Url
+
+
+
+
                     };
 
-                    httpResponseMsg.EnsureSuccessStatusCode();
 
 
 
