@@ -37,7 +37,7 @@
                         <!-- Beskrivelse -->
                         <MudText Color="Color.Primary" Typo="Typo.body1">@Details.Description</MudText>
 
-                            <MudLink Href="@Details.PriceRunnerUrl" Color="Color.Surface" Class="text-blue-500">Se på PriceRunner..</MudLink>
+                        <MudLink Href="@Details.PriceRunnerUrl" Color="Color.Surface" Class="text-blue-500">Se på PriceRunner..</MudLink>
 
                         <!-- Fra X til Y pris.. -->
                         <div class="mt-4 flex items-center space-x-2">
@@ -56,46 +56,49 @@
 
     @foreach (var merchant in Details.Merchants)
     {
-        <MudContainer MaxWidth="MaxWidth.Large" Class="mx-auto mt-5">
-            <MudCard Class="flex items-center justify-between rounded-lg border border-gray-200 p-3 shadow-sm">
+        <MudPaper Class="pa-4 mt-3">
+            <MudGrid>
+    <MudItem xs="12">
+        <MudGrid>
+            <MudItem xs="1">
+                <MudAvatar Icon="@Icons.Material.Filled.Store" Size="Size.Large" />
+            </MudItem>
+            <MudItem xs="11">
+                <MudText Typo="Typo.h6">@merchant.Name</MudText>
+                <MudRating Value="4.8" MaxValue="5" ReadOnly="true" />
+                <MudText Color="Color.Primary" >(X)</MudText>
+            </MudItem>
+        </MudGrid>
+    </MudItem>
+    <MudItem xs="12">
+        <MudText Typo="Typo.subtitle1">
+            @merchant.MerchantProductName
+        </MudText>
+    </MudItem>
+    <MudItem xs="12">
+        <MudGrid>
+            <MudItem xs="6">
+                <MudText Typo="Typo.body2">Fri fragt, 1-2 dage</MudText>
+            </MudItem>
+            <MudItem xs="6" Class="d-flex justify-end">
+                <MudText Typo="Typo.h5">4.206 kr.</MudText>
+                <MudIconButton Href="@merchant.ProductUrl" Icon="@Icons.Material.Filled.ArrowForward" />
+            </MudItem>
+        </MudGrid>
+    </MudItem>
+</MudGrid>
 
-                <!-- Left Section: Seller Logo, Name, and Rating -->
-                <div class="flex items-center space-x-3">
-                    <!-- Butik logo ligeså snart det er implementeret. -->
-                    <MudAvatar Image="" Size="Size.Medium" Class="border border-gray-300" />
 
-                    <!-- Butik navn / Rating -->
-                    <div class="flex flex-col">
-                        <MudText Color="Color.Primary" Typo="Typo.h4">@merchant.Name</MudText>
-                            <MudRating Value="4.3" MaxValue="5" ReadOnly="true" Size="Size.Small" />
-                         
-                    </div>
-                </div>
 
-                <!-- Produktnavn (måske link skal implementeres her) -->
-                <div class="ml-4 flex-grow">
-                    <MudText Typo="Typo.h5" Class="cursor-pointer font-medium text-blue-500 hover:underline">
-                        @merchant.MerchantProductName
-                    </MudText>
-                </div>
-
-                <!-- Fragtinformation, leveringstid, pris. (Skal implementeres) -->
-                <div class="text-right">
-                    <span class="block text-sm text-gray-600">Fri fragt, 1-3 dage</span>
-                    <span class="block text-xl font-bold text-gray-900">4.199 kr.</span>
-                </div>
-
-                <!-- Gå til butik knap.. -->
-                <MudButton Href="@merchant.ProductUrl">GÅ TIL BUTIK</MudButton>
-
-            </MudCard>
-        </MudContainer>
+        </MudPaper>
     }
-   
 
-}else
+
+
+}
+else
 {
-    <MudText>Produktet er ikke indlæst..</MudText>
+    <MudText>Produktet indlæses.. (Refresh siden hvis der går for lang tid)</MudText>
 
 }
 

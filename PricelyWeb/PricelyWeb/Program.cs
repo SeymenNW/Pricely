@@ -11,6 +11,8 @@ builder.Services.AddMudServices();
 builder.Services.AddTransient<IGetPriceRunnerResults, GetPriceRunnerResults>();
 builder.Services.AddHttpClient();
 
+    
+//
 
 // Add services to the container.
 builder.Services.AddRazorComponents()

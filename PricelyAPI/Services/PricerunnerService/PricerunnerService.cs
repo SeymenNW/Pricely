@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json;
 using Pricely.Libraries.Services.Models.PriceRunner;
 using PricelyAPI.Helpers.Extensions;
+using PricelyAPI.Helpers.Handlers;
 using PricelyAPI.ServiceModels.Pricerunner;
 using System.IO.Compression;
+using System.Net;
 using static System.Net.WebRequestMethods;
 
 namespace PricelyAPI.Services.PricerunnerService
@@ -22,7 +24,7 @@ namespace PricelyAPI.Services.PricerunnerService
                 DateTimeZoneHandling = DateTimeZoneHandling.Utc
             };
 
-            using (HttpClient httpClient = new())
+            using (HttpClient httpClient = new(ProxyManager.AddRotatingProxy()))
             {
                 try
                 {
@@ -78,12 +80,19 @@ namespace PricelyAPI.Services.PricerunnerService
                 DateTimeZoneHandling = DateTimeZoneHandling.Utc
             };
 
-            using (HttpClient httpClient = new())
+
+
+
+            using (HttpClient httpClient = new(ProxyManager.AddRotatingProxy()))
             {
                 try
                 {
+               
+
                     //Tilføjer NØDVENDIGE headers med en extension metode (i mappen Extensions)
                     httpClient.AddHeaders();
+                    httpClient.DefaultRequestHeaders.Add("authority", "www.pricerunner.dk");
+                    httpClient.DefaultRequestHeaders.Add("Authorization", "36DD6CFC5B15E43DC18C66455116F244");
 
                     HttpResponseMessage httpResponseDetails = await httpClient.GetAsync(prDetailsUrl);
                     HttpResponseMessage httpResponseListing = await httpClient.GetAsync(prListingUrl);
