@@ -1,9 +1,11 @@
 ﻿@page "/"
 @using Pricely.Libraries.Services.Models.PriceRunner
 @using Pricely.Libraries.Services.Services
+@using PricelyWeb.Client.Configuration
 
 @inject HttpClient httpClient
 @inject IGetPriceRunnerResults _getPriceRunnerResults
+@inject PricelySettings _settings
 
 <PageTitle>Hjem</PageTitle>
 
@@ -39,7 +41,7 @@
     {
         // Results = await _getPriceRunnerResults.GetProductsFromSearch(search);
 
-        Results  = await httpClient.GetFromJsonAsync<PriceRunnerSearchResults>($"https://localhost:7036/v1/pr/search/{search}");
+        Results  = await httpClient.GetFromJsonAsync<PriceRunnerSearchResults>($"{_settings.BackendUrl}/v1/pr/search/{search}");
         StateHasChanged();
     }
 
