@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
+//DENNE BRUGES IKKE LÆNGERE (HttpRequestne bliver foretaget direkte i Razor components nu).
 namespace Pricely.Libraries.Services.Services
 {
     public class GetPriceRunnerResults : IGetPriceRunnerResults
@@ -29,7 +30,6 @@ namespace Pricely.Libraries.Services.Services
             {
                 try
                 {
-                    //Tilføjer NØDVENDIGE headers med en extension metode (i mappen Extensions)
 
                     HttpRequestMessage httpRequestMsg = new(HttpMethod.Get, pricelySearchUrl);
                     HttpResponseMessage httpResponseMsg = await httpClient.SendAsync(httpRequestMsg);

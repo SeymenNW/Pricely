@@ -1,7 +1,10 @@
 ﻿@page "/pr/details/{productId}"
 @using Pricely.Libraries.Services.Models.PriceRunner
 @using Pricely.Libraries.Services.Services
+@using PricelyWeb.Client.Configuration
 @inject IGetPriceRunnerResults _priceRunnerResults
+@inject HttpClient _httpClient
+@inject PricelySettings _settings
 
 @if (Details != null)
 {
@@ -122,6 +125,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        Details = await _priceRunnerResults.GetProductDetailsFromId(ProductId);
+        Details = await _httpClient.GetFromJsonAsync<PriceRunnerProductDetails>($"{_settings.BackendUrl}/v1/pr/details/{ProductId}");
+
     }
 }
