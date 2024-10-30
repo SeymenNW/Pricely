@@ -13,14 +13,13 @@ builder.Services.AddTransient<IElgigantenService, ElgigantenService>();
 
 builder.Services.AddCors(o => o.AddPolicy("EZPolicy", builder =>
 {
-    builder.AllowAnyOrigin()  // Allow requests from any origin
-           .AllowAnyMethod()  // Allow any HTTP method (GET, POST, etc.)
-           .AllowAnyHeader(); // Allow any header
+    builder.AllowAnyOrigin()  
+           .AllowAnyMethod()  
+           .AllowAnyHeader(); 
 }));
 
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddApiVersioning(options =>
@@ -82,6 +81,8 @@ if (app.Environment.IsDevelopment())
        
         // options.SwaggerEndpoint("/swagger/v2/swagger.json", "Pricely API v2");
     });
+
+
 }
 
 

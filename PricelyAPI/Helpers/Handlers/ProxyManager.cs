@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using DotNetEnv;
+using PricelyAPI.Helpers.Handlers.EnvVariables;
 
 namespace PricelyAPI.Helpers.Handlers
 {
@@ -11,9 +12,9 @@ namespace PricelyAPI.Helpers.Handlers
             //På Pricely.dk bliver en rotating proxy brugt. 
             //Men af gode grunde kan jeg ikke bare tilføje link til den her..
             Env.Load();
-            string proxyUrl = Environment.GetEnvironmentVariable("PROXY__URL");
-            string proxyUsername = Environment.GetEnvironmentVariable("PROXY__USERNAME");
-            string proxyPassword = Environment.GetEnvironmentVariable("PROXY__PASSWORD");
+            string proxyUrl = EnvVariablesManager.ProxyUrl;
+            string proxyUsername = EnvVariablesManager.ProxyUsername;
+            string proxyPassword = EnvVariablesManager.ProxyPassword;
 
             if (string.IsNullOrEmpty(proxyUrl) || string.IsNullOrEmpty(proxyUsername) || string.IsNullOrEmpty(proxyPassword))
             {
