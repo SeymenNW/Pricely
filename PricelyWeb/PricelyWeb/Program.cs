@@ -1,16 +1,30 @@
 using MudBlazor.Services;
 using Pricely.Libraries.Services.Services;
 using PricelyWeb.Client.Configuration;
-using PricelyWeb.Client.Pages;
+using PricelyWeb.Client.Components;
 using PricelyWeb.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add MudBlazor services
 builder.Services.AddMudServices();
+PricelySettings settings = new();
+if (builder.Environment.IsDevelopment())
+{
+    string backendUrl = "https://localhost:7036";
+    settings.BackendUrl = backendUrl;
+}
+else if (builder.Environment.IsProduction())
+{
+    string backendUrl = Environment.GetEnvironmentVariable("BACKEND__URL");
+    settings.BackendUrl = backendUrl;
+}
+builder.Services.AddSingleton(settings);
 
-builder.Services.AddTransient<IGetPriceRunnerResults, GetPriceRunnerResults>();
-builder.Services.AddSingleton<PricelySettings>();
+builder.Services.AddTransient<IGetPriceRunnerResults>(sp =>
+{
+    return new GetPriceRunnerResults("");
+}); builder.Services.AddSingleton<PricelySettings>();
 builder.Services.AddHttpClient();
 
     

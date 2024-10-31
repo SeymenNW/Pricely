@@ -8,18 +8,23 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-//DENNE BRUGES IKKE LÆNGERE (HttpRequestne bliver foretaget direkte i Razor components nu).
 namespace Pricely.Libraries.Services.Services
 {
     public class GetPriceRunnerResults : IGetPriceRunnerResults
     {
+        private readonly string _apiUrl;
+
+        public GetPriceRunnerResults(string apiUrl)
+        {
+            _apiUrl = apiUrl;
+        }
 
         #region Produktsøgning funktion
         public async Task<PriceRunnerSearchResults> GetProductsFromSearch(string search)
         {
             string searchToUrl = search.Replace(" ", "%20");
 
-            string pricelySearchUrl = $"https://localhost:7036/v1/pr/search/{searchToUrl}";
+            string pricelySearchUrl = $"{_apiUrl}/v1/pr/search/{searchToUrl}";
 
             var jsonSettings = new JsonSerializerSettings
             {
@@ -30,6 +35,7 @@ namespace Pricely.Libraries.Services.Services
             {
                 try
                 {
+                    //Tilføjer NØDVENDIGE headers med en extension metode (i mappen Extensions)
 
                     HttpRequestMessage httpRequestMsg = new(HttpMethod.Get, pricelySearchUrl);
                     HttpResponseMessage httpResponseMsg = await httpClient.SendAsync(httpRequestMsg);
@@ -57,7 +63,7 @@ namespace Pricely.Libraries.Services.Services
         {
             
 
-            string pricelySearchUrl = $"https://localhost:7036/v1/pr/details/{productId}";
+            string pricelySearchUrl = $"{_apiUrl}/v1/pr/details/{productId}";
 
             var jsonSettings = new JsonSerializerSettings
             {

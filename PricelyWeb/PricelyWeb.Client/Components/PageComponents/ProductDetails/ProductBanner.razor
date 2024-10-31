@@ -1,0 +1,75 @@
+﻿<MudContainer MaxWidth="MaxWidth.Large" Class="border-0 mx-auto mt-10 space-y-6 p-4">
+
+    <!-- MudCard oversigt over produkt detaljer. -->
+    <MudCard Class="@CardFullTailwind">
+
+        <MudGrid Spacing="0">
+
+            <!-- Produktbillede -->
+            <MudItem xs="4">
+                <MudImage Src="@ImageUrls[0]" Alt="Product Image" Class="w-full rounded-tl-lg" />
+            </MudItem>
+
+            <!-- Indhold -->
+            <MudItem xs="8">
+                <MudCardContent Class="px-4 py-3">
+                    <!-- Title -->
+                    <MudText Color="Color.Primary" Typo="Typo.h5">@ProductName</MudText>
+
+                    <!-- Rating (Ikke implementeret) -->
+                    <div class="mt-1 flex items-center space-x-1 text-yellow-500">
+                        <MudRating Value="4.5" MaxValue="5" ReadOnly="true" Size="Size.Small" />
+                        <MudText Color="Color.Primary" Typo="Typo.body2">4.5 (fx)</MudText>
+                    </div>
+
+                    <!-- Beskrivelse -->
+                    <MudText Color="Color.Primary" Typo="Typo.body1">@Description</MudText>
+
+                    <MudLink Href="@PriceRunnerUrl" Color="Color.Surface" Class="text-blue-500">Se på PriceRunner..</MudLink>
+
+                    <!-- Fra X til Y pris.. -->
+                    <div class="mt-4 flex items-center space-x-2">
+                        <MudText Color="Color.Primary" Typo="Typo.body2">Sammenlign priser fra</MudText>
+                        <MudText Color="Color.Secondary" Typo="Typo.body2">@MinPrice</MudText>
+                        <MudText Color="Color.Primary" Typo="Typo.body2">til</MudText>
+                        <MudText Color="Color.Secondary" Typo="Typo.body2">@MaxPrice </MudText>
+                    </div>
+                </MudCardContent>
+            </MudItem>
+
+        </MudGrid>
+    </MudCard>
+
+</MudContainer>
+
+@code {
+
+    [Parameter]
+    public List<string> ImageUrls { get; set; }
+
+    [Parameter]
+    public string ProductName { get; set; }
+
+
+    [Parameter]
+    public string Description { get; set; }
+
+    [Parameter]
+    public string PriceRunnerUrl { get; set; }
+
+    
+    [Parameter]
+    public string MinPrice { get; set; }
+
+    [Parameter]
+    public string MaxPrice { get; set; }
+
+    [CascadingParameter(Name = "IsDarkMode")]
+    public bool IsDarkMode { get; set; }
+
+    private string CardBackground => IsDarkMode ? "bg-[#292a2d]" : "bg-[#f7f7fa]";
+
+    private string CardFullTailwind => $"rounded-lg border-1  shadow-lg {CardBackground}";
+
+
+}

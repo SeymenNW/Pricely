@@ -29,7 +29,7 @@
 <MudGrid Spacing="0" Justify="Justify.SpaceAround">
     @foreach (var item in Results.ProductResults)
     {
-        <PricelyWeb.Client.Pages.ProductComponents.ProductListingCard Id="@item.Id" Title="@item.Name" Price="@item.LowestPrice" ImageLink="@item.ImageUrl" />
+        <PricelyWeb.Client.Components.Pages.ProductComponents.ProductListingCard Id="@item.Id" Title="@item.Name" Price="@item.LowestPrice" ImageLink="@item.ImageUrl" />
     }
 </MudGrid>
 
