@@ -21,6 +21,7 @@ else if (builder.HostEnvironment.IsProduction())
     settings.BackendUrl = backendUrl;
 }
 builder.Services.AddSingleton(settings);
+
 builder.Services.AddTransient<IGetPriceRunnerResults>(sp =>
 {
     return new GetPriceRunnerResults(settings.BackendUrl);

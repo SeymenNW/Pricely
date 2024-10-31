@@ -2,6 +2,7 @@
 using Pricely.Libraries.Services.Models.Elgiganten;
 using Pricely.Libraries.Services.Models.PriceRunner;
 using PricelyAPI.Helpers.Extensions;
+using PricelyAPI.Helpers.Handlers;
 using PricelyAPI.ServiceModels.Elgiganten;
 using PricelyAPI.ServiceModels.Pricerunner;
 using System;
@@ -20,7 +21,7 @@ namespace PricelyAPI.Services.ElgigantenService
             string jsonPayload = JsonConvert.SerializeObject(payload).ToString();
 
 
-            using (HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient(ProxyManager.AddRotatingProxy()))
             {
                 
                 var response = await client.PostAsync(elgiSearchUrl, new StringContent(jsonPayload, Encoding.UTF8, "application/json"));

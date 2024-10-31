@@ -1,7 +1,9 @@
 ﻿@page "/"
+
 @using Pricely.Libraries.Services.Models.PriceRunner
 @using Pricely.Libraries.Services.Services
 @using PricelyWeb.Client.Configuration
+@rendermode InteractiveWebAssembly
 
 @inject HttpClient httpClient
 @inject IGetPriceRunnerResults _getPriceRunnerResults

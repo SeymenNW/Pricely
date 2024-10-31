@@ -1,5 +1,48 @@
-﻿<h3>Merchant</h3>
+﻿@page "/tools"
+@using MudBlazor
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="@CardFullTailwind" Style=" border-radius: 10px;">
+    <MudExpansionPanels Class="mt-10 space-y-5">
+  
+
 
 @code {
+    // Any C# code here if needed
+}
+
+
+
+        <MudExpansionPanel Text="Panel Two" MaxHeight="500">
+            
+            <TitleContent >
+                <div class="m-4 flex justify-between">
+                Elgiganten
+                <MudButton Class="bg-orange-600" Color="Color.Dark">Gå til butikside</MudButton>
+                </div>
+            </TitleContent>
+            <ChildContent>
+                Panel Content
+            </ChildContent>
+        </MudExpansionPanel>
+        <MudExpansionPanel Text="Panel Three" MaxHeight="1000">
+            Panel Three Content
+        </MudExpansionPanel>
+        <MudExpansionPanel Text="Panel Four">
+            Panel Four Content
+        </MudExpansionPanel>
+    </MudExpansionPanels>
+</MudContainer>
+
+@code {
+
+
+
+
+    [CascadingParameter(Name = "IsDarkMode")]
+    public bool IsDarkMode { get; set; }
+
+    private string CardBackground => IsDarkMode ? "bg-[#292a2d]" : "bg-[#f7f7fa]";
+
+    private string CardFullTailwind => $"rounded-3xl border-1 p-5 shadow-lg {CardBackground}";
 
 }
