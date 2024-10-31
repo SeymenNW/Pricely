@@ -17,7 +17,7 @@ namespace PricelyAPI.Services.PricerunnerService
         {
             string searchToUrl = search.Replace(" ", "%20");
 
-            string prSearchUrl = $"https://www.pricerunner.dk/dk/api/search-compare-gateway/public/search/v5/DK?q={searchToUrl}&suggestionsActive=true&suggestionClicked=false&suggestionReverted=false&carouselSize=10";
+            string prSearchUrl = $"https://www.pricerunner.dk/dk/api/search-compare-gateway/public/search/v5/DK?q={searchToUrl}&size=48&offset=68&suggestionsActive=true&suggestionClicked=false&suggestionReverted=false";
 
             var jsonSettings = new JsonSerializerSettings
             {
