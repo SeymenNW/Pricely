@@ -59,11 +59,11 @@ namespace Pricely.Libraries.Services.Services
 
 
         #region Produktsøgning funktion
-        public async Task<PriceRunnerProductDetails> GetProductDetailsFromId(string productId)
+        public async Task<PriceRunnerProductDetails> GetProductDetailsFromId(string productId, string categoryId)
         {
             
 
-            string pricelySearchUrl = $"{_apiUrl}/v1/pr/details/{productId}";
+            string pricelySearchUrl = $"{_apiUrl}/v1/pr/details/{categoryId}/{productId}";
 
             var jsonSettings = new JsonSerializerSettings
             {

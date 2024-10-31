@@ -184,7 +184,7 @@ namespace PricelyAPI.ServiceModels.Pricerunner
         public object DeliveryTime { get; set; }
 
         [JsonProperty("shippingCost")]
-        public object ShippingCost { get; set; }
+        public PDShippingCost ShippingCost { get; set; }
 
         [JsonProperty("price")]
         public PDPrice Price { get; set; }
@@ -200,6 +200,15 @@ namespace PricelyAPI.ServiceModels.Pricerunner
 
         [JsonProperty("installmentPrice")]
         public object InstallmentPrice { get; set; }
+    }
+
+    public class PDShippingCost
+    {
+        [JsonProperty("amount")]
+        public string Amount { get; set; }
+
+        [JsonProperty("currency")]
+        public string Currency { get; set; }
     }
 
     public class PDLabels

@@ -1,48 +1,54 @@
 ﻿@page "/tools"
 @using MudBlazor
 
-<MudContainer MaxWidth="MaxWidth.Large" Class="@CardFullTailwind" Style=" border-radius: 10px;">
+<MudContainer MaxWidth="MaxWidth.Large" Class="@CardFullTailwind" Style="border-radius: 10px;">
     <MudExpansionPanels Class="mt-10 space-y-5">
-  
+        @foreach (var merchant in ProductDetails.Merchants)
+        {
+            <MudExpansionPanel MaxHeight="500" Class="@ProductCardFullTailwind">
+                <TitleContent>
+                    <div class="flex flex-wrap items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <img class="rounded-full" src="@merchant.MerchantLogoUrl" width="40" height="40" />
+                            <MudText Color="Color.Primary" Class="text-sm font-bold sm:text-base">@merchant.Name</MudText>
+                        </div>
+                        <MudText Color="Color.Primary" Class="flex-1 mx-5 text-center text-xs font-bold sm:text-base">
+                            @(merchant.MerchantProductName.Length > 50 ? merchant.MerchantProductName.Substring(0, 50) + "..." : merchant.MerchantProductName)
+                        </MudText>
+                        <div class="flex items-center space-x-3">
+                            <MudText Color="Color.Primary" Class="text-sm font-bold sm:text-base">Pris: @merchant.Price</MudText>
+                            <MudButton EndIcon="@Icons.Material.Rounded.ArrowRight" Href="@merchant.ProductUrl" Variant="Variant.Filled" DropShadow="false" Color="Color.Primary" Class="text-sm sm:text-base">Butik</MudButton>
+                        </div>
+                    </div>
+                </TitleContent>
+                <ChildContent>
+                    <MudText>
+                        <strong>Produkt:</strong> @merchant.MerchantProductName<br />
+                        <strong>Pris:</strong> @merchant.Price<br />
+                        @if ((bool)merchant.StockStatus)
+                        {
+                            <strong>Lager Status: På Lager!</strong>
+                        } else {
+                            <strong>Lager Status: IKKE På Lager!</strong>
 
-
-@code {
-    // Any C# code here if needed
-}
-
-
-
-        <MudExpansionPanel Text="Panel Two" MaxHeight="500">
-            
-            <TitleContent >
-                <div class="m-4 flex justify-between">
-                Elgiganten
-                <MudButton Class="bg-orange-600" Color="Color.Dark">Gå til butikside</MudButton>
-                </div>
-            </TitleContent>
-            <ChildContent>
-                Panel Content
-            </ChildContent>
-        </MudExpansionPanel>
-        <MudExpansionPanel Text="Panel Three" MaxHeight="1000">
-            Panel Three Content
-        </MudExpansionPanel>
-        <MudExpansionPanel Text="Panel Four">
-            Panel Four Content
-        </MudExpansionPanel>
+                        }
+                        <!-- Add more product details here if needed -->
+                    </MudText>
+                </ChildContent>
+            </MudExpansionPanel>
+        }
     </MudExpansionPanels>
 </MudContainer>
 
 @code {
-
-
-
+    [Parameter]
+    public Pricely.Libraries.Services.Models.PriceRunner.PriceRunnerProductDetails ProductDetails { get; set; }
 
     [CascadingParameter(Name = "IsDarkMode")]
     public bool IsDarkMode { get; set; }
 
     private string CardBackground => IsDarkMode ? "bg-[#292a2d]" : "bg-[#f7f7fa]";
-
+    private string ProductCardBackground => IsDarkMode ? "bg-[#4c4c4c]" : "bg-[#f7f7fa]";
     private string CardFullTailwind => $"rounded-3xl border-1 p-5 shadow-lg {CardBackground}";
-
+    private string ProductCardFullTailwind => $"rounded-lg border-1 shadow-lg {ProductCardBackground}";
 }

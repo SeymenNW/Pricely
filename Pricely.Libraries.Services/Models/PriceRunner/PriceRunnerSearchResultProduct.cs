@@ -15,6 +15,7 @@ namespace Pricely.Libraries.Services.Models.PriceRunner
 
         public string Description { get; set; }
         public string LowestPrice { get; set; }
+        public string ProductCategoryNum { get; set; }
 
     }
 }

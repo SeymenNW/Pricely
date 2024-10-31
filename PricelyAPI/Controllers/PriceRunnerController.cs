@@ -38,10 +38,10 @@ namespace PricelyAPI.Controllers
             //return Ok("Prisdata er hentet");
         }
 
-        [HttpGet("details/{productId}", Name = "Details")]
-        public async Task<PriceRunnerProductDetails> GetProductDetails(string productId)
+        [HttpGet("details/{productCategoryNum}/{productId}", Name = "Details")]
+        public async Task<PriceRunnerProductDetails> GetProductDetails(string productId, string productCategoryNum)
         {
-            return await _pricerunnerService.GetProductDetailsFromId(productId);
+            return await _pricerunnerService.GetProductDetailsFromId(productId, productCategoryNum);
 
         }
     }

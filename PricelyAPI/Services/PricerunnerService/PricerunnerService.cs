@@ -5,6 +5,7 @@ using PricelyAPI.Helpers.Handlers;
 using PricelyAPI.ServiceModels.Pricerunner;
 using System.IO.Compression;
 using System.Net;
+using System.Text.RegularExpressions;
 using static System.Net.WebRequestMethods;
 
 namespace PricelyAPI.Services.PricerunnerService
@@ -51,6 +52,17 @@ namespace PricelyAPI.Services.PricerunnerService
                         pricelyProduct.ImageUrl = $"https://owp.klarna.com{prProduct.Image.Path}";
                         pricelyProduct.LowestPrice = prProduct.LowestPrice.Amount;
 
+                        Regex rgx = new Regex(@"\d+");
+                        Match rgxMatch = rgx.Match(prProduct.Category.Id);
+
+                        if (rgxMatch.Success)
+                        {
+                            pricelyProduct.ProductCategoryNum = rgxMatch.Value;
+                        }
+
+
+                        
+
                         prToPricelyResults.ProductResults.Add(pricelyProduct);
 
                     }
@@ -68,12 +80,12 @@ namespace PricelyAPI.Services.PricerunnerService
         #endregion
 
         #region Produkt detaljer funktion
-        public async Task<PriceRunnerProductDetails> GetProductDetailsFromId(string productId)
+        public async Task<PriceRunnerProductDetails> GetProductDetailsFromId(string productId, string productCategoryNum)
         {
 
 
             string prDetailsUrl = $"https://www.pricerunner.dk/dk/api/search-compare-gateway/public/product-detail/v0/offers/DK/{productId}";
-            string prListingUrl = $"https://www.pricerunner.dk/dk/api/search-compare-gateway/public/productlistings/pl/initial/52-{productId}/DK";
+            string prListingUrl = $"https://www.pricerunner.dk/dk/api/search-compare-gateway/public/productlistings/pl/initial/{productCategoryNum}-{productId}/DK";
 
             var jsonSettings = new JsonSerializerSettings
             {
@@ -92,9 +104,10 @@ namespace PricelyAPI.Services.PricerunnerService
                     //Tilføjer NØDVENDIGE headers med en extension metode (i mappen Extensions)
                     httpClient.AddHeaders();
                     httpClient.DefaultRequestHeaders.Add("authority", "www.pricerunner.dk");
-                    httpClient.DefaultRequestHeaders.Add("Authorization", "36DD6CFC5B15E43DC18C66455116F244");
 
                     HttpResponseMessage httpResponseDetails = await httpClient.GetAsync(prDetailsUrl);
+                    await Task.Delay(100);
+
                     HttpResponseMessage httpResponseListing = await httpClient.GetAsync(prListingUrl);
 
                     httpResponseDetails.EnsureSuccessStatusCode();
@@ -122,13 +135,21 @@ namespace PricelyAPI.Services.PricerunnerService
 
                         //https://www.pricerunner.dk/dk/api/search-compare-gateway/gotostore/v1/DK/be2c34f405440ab76ef658e6987c635f?productId=3211644574
 
-
+                        PDMerchant merchantFromId = prProductDetail?.Merchants[offer.MerchantId];
                         PriceRunnerMerchants merchants = new PriceRunnerMerchants
                         {
-                            Id = offer.Id,
-                            Name = prProductDetail.Merchants[offer.MerchantId].Name,
-                            MerchantProductName = offer.Name,
+                            Id = offer?.MerchantId,
+                            Name = merchantFromId?.Name,
+                            MerchantProductName = offer?.Name,
                             ProductUrl = productUrl,
+                            Price = offer?.Price?.Amount,
+                            StockStatus = offer?.StockStatus == "IN_STOCK" ? true : false,
+                            Availability = offer?.Availability == "AVAILABLE" ? true : false,
+                            ShippingCost = offer?.ShippingCost?.Amount,
+                            MerchantRating = merchantFromId?.Rating?.Average == "0.0" ? null : merchantFromId?.Rating?.Average,
+                            MerchantLogoUrl = "https://owp.klarna.com"+merchantFromId?.Logo?.Path
+                            
+
 
                         };
 
