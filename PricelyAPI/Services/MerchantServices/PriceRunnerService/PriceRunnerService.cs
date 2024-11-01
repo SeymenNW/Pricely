@@ -160,14 +160,14 @@ namespace PricelyAPI.Services.MerchantServices.PriceRunnerService
 
                     return new PriceRunnerProductDetails
                     {
-                        Name = prProductListing.ProductDetails.Name,
-                        Brand = prProductListing.Brand.Name,
-                        ImageUrls = prProductDetail.Images.Select(imageUrl => $"https://owp.klarna.com{imageUrl.Path}").ToList(),
+                        Name = prProductListing?.ProductDetails?.Name,
+                        Brand = prProductListing?.Brand?.Name,
+                        ImageUrls = prProductDetail?.Images?.Select(imageUrl => $"https://owp.klarna.com{imageUrl?.Path}").ToList(),
                         Merchants = merchantsList,
-                        Description = prProductListing.ProductDetails.Description,
-                        MinPrice = prProductListing.PrioritizedMinPrice.Amount,
-                        MaxPrice = prProductListing.PrioritizedMaxPrice.Amount,
-                        PriceRunnerUrl = "https://www.pricerunner.dk" + prProductListing.ProductDetails.Url
+                        Description = prProductListing?.ProductDetails?.Description,
+                        MinPrice = prProductListing?.PrioritizedMinPrice?.Amount,
+                        MaxPrice = prProductListing?.PrioritizedMaxPrice?.Amount,
+                        PriceRunnerUrl = "https://www.pricerunner.dk" + prProductListing?.ProductDetails?.Url
 
 
 
