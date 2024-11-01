@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
 using Pricely.Libraries.Services.Services;
-using PricelyWeb.Client.Configuration;
 using DotNetEnv;
+using PricelyWeb.Client.Configuration;
 
 Env.Load();
 var builder = WebAssemblyHostBuilder.CreateDefault(args);

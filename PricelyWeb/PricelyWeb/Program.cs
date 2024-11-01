@@ -1,8 +1,9 @@
 using MudBlazor.Services;
 using Pricely.Libraries.Services.Services;
+using PricelyWeb.Client.Components.Home;
 using PricelyWeb.Client.Configuration;
-using PricelyWeb.Client.Components;
 using PricelyWeb.Components;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

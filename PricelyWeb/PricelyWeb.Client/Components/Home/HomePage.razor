@@ -1,8 +1,8 @@
 ﻿@page "/"
-
 @using Pricely.Libraries.Services.Models.PriceRunner
 @using Pricely.Libraries.Services.Services
 @using PricelyWeb.Client.Configuration
+
 @rendermode InteractiveWebAssembly
 
 @inject HttpClient httpClient
@@ -31,7 +31,7 @@
 <MudGrid Spacing="0" Justify="Justify.SpaceAround">
     @foreach (var productResult in Results.ProductResults)
     {
-        <PricelyWeb.Client.Components.Pages.ProductComponents.ProductListingCard ResultProduct="@productResult"  />
+        <PricelyWeb.Client.Components.Home.ProductListingCard ResultProduct="@productResult" />
     }
 </MudGrid>
 
@@ -43,7 +43,7 @@
     {
         // Results = await _getPriceRunnerResults.GetProductsFromSearch(search);
 
-        Results  = await httpClient.GetFromJsonAsync<PriceRunnerSearchResults>($"{_settings.BackendUrl}/v1/pr/search/{search}");
+        Results = await _getPriceRunnerResults.GetProductsFromSearch(search);
         StateHasChanged();
     }
 
