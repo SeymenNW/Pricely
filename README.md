@@ -88,7 +88,25 @@ Mere kommer snart.
 ### API Rate Limits fra virksomheder
 PriceRunner har foreksempel en ratelimiter, der begrænser antallet af requests inden for kort tid. For at omgå denne begrænsning har jeg anvendt en ***Rotating Proxy*** til at spoofe søgninger gennem forskellige IP-adresser. Denne løsning fungerer, men det har desværre gjort Pricely (lidt) langsommere. Hvis man hoster sin egen instans af Pricely, bør dette ikke have nogen stor betydning. Min plan er dog at hoste Pricely på min egen side, og derfor vil jeg fortsat benytte rotating proxies, hvor det er muligt.
 
+## Teknologier (Opdateres løbende)
+**Teknologier**
+- [C# (Programmeringssprog)](https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/overview)
+- [Blazor (Frontend)](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor)
+- [ASP.NET Web API (Backend Server)](https://dotnet.microsoft.com/en-us/apps/aspnet/apis)
+- [Git](https://git-scm.com/)
 
+**Libraries**
+- [Newtonsoft.Json](https://www.newtonsoft.com/json)
+- [Playwright (For Webscraping)](https://playwright.dev/dotnet/)
+
+**Software**
+- [Visual Studio 2022 (IDE)](https://visualstudio.com/)
+
+## Ressourcer
+...
+ 	 
+## Pricely er fuldstændig uafhængig og gratis at bruge.
+Pricely har ingen relationer til nogen af de virksomheder, der bliver nævnt eller hvis API’er bliver brugt. Dette inkluderer, men er ikke begrænset til: Elgiganten, PriceRunner, Power, ProShop, ComputerSalg og flere. Derudover har Pricely heller ingen relationer til produkter, der bliver vist på produktsider i Blazor-programmet eller Backend Serveren. Pricely gemmer ikke varemærkebeskyttede billeder eller andet medieindhold. Alt medie bliver hentet fra eksterne virksomheders sider.
 
 
 
