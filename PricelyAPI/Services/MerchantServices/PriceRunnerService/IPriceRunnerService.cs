@@ -1,7 +1,7 @@
 ﻿using Pricely.Libraries.Services.Models.PriceRunner;
-using PricelyAPI.ServiceModels.Pricerunner;
 
-namespace PricelyAPI.Services.PricerunnerService
+
+namespace PricelyAPI.Services.MerchantServices.PriceRunnerService
 {
     public interface IPriceRunnerService
     {

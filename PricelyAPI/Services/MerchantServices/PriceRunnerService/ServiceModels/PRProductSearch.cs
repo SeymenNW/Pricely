@@ -1,4 +1,4 @@
-﻿namespace PricelyAPI.ServiceModels.Pricerunner
+﻿namespace PricelyAPI.Services.MerchantServices.PriceRunnerService.PriceRunner
 {
     using Newtonsoft.Json;
     using System.Collections.Generic;

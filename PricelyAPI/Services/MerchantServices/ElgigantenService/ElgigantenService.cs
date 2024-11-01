@@ -3,12 +3,11 @@ using Pricely.Libraries.Services.Models.Elgiganten;
 using Pricely.Libraries.Services.Models.PriceRunner;
 using PricelyAPI.Helpers.Extensions;
 using PricelyAPI.Helpers.Handlers;
-using PricelyAPI.ServiceModels.Elgiganten;
-using PricelyAPI.ServiceModels.Pricerunner;
+using PricelyAPI.Services.MerchantServices.ElgigantenService.Elgiganten;
 using System;
 using System.Text;
 
-namespace PricelyAPI.Services.ElgigantenService
+namespace PricelyAPI.Services.MerchantServices.ElgigantenService
 {
     public class ElgigantenService : IElgigantenService
     {
@@ -23,7 +22,7 @@ namespace PricelyAPI.Services.ElgigantenService
 
             using (HttpClient client = new HttpClient(ProxyManager.AddRotatingProxy()))
             {
-                
+
                 var response = await client.PostAsync(elgiSearchUrl, new StringContent(jsonPayload, Encoding.UTF8, "application/json"));
                 var jsonString = await response.Content.ReadAsStringAsync();
 

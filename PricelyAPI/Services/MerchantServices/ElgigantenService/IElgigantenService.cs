@@ -1,6 +1,6 @@
 ﻿using Pricely.Libraries.Services.Models.Elgiganten;
 
-namespace PricelyAPI.Services.ElgigantenService
+namespace PricelyAPI.Services.MerchantServices.ElgigantenService
 {
     public interface IElgigantenService
     {

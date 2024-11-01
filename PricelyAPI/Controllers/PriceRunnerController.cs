@@ -1,8 +1,7 @@
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using Pricely.Libraries.Services.Models.PriceRunner;
-using PricelyAPI.ServiceModels.Pricerunner;
-using PricelyAPI.Services.PricerunnerService;
+using PricelyAPI.Services.MerchantServices.PriceRunnerService;
 
 namespace PricelyAPI.Controllers
 {

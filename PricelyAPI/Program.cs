@@ -1,8 +1,8 @@
 using Asp.Versioning;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-using PricelyAPI.Services.ElgigantenService;
-using PricelyAPI.Services.PricerunnerService;
+using PricelyAPI.Services.MerchantServices.ElgigantenService;
+using PricelyAPI.Services.MerchantServices.PriceRunnerService;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);

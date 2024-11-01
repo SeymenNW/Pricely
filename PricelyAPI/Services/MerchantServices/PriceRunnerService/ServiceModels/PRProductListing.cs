@@ -4,7 +4,7 @@
 
 //Klasser for deserializering af følgende Endpoint: Product Listing (Produkt Listning)
 //https://www.pricerunner.dk/dk/api/search-compare-gateway/public/productlistings/pl/initial/52-{productId}/DK
-namespace PricelyAPI.ServiceModels.Pricerunner
+namespace PricelyAPI.Services.MerchantServices.PriceRunnerService.PriceRunner
 {
     //public class PricerunnerProductListing
     //{

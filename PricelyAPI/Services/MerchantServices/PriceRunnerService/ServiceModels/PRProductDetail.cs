@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace PricelyAPI.ServiceModels.Pricerunner
+namespace PricelyAPI.Services.MerchantServices.PriceRunnerService.PriceRunner
 {
     public class PRProductDetail
     {

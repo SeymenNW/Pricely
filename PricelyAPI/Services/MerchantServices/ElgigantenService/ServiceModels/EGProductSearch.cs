@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace PricelyAPI.ServiceModels.Elgiganten
+namespace PricelyAPI.Services.MerchantServices.ElgigantenService.Elgiganten
 {
 
     //Endpoint: https://www.elgiganten.dk/api/search (POST Request). Disse klasser bliver dannet til JSON og sendt som Payload i POST requesten.

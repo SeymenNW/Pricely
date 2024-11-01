@@ -2,13 +2,13 @@
 using Pricely.Libraries.Services.Models.PriceRunner;
 using PricelyAPI.Helpers.Extensions;
 using PricelyAPI.Helpers.Handlers;
-using PricelyAPI.ServiceModels.Pricerunner;
+using PricelyAPI.Services.MerchantServices.PriceRunnerService.PriceRunner;
 using System.IO.Compression;
 using System.Net;
 using System.Text.RegularExpressions;
 using static System.Net.WebRequestMethods;
 
-namespace PricelyAPI.Services.PricerunnerService
+namespace PricelyAPI.Services.MerchantServices.PriceRunnerService
 {
     public class PriceRunnerService : IPriceRunnerService
     {
@@ -61,7 +61,7 @@ namespace PricelyAPI.Services.PricerunnerService
                         }
 
 
-                        
+
 
                         prToPricelyResults.ProductResults.Add(pricelyProduct);
 
@@ -99,7 +99,7 @@ namespace PricelyAPI.Services.PricerunnerService
             {
                 try
                 {
-               
+
 
                     //Tilføjer NØDVENDIGE headers med en extension metode (i mappen Extensions)
                     httpClient.AddHeaders();
@@ -147,8 +147,8 @@ namespace PricelyAPI.Services.PricerunnerService
                             Availability = offer?.Availability == "AVAILABLE" ? true : false,
                             ShippingCost = offer?.ShippingCost?.Amount,
                             MerchantRating = merchantFromId?.Rating?.Average == "0.0" ? null : merchantFromId?.Rating?.Average,
-                            MerchantLogoUrl = "https://owp.klarna.com"+merchantFromId?.Logo?.Path
-                            
+                            MerchantLogoUrl = "https://owp.klarna.com" + merchantFromId?.Logo?.Path
+
 
 
                         };
@@ -167,7 +167,7 @@ namespace PricelyAPI.Services.PricerunnerService
                         Description = prProductListing.ProductDetails.Description,
                         MinPrice = prProductListing.PrioritizedMinPrice.Amount,
                         MaxPrice = prProductListing.PrioritizedMaxPrice.Amount,
-                        PriceRunnerUrl = "https://www.pricerunner.dk"+prProductListing.ProductDetails.Url
+                        PriceRunnerUrl = "https://www.pricerunner.dk" + prProductListing.ProductDetails.Url
 
 
 

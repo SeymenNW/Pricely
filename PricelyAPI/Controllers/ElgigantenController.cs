@@ -1,7 +1,7 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using Pricely.Libraries.Services.Models.Elgiganten;
-using PricelyAPI.Services.ElgigantenService;
+using PricelyAPI.Services.MerchantServices.ElgigantenService;
 
 namespace PricelyAPI.Controllers
 {
