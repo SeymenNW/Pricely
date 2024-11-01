@@ -124,7 +124,7 @@ namespace PricelyAPI.Services.MerchantServices.PowerService.ServiceModels
         public int SortValue { get; set; }
     }
 
-    public class PWProductX
+    public class PWProduct
     {
         [JsonProperty("categoryId")]
         public int CategoryId { get; set; }
@@ -265,7 +265,7 @@ namespace PricelyAPI.Services.MerchantServices.PowerService.ServiceModels
         public List<PWFilter> Filters { get; set; }
 
         [JsonProperty("products")]
-        public List<PWProductX> Products { get; set; }
+        public List<PWProduct> Products { get; set; }
 
         [JsonProperty("startIndex")]
         public int StartIndex { get; set; }
