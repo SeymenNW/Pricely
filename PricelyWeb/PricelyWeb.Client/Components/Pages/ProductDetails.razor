@@ -17,7 +17,7 @@
 
     <ProductBanner PriceRunnerUrl="@Details.PriceRunnerUrl" Description="@Details.Description" ImageUrls="@Details.ImageUrls" ProductName="@Details.Name" MaxPrice="@Details.MaxPrice" MinPrice="@Details.MinPrice"/>
 
-    <Merchant ProductDetails="@Details"/>
+    <Merchants ProductDetails="@Details"/>
 
 
 
@@ -27,9 +27,10 @@ else
     <MudText>Produktet indlæses.. (Refresh siden hvis der går for lang tid)</MudText>
     <div class="flex h-screen items-center justify-center">
         <MudCard>
-            <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="200px" />
+            <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="500px" Width="500px" />
             <MudCardContent>
                 <MudSkeleton Width="30%" Height="42px;" />
+                <MudText Color="Color.Primary">Produktet og butikker indlæses..</MudText>
                 <MudSkeleton Width="80%" />
                 <MudSkeleton Width="100%" />
             </MudCardContent>
