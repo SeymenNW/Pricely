@@ -3,13 +3,17 @@ using MudBlazor.Services;
 using DotNetEnv;
 using PricelyWeb.Client.Configuration;
 using PricelyWeb.Services;
+using Microsoft.Extensions.Logging;
 
 Env.Load();
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
-builder.Services.AddTransient<IGetPriceRunnerResults, GetPriceRunnerResults>();
 
+// Set up logging
+builder.Logging.SetMinimumLevel(LogLevel.Debug);
 
+// Initialize settings
 PricelySettings settings = new();
+
 if (builder.HostEnvironment.IsDevelopment())
 {
     string backendUrl = "https://localhost:7036";
@@ -17,19 +21,18 @@ if (builder.HostEnvironment.IsDevelopment())
 }
 else if (builder.HostEnvironment.IsProduction())
 {
-    string backendUrl = Environment.GetEnvironmentVariable("BACKEND__URL");
+    string backendUrl = "https://localhost:7036";
+  
     settings.BackendUrl = backendUrl;
 }
-builder.Services.AddSingleton(settings);
 
+// Register services
+builder.Services.AddSingleton(settings);
 builder.Services.AddTransient<IGetPriceRunnerResults>(sp =>
 {
     return new GetPriceRunnerResults(settings.BackendUrl);
 });
-
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddMudServices();
-
-
 
 await builder.Build().RunAsync();

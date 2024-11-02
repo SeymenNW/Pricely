@@ -1,6 +1,6 @@
 ﻿# Use .NET SDK for building
 #Usage: docker build -t x2 . -f PricelyWeb/PricelyWeb/Dockerfile
-FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 
 WORKDIR /app
 
@@ -16,6 +16,9 @@ RUN dotnet build "PricelyWeb/PricelyWeb/PricelyWeb.csproj" -c Release -o /build
 # Publish the main project to the /publish folder
 FROM build-env AS publish
 RUN dotnet publish "PricelyWeb/PricelyWeb/PricelyWeb.csproj" -p:PublishSingleFile=false -r linux-musl-x64 --self-contained -c Release -o /publish
+
+ENV BACKEND__URL=https://localhost:7036
+ENV ASPNETCORE_ENVIRONMENT=Production
 
 # Runtime environment
 FROM alpine:latest

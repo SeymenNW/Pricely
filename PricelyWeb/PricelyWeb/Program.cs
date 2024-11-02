@@ -17,7 +17,7 @@ if (builder.Environment.IsDevelopment())
 }
 else if (builder.Environment.IsProduction())
 {
-    string backendUrl = Environment.GetEnvironmentVariable("BACKEND__URL");
+    string backendUrl = "https://localhost:7036";
     settings.BackendUrl = backendUrl;
 }
 builder.Services.AddSingleton(settings);
@@ -25,7 +25,7 @@ builder.Services.AddSingleton(settings);
 builder.Services.AddTransient<IGetPriceRunnerResults>(sp =>
 {
     return new GetPriceRunnerResults("");
-}); builder.Services.AddSingleton<PricelySettings>();
+}); 
 builder.Services.AddHttpClient();
 
     
