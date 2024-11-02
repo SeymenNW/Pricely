@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pricely.Libraries.Shared.Models.Power
+namespace Pricely.Libraries.Shared.Models
 {
-    public class PowerSearchResultProduct
+    public class ElgigantenSearchResultProduct
     {
         public string? Sku { get; set; }
-        public string? Ean { get; set; }
         public string? Name { get; set; }
         public string? ImageUrl { get; set; }
 

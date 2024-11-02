@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pricely.Libraries.Shared.Models.Unified
+namespace PricelyWeb.Services
 {
-    public class UnifiedSearchResults
+    internal class GetElgigantenResults
     {
     }
 }

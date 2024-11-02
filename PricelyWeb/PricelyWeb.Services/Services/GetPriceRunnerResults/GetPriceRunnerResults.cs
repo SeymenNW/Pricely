@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Pricely.Libraries.Services.Models.PriceRunner;
+using Pricely.Libraries.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace Pricely.Libraries.Services.Services
+namespace PricelyWeb.Services
 {
     public class GetPriceRunnerResults : IGetPriceRunnerResults
     {
@@ -61,7 +61,7 @@ namespace Pricely.Libraries.Services.Services
         #region Produktsøgning funktion
         public async Task<PriceRunnerProductDetails> GetProductDetailsFromId(string productId, string categoryId)
         {
-            
+
 
             string pricelySearchUrl = $"{_apiUrl}/v1/pr/details/{categoryId}/{productId}";
 

@@ -1,8 +1,8 @@
 ﻿@page "/pr/details/{categoryId}/{productId}"
-@using Pricely.Libraries.Services.Models.PriceRunner
-@using Pricely.Libraries.Services.Services
+@using Pricely.Libraries.Shared.Models
 @using PricelyWeb.Client.Configuration
 @using PricelyWeb.Client.Components.ProductDetails
+@using PricelyWeb.Services
 @rendermode InteractiveWebAssembly
 @inject IGetPriceRunnerResults _priceRunnerResults
 @inject HttpClient _httpClient

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pricely.Libraries.Services.Models.PriceRunner
+namespace Pricely.Libraries.Shared.Models
 {
     public class PriceRunnerSearchResults
     {

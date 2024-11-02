@@ -1,11 +1,11 @@
-﻿using Pricely.Libraries.Services.Models.PriceRunner;
+﻿using Pricely.Libraries.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pricely.Libraries.Services.Models.Elgiganten
+namespace Pricely.Libraries.Shared.Models
 {
     public class ElgigantenSearchResults
     {

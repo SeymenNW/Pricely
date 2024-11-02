@@ -1,7 +1,9 @@
 ﻿@page "/"
-@using Pricely.Libraries.Services.Models.PriceRunner
-@using Pricely.Libraries.Services.Services
+@using Pricely.Libraries.Shared.Models
 @using PricelyWeb.Client.Configuration
+@using PricelyWeb.Services
+
+
 
 @rendermode InteractiveWebAssembly
 
@@ -11,8 +13,8 @@
 
 <PageTitle>Hjem</PageTitle>
 
-<MudText Typo="Typo.h4" GutterBottom="true">Søg med Pricely (Beta, designet skal forbedres.)</MudText>
-<MudText Class="mb-8">Pricely 1.0 (beta1). Pricely Søgning henter data ned fra alle understøttede butikker.</MudText>
+<MudText Typo="Typo.h4" GutterBottom="true">Søg med Pricely</MudText>
+<MudText Class="mb-8">Pricely er stadig under udvikling og der kan opstå fejl.</MudText>
 <MudTextField @bind-Value="@SearchText"
               OnAdornmentClick="() => GetPrices(SearchText)"
               Label="Søg på over 3 millioner produkter..."
@@ -31,7 +33,7 @@
 <MudGrid Spacing="0" Justify="Justify.SpaceAround">
     @foreach (var productResult in Results.ProductResults)
     {
-        <PricelyWeb.Client.Components.Home.ProductListingCard ResultProduct="@productResult" />
+        <ProductListingCard ResultProduct="@productResult" />
     }
 </MudGrid>
 
