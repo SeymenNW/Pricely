@@ -1,15 +1,16 @@
 using MudBlazor.Services;
 using PricelyWeb.Client.Components.Home;
-using PricelyWeb.Client.Configuration;
 using PricelyWeb.Components;
 using PricelyWeb.Services;
+using PricelyWeb.Services.PricelySettings;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add MudBlazor services
+DotNetEnv.Env.Load();
 builder.Services.AddMudServices();
-PricelySettings settings = new();
+PricelySettings settings = PricelySettings.Instance;
 if (builder.Environment.IsDevelopment())
 {
     string backendUrl = "https://localhost:7036";
