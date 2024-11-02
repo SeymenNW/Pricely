@@ -1,30 +1,60 @@
+<p align="center">
+  <img width="200" src="https://i.imgur.com/ee41Wgp.png"/>
+</p>
 
+<h1 align="center">Pricely</h1>
 
-# Pricely 1.0 - Prissamenligningsværktøj uden sporing
+<p align="center">
+Et prissammenligningsværktøj, der indsamler data fra forskellige virksomheder. Formålet med Pricely er at vise dig de mest præcise priser – uden reklamer og uden sporing. Pricely holder sig neutral og jordnær uden bindinger til specifikke virksomheder.
+</p>
 
-<img src="https://i.imgur.com/ee41Wgp.png" alt="Pricely Officiel Logo" width="175" height="175"/>
+## Indhold
+
+<!-- TOC -->
+* [Hvad er Pricely?](#hvad-er-pricely)
+* [Pricely 1.0](#pricely-10)
+* [Udviklingen](#udviklingen)
+* [Hvorfor Pricely?](#hvorfor-pricely)
+  * [Ingen Sporing](#ingen-sporing)
+  * [Ingen betalte Reklamer/Annoncer](#ingen-betalte-reklamerannoncer)
+  * [Open Source](#open-source)
+* [Environment Variables](#environment-variables)
+  * [PricelyAPI (Backend projektet)](#pricelyapi-backend-projektet)
+  * [PricelyWeb (Blazor projektet)](#pricelyweb-blazor-projektet)
+* [Road & To-Do-List](#road--to-do-list)
+  * [PriceRunner](#pricerunner)
+  * [Elgiganten](#elgiganten)
+  * [Power](#power)
+  * [Virksomheder der skal tilføjes](#virksomheder-der-skal-tilføjes)
+  * [Generelle funktioner](#generelle-funktioner)
+* [API Rate Limits fra virksomheder](#api-rate-limits-fra-virksomheder)
+* [Teknologier](#teknologier)
+* [Ressourcer](#ressourcer)
+* [Pricely er uafhængig og gratis](#pricely-er-uafhængig-og-gratis)
+<!-- TOC -->
+
+## Pricely 1.0 
 
 ### Hvad er Pricely?
-Et prissammenligningsværktøj der henter data ned fra forskellige virksomheder. Formålet med Pricely er at vise dig de helt rigtige priser. Uden reklamer. Uden sporing. Det vil sige at Pricely er fair. Den holder det jordnært uden at være bundet til bestemte virksomheder.
+Pricely er et prissammenligningsværktøj, der indsamler produktdata fra forskellige virksomheder. Formålet er at vise dig de mest præcise priser, uden reklamer og uden sporing. Pricely er fair og holder sig uafhængig af specifikke virksomheder.
 
-Dette er repositorien for Pricely 1.0 og **ikke** Pricely 0.4.5. Den gamle Pricely (Som midlertidigt stadig kan tilgås ved  [**old.pricely.dk**](https://old.pricely.dk/)) er blevet skrevet 95% om. Ikke mere end 5% af kode er blevet overført fra Pricely 0.4.5 til Pricely 1.0.
+Dette er repositoriet for Pricely 1.0 og **ikke** Pricely 0.4.5. Den gamle Pricely (midlertidigt tilgængelig via [**old.pricely.dk**](https://old.pricely.dk/)) er blevet omskrevet 95%. Kun omkring 5% af koden er overført fra Pricely 0.4.5 til Pricely 1.0.
 
 ### What is Pricely? (English)
-A price comparison tool that gathers data from various companies. The purpose of Pricely is to show you the most accurate prices, meaning that Pricely is fair. It keeps things fair without being tied to specific companies. The rest of the documentation here will be on danish, but I might make an english version in the future.
-
+A price comparison tool that gathers data from various companies. The purpose of Pricely is to show you the most accurate prices, without ads or tracking. Pricely is fair and independent from specific companies. The rest of the documentation is in Danish, but an English version may be added in the future.
 
 ### Udviklingen
-Pricely er udviklet med .NET 8, Blazor Web App (Auto) og ASP.NET Web API. Formålet har været at skrive det hele i .NET. I fremtiden vil der dog blive udviklet en Mobil app skrevet i React Native (hvilket fungerer meget bedre end forskellige .NET Multi-platform frameworks som .NET MAUI og Avalonia).
+Pricely er udviklet med .NET 8, Blazor Web App (Auto) og ASP.NET Web API. Målet har været at samle alt i .NET. I fremtiden er planen at udvikle en mobilapp i React Native, som fungerer bedre end andre .NET-multiplatformsrammer som .NET MAUI og Avalonia.
 
-# Hvorfor Pricely?
-#### Ingen Sporing
-Pricely henter produktdata ned fra virksomheder uden alle former for trackere. Det vil sige du kan søge frit og enkelt uden at du bliver tracket. Alt prishentning foregår på serveren og derefter bliver det videresendt til forbrugeren. Så undgår du bla. tracking (sporing) fra: Klarna, Google, Adform, yahoo, Facebook, TikTok og meget mere.
+## Hvorfor Pricely?
+### Ingen Sporing
+Pricely henter produktdata uden trackere, så du kan søge frit uden at blive sporet. Alt data hentes på serveren og videresendes til dig, hvilket betyder ingen tracking fra tjenester som Klarna, Google, Adform, Facebook, TikTok m.fl.
 
-#### Ingen betalte Reklamer/Annoncer
-Pricely viser objektive søgeresultater, og platformen påvirkes ikke af betalte annoncer eller reklamer. Vores mål er at sikre, at brugerne modtager uafhængige og gennemsigtige resultater uden præference for specifikke brands eller produkter.
+### Ingen betalte Reklamer/Annoncer
+Pricely præsenterer uafhængige søgeresultater uden indflydelse fra betalte annoncer. Målet er at sikre gennemsigtighed og neutralitet.
 
-#### Open Source
-Pricely er 100% source. Både Backend serveren og frontend serveren. Så hvis Pricely.dk en dag går ned, kan man stadig selv hoste den på sin egen server eller andet. Der medfølger derudover en Docker Compose fil som sørger for at få både Backend serveren og Blazor siden til at køre (Der er dog ikke nogle images. Den bygger direkte ud fra det der ligger i GitHub repoen). Der er dog ingen garantier på at Pricely vil fortsætte med at fungere i fremtiden. Hvis der bliver foretaget API ændringer hos virksomhederne skal Pricely 99% nok opdateres før den fungerer igen.
+### Open Source
+Pricely er 100% open source – både backend-serveren og frontend-applikationen. Hvis Pricely.dk lukker, kan du selv hoste det. Der er en Docker Compose-fil, der gør det let at køre både backend og Blazor frontend. Bemærk, at funktionaliteten kan ændre sig, hvis de anvendte API'er ændrer sig.
 
 ## Environment Variables 
 ### PricelyAPI (Backend projektet)
@@ -33,62 +63,52 @@ Kommer snart.
 ### PricelyWeb (Blazor projektet)
 Kommer snart.
 
-
-
-
-
-
 ## Road & To-Do-List 
-Denne liste er lidt mere udviklingsorienteret en funktionsorienteret. Dette vil dog ændre sig i fremtiden, når jeg har et bedre overblik over tingene. Mit fokus har været på udviklingen, men dokumentation kommer også.
+Denne liste fokuserer på udviklingsopgaver. I fremtiden vil mere funktionalitet blive tilføjet, i takt med at projektet modnes.
 
 ### PriceRunner
-- [x] Kunne søge i deres API. 
-- [x] Udvikle klasser til deserialisering
-- [x] Wrapper klasser til nemt håndtering af de forskellige resultater fra API'en.
-- [x]  Kunne hente data fra Produkt Data API'en.
-- [x]  Detaljeret information om de forskellige produkter.
-- [x]  Vise produktlinks til ikke betalende kunder.
-- [x] Vise priser fra PriceRunner uden sporing 
-- [ ] Behandling af redirect links som gør det muligt at besøge sider uden at komme igennem PriceRunner først.
+- [x] Mulighed for at søge i API'et 
+- [x] Klasser til deserialisering af API-data
+- [x] Wrapper-klasser til nem håndtering af API-resultater
+- [x] Hentning af produktdata 
+- [ ] Vise detaljerede produktinformationer
+- [x] Links til produkter for ikke-betalende virksomheder/kunder hos PriceRunner
+- [x] Vise priser uden sporing 
+- [ ] Håndtering af redirect-links uden om PriceRunner
 
 ### Elgiganten
-- [x] Kunne søge i deres API. 
-- [x] Hente produktdata ned
-- [ ] Fixe fejl med billeder
+- [x] Mulighed for søgning i API'et
+- [ ] Hentning af produktdata
+- [ ] Detaljeret information
+- [ ] Prøve at få adgang til EAN nummer på produkter
 
-### Power
-- [x] Kunne søge i deres API. 
-- [x] Hente produktdata ned
-- [x] Loade billeder
-
+### Power (Pricely 1.0)
+- [x] Mulighed for søgning i API'et
+- [ ] Hentning af produktdata
+- [ ] Visning af billeder
 
 ### Virksomheder der skal tilføjes
-Nogle af virksomhederne har desværre ikke en offentlig API. Derfor vil der i fremtiden blive tilføjet Web Scraping til projektet, men dette venter jeg med. Web Scraping er fedt, men det betyder også at backenden vil bruge flere ressourcer og der vil gå længere tid før man får en respons fra den. Derfor vil det blive tilføjet som en 'optional' funktion, hvilket også vil betyde at man vil begrænse hvilke virksomheder man kan vil have med i sin søgning.
+Nogle virksomheder har ikke offentlige API'er. Webscraping kan blive nødvendigt, men vil blive optional grundet øget ressourceforbrug. 
 - [ ] ProShop integration
 - [x] Power integration
-- [ ] Dustin Integration
+- [ ] Dustin integration
 - [ ] ComputerSalg integration
 - [ ] CDON integration
 
-### Generelle 
-For at sikre en effektiv søgemaskine er det afgørende at implementere disse grundlæggende funktioner løbende i Pricely. Sorteringsfunktioner og lignende vil blive håndteret klient-side, hvilket betyder, at et API-kald til serveren vil returnere en omfattende JSON. Målet er at indsamle alle relevante data om et produkt på én gang, da det er mere hensigtsmæssigt (for mig) at minimere kommunikation med backend og dermed optimere ydeevnen. 
-- [ ] **Ny søgefunktion der understøtter at hente data fra alle understøttede virksomheder med én søgnign.**
-	- [x] PriceRunner integration i denne søgning
+### Generelle funktioner
+For at sikre en effektiv søgemaskine vil klienten (browseren) modtage en omfattende JSON-struktur, der muliggør sortering klient-side og reducerer antallet af serverkald. 
+- [ ] **Ny søgefunktion til alle understøttede virksomheder**
+	- [x] PriceRunner integration
 	- [ ] Elgiganten integration
-	- [ ] Øvrige virksomheder (som også lige først skal implementeres individuelt)
-
 - [ ] **Søgefiltrering**
-	- [ ] Filtrer ud fra pris
-	- [ ] Filtrer ud fra alfabetisk rækkefølge
-	- [ ] Filtrer ud fra brand (? måske)
-	- [ ] Filtrer ud fra produktkategori (PriceRunner)
+	- [ ] Filtrer efter pris, alfabetisk orden, brand og produktkategori (PriceRunner)
 
 Mere kommer snart.
  
 ### API Rate Limits fra virksomheder
-PriceRunner har foreksempel en ratelimiter, der begrænser antallet af requests inden for kort tid. For at omgå denne begrænsning har jeg anvendt en ***Rotating Proxy*** til at spoofe søgninger gennem forskellige IP-adresser. Denne løsning fungerer, men det har desværre gjort Pricely (lidt) langsommere. Hvis man hoster sin egen instans af Pricely, bør dette ikke have nogen stor betydning. Min plan er dog at hoste Pricely på min egen side, og derfor vil jeg fortsat benytte rotating proxies, hvor det er muligt.
+PriceRunner anvender rate limits på forespørgsler. For at omgå dette bruges en ***Rotating Proxy***, der distribuerer søgninger over forskellige IP-adresser. Dette gør Pricely lidt langsommere, men påvirker ikke selv-hostede instanser.
 
-## Teknologier (Opdateres løbende)
+## Teknologier
 **Teknologier**
 - [C# (Programmeringssprog)](https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/overview)
 - [Blazor (Frontend)](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor)
@@ -97,18 +117,15 @@ PriceRunner har foreksempel en ratelimiter, der begrænser antallet af requests 
 
 **Libraries**
 - [Newtonsoft.Json](https://www.newtonsoft.com/json)
-- [Playwright (For Webscraping)](https://playwright.dev/dotnet/)
+- [Playwright (Webscraping)](https://playwright.dev/dotnet/)
 
 **Software**
 - [Visual Studio 2022 (IDE)](https://visualstudio.com/)
 
 ## Ressourcer
 ...
- 	 
+
 ## Pricely er fuldstændig uafhængig og gratis at bruge.
-Pricely har ingen relationer til nogen af de virksomheder, der bliver nævnt eller hvis API’er bliver brugt. Dette inkluderer, men er ikke begrænset til: Elgiganten, PriceRunner, Power, ProShop, ComputerSalg og flere. Derudover har Pricely heller ingen relationer til produkter, der bliver vist på produktsider i Blazor-programmet eller Backend Serveren. Pricely gemmer ikke varemærkebeskyttede billeder eller andet medieindhold. Alt medie bliver hentet fra eksterne virksomheders sider.
+Pricely har ingen relationer til de virksomheder, hvis API’er bruges, inklusiv men ikke begrænset til: Elgiganten, PriceRunner, Power, ProShop, ComputerSalg. Pricely gemmer ikke varemærkebeskyttede billeder eller medieindhold; alt medie hentes direkte fra eksterne sider.
 
-
-
-
-
+Hvis din virksomhed gerne vil have fjernet jeres ressourcer fra Pricely kan i kontakte mig på seymen@live.dk. Så skal jeg nok sørge for at det bliver fjernet.
