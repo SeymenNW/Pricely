@@ -94,6 +94,8 @@ Nogle virksomheder har ikke offentlige API'er. Webscraping kan blive nødvendigt
 - [ ] Dustin integration
 - [ ] ComputerSalg integration
 - [ ] CDON integration
+- [ ] Komplett integration
+- [ ] DBA integration
 
 ### Generelle funktioner
 For at sikre en effektiv søgemaskine vil klienten (browseren) modtage en omfattende JSON-struktur, der muliggør sortering klient-side og reducerer antallet af serverkald. 
