@@ -17,7 +17,6 @@ RUN dotnet build "PricelyWeb/PricelyWeb/PricelyWeb.csproj" -c Release -o /build
 FROM build-env AS publish
 RUN dotnet publish "PricelyWeb/PricelyWeb/PricelyWeb.csproj" -p:PublishSingleFile=false -r linux-musl-x64 --self-contained -c Release -o /publish
 
-ENV BACKEND__URL=https://localhost:7036
 ENV ASPNETCORE_ENVIRONMENT=Production
 
 # Runtime environment

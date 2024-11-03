@@ -1,9 +1,40 @@
 ﻿@page "/tools"
 @using MudBlazor
+@using Pricely.Libraries.Shared.Models
+@using System.Net.Http.Json
+@using System.Threading
 
 <MudContainer MaxWidth="MaxWidth.Large" Class="@CardFullTailwind" Style="border-radius: 10px;">
+    <div>
+        <MudText Typo="Typo.h6">Butikker</MudText>
+        <MudSpacer />
+        <MudTextField T="string" ValueChanged="@(s => OnSearch(s))" Placeholder="Søg på alt" Adornment="Adornment.Start"
+                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+
+        @if (cheapestFilter)
+        {
+            <MudButton OnClick="@(() => OnAllClick())">Vis Alle</MudButton>
+        }
+        else if (!cheapestFilter)
+        {
+            <MudButton Color="Color.Primary" OnClick="@(() => OnCheapClick())">Vis Billigste</MudButton>
+
+        }
+
+        @if (showPricesWithShipping)
+        {
+            <MudButton OnClick="@(() => showPricesWithShipping = false)">Vis Uden Fragtpris</MudButton>
+        }
+        else if (!showPricesWithShipping)
+        {
+            <MudButton Color="Color.Primary" OnClick="@(() => showPricesWithShipping = true)">Vis Med Fragtpris</MudButton>
+
+        }
+
+
+    </div>
     <MudExpansionPanels Class="mt-10 space-y-5">
-        @foreach (var merchant in ProductDetails.Merchants)
+        @foreach (var merchant in FilteredMerchants)
         {
             <MudExpansionPanel MaxHeight="500" Class="@ProductCardFullTailwind">
                 <TitleContent>
@@ -16,23 +47,25 @@
                             @(merchant.MerchantProductName.Length > 50 ? merchant.MerchantProductName.Substring(0, 50) + "..." : merchant.MerchantProductName)
                         </MudText>
                         <div class="flex items-center space-x-3">
-                            <MudText Color="Color.Primary" Class="text-sm font-bold sm:text-base">Pris: @merchant.Price</MudText>
+                            <MudText Color="Color.Primary" Class="text-sm font-bold sm:text-base">Pris: @(showPricesWithShipping ? merchant.PriceWithShipping : merchant.Price)</MudText>
                             <MudButton EndIcon="@Icons.Material.Rounded.ArrowRight" Href="@merchant.ProductUrl" Variant="Variant.Filled" DropShadow="false" Color="Color.Primary" Class="text-sm sm:text-base">Butik</MudButton>
                         </div>
+                        
                     </div>
                 </TitleContent>
                 <ChildContent>
                     <MudText>
                         <strong>Produkt:</strong> @merchant.MerchantProductName<br />
                         <strong>Pris:</strong> @merchant.Price<br />
+                        <strong>Fragtpris:</strong> @merchant.ShippingCost<br />
                         @if ((bool)merchant.StockStatus)
                         {
-                            <strong>Lager Status: På Lager!</strong>
-                        } else {
-                            <strong>Lager Status: IKKE På Lager!</strong>
-
+                            <MudText Color="Color.Success">Lager Status: På Lager!</MudText>
                         }
-                        <!-- Add more product details here if needed -->
+                        else
+                        {
+                            <MudText Color="Color.Warning">Lager Status: IKKE På Lager!</MudText>
+                        }
                     </MudText>
                 </ChildContent>
             </MudExpansionPanel>
@@ -42,7 +75,7 @@
 
 @code {
     [Parameter]
-    public Pricely.Libraries.Shared.Models.PriceRunnerProductDetails ProductDetails { get; set; }
+    public PriceRunnerProductDetails ProductDetails { get; set; }
 
     [CascadingParameter(Name = "IsDarkMode")]
     public bool IsDarkMode { get; set; }
@@ -51,4 +84,59 @@
     private string ProductCardBackground => IsDarkMode ? "bg-[#4c4c4c]" : "bg-[#f7f7fa]";
     private string CardFullTailwind => $"rounded-3xl border-1 p-5 shadow-lg {CardBackground}";
     private string ProductCardFullTailwind => $"rounded-lg border-1 shadow-lg {ProductCardBackground}";
+
+    private string searchString = null;
+    private bool cheapestFilter = false;
+    private bool showPricesWithShipping = false;
+
+    private IEnumerable<PriceRunnerMerchants> FilteredMerchants
+    {
+        get
+        {
+            IEnumerable<PriceRunnerMerchants> merchants = ProductDetails.Merchants;
+
+            if (cheapestFilter)
+            {
+                // Filter and sort merchants by price
+                merchants = merchants
+                    .Where(m => decimal.TryParse(m.Price, out _)) // Only merchants with valid decimal prices
+                    .OrderBy(m => decimal.Parse(m.Price)).Take(1); // Sort by price in ascending order
+            }
+
+            // Apply search filter if provided
+            if (!string.IsNullOrWhiteSpace(searchString))
+            {
+                merchants = merchants.Where(m =>
+                    m.Price.Contains(searchString, StringComparison.OrdinalIgnoreCase) ||
+                    m.MerchantProductName.Contains(searchString, StringComparison.OrdinalIgnoreCase) ||
+                    m.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase));
+            }
+
+            return merchants;
+        }
+    }
+
+    private Task OnCheapClick()
+    {
+        searchString = string.Empty;
+        cheapestFilter = true;
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+
+    private Task OnAllClick()
+    {
+        searchString = "";
+        cheapestFilter = false;
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+
+    private Task OnSearch(string text)
+    {
+        searchString = text;
+        cheapestFilter = false;  // Reset cheapest filter when searching
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
 }

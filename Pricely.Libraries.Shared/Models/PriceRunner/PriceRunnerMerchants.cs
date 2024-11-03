@@ -18,5 +18,22 @@ namespace Pricely.Libraries.Shared.Models
         public string? ShippingCost { get; set; }
         public string? MerchantRating { get; set; }
         public string? MerchantLogoUrl { get; set; }
+
+        public string? PriceWithShipping { get
+            {
+                if(!string.IsNullOrEmpty(Price) && !string.IsNullOrEmpty(ShippingCost))
+                {
+                    decimal price = decimal.Parse(Price);
+                    decimal shippingCost = decimal.Parse(ShippingCost);
+
+                    decimal total = price + shippingCost;
+
+                    return total.ToString();
+                } else
+                {
+                    return null;
+
+                }
+            } }
     }
 }

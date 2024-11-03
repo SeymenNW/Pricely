@@ -10,7 +10,7 @@
         <MudText Typo="Typo.h5" Class="ml-3">Pricely</MudText>
         <MudSpacer />
         <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+        <MudIconButton DropShadow="true" Href="https://github.com/SeymenNW/Pricely" Icon="@Icons.Material.Filled.StarBorder" Color="Color.Inherit" Edge="Edge.End" />
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
         <NavMenu />
@@ -108,7 +108,7 @@
 
     public string DarkLightModeButtonIcon => _isDarkMode switch
     {
-        true => Icons.Material.Rounded.AutoMode,
+        true => Icons.Material.Rounded.DarkMode,
         false => Icons.Material.Outlined.DarkMode,
     };
 }

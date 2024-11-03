@@ -13,7 +13,7 @@ builder.Services.AddMudServices();
 PricelySettings settings = PricelySettings.Instance;
 if (builder.Environment.IsDevelopment())
 {
-    string backendUrl = "https://localhost:7036";
+    string backendUrl = "http://localhost:5037";
     settings.BackendUrl = backendUrl;
 }
 else if (builder.Environment.IsProduction())
