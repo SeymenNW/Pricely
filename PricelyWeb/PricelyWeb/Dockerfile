@@ -1,6 +1,6 @@
 ﻿# Use .NET SDK for building
 #Usage: docker build -t x2 . -f PricelyWeb/PricelyWeb/Dockerfile
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build-env
 
 WORKDIR /app
 

@@ -18,7 +18,7 @@ if (builder.Environment.IsDevelopment())
 }
 else if (builder.Environment.IsProduction())
 {
-    string backendUrl = "https://localhost:7036";
+    string backendUrl = Environment.GetEnvironmentVariable("BACKEND__URL");
     settings.BackendUrl = backendUrl;
 }
 builder.Services.AddSingleton(settings);
@@ -30,7 +30,7 @@ builder.Services.AddTransient<IGetPriceRunnerResults>(sp =>
 builder.Services.AddHttpClient();
 
     
-//
+
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -38,6 +38,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 var app = builder.Build();
+app.MapGet("/api/settings", (PricelySettings settings) => settings);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

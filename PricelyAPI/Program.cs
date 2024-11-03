@@ -72,8 +72,8 @@ var app = builder.Build();
 app.UseCors("EZPolicy");
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
@@ -83,7 +83,7 @@ if (app.Environment.IsDevelopment())
     });
 
 
-}
+//}
 
 
 app.UseHttpsRedirection();

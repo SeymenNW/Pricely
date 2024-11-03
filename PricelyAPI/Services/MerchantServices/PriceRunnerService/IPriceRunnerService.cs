@@ -1,5 +1,6 @@
-﻿using Pricely.Libraries.Services.Models.PriceRunner;
+﻿
 
+using Pricely.Libraries.Shared.Models;
 
 namespace PricelyAPI.Services.MerchantServices.PriceRunnerService
 {

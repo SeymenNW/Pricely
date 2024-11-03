@@ -1,6 +1,7 @@
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using Pricely.Libraries.Services.Models.PriceRunner;
+using Pricely.Libraries.Shared.Models;
+using PricelyAPI.Helpers.Handlers.EnvVariables;
 using PricelyAPI.Services.MerchantServices.PriceRunnerService;
 
 namespace PricelyAPI.Controllers
@@ -21,6 +22,15 @@ namespace PricelyAPI.Controllers
             
         }
 
+
+        [HttpGet("getenv", Name = "GetEnv")]
+
+        public async Task<string> GetEnv()
+        {
+
+            return EnvVariablesManager.ProxyUsername;
+        }
+ 
 
         //Eksempel: https://localhost:7036/v1/pr/search/{search}
         /// <summary>

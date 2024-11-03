@@ -1,4 +1,5 @@
-﻿using Pricely.Libraries.Services.Models.Elgiganten;
+﻿
+using Pricely.Libraries.Shared.Models;
 
 namespace PricelyAPI.Services.MerchantServices.ElgigantenService
 {

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
-using Pricely.Libraries.Services.Models.Elgiganten;
-using Pricely.Libraries.Services.Models.PriceRunner;
+
+using Pricely.Libraries.Shared.Models;
 using PricelyAPI.Helpers.Extensions;
 using PricelyAPI.Helpers.Handlers;
 using PricelyAPI.Services.MerchantServices.ElgigantenService.Elgiganten;
