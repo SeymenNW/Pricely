@@ -4,9 +4,19 @@
 
 <h1 align="center">Pricely</h1>
 
+
 <p align="center">
 Et prissammenligningsværktøj, der indsamler data fra forskellige virksomheder. Formålet med Pricely er at vise dig de mest præcise priser – uden reklamer og uden sporing. Pricely holder sig neutral og jordnær uden bindinger til specifikke virksomheder.
 </p>
+
+## Skærmbilleder (Eksempler for Frontend delen)
+Pricely er ikke færdigudviklet/designet endnu og disse er kun eksempler fra udviklingen indtil videre.
+### Eksempel for søgning.
+ <img width="500" align="center" src="https://i.imgur.com/FodpZCs.png"/>
+ 
+### Eksempel for produktdetaljer.
+  <img width="500" align="center" src="https://i.imgur.com/q6WwbfS.png"/>
+
 
 ## Indhold
 
@@ -94,6 +104,8 @@ Nogle virksomheder har ikke offentlige API'er. Webscraping kan blive nødvendigt
 - [ ] Dustin integration
 - [ ] ComputerSalg integration
 - [ ] CDON integration
+- [ ] Komplett integration
+- [ ] DBA integration
 
 ### Generelle funktioner
 For at sikre en effektiv søgemaskine vil klienten (browseren) modtage en omfattende JSON-struktur, der muliggør sortering klient-side og reducerer antallet af serverkald. 
