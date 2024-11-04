@@ -12,7 +12,7 @@ namespace PricelyAPI.Helpers.Handlers
             //På Pricely.dk bliver en rotating proxy brugt. 
             //Men af gode grunde kan jeg ikke bare tilføje link til den her..
             Env.Load();
-            string proxyUrl = Environment.GetEnvironmentVariable("HTTP_PROXY");
+            string proxyUrl = Environment.GetEnvironmentVariable("PROXY__URL");
             string proxyUsername = Environment.GetEnvironmentVariable("PROXY__USERNAME");
             string proxyPassword = Environment.GetEnvironmentVariable("PROXY__PASSWORD");
 
