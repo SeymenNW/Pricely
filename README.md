@@ -8,8 +8,11 @@
 <p align="center">
 Et prissammenligningsværktøj, der indsamler data fra forskellige virksomheder. Formålet med Pricely er at vise dig de mest præcise priser – uden reklamer og uden sporing. Pricely holder sig neutral og jordnær uden bindinger til specifikke virksomheder.
 
-Pricely API: https://api.pricely.dk (https://api.pricely.dk/swagger/index.html for docs) (Kan bruges af alle)
-Pricely: https://pricely.dk/
+ - Pricely API: https://api.pricely.dk (https://api.pricely.dk/swagger/index.html for docs) (Kan bruges af
+   alle)
+ - Pricely: https://pricely.dk/
+ - (Readme/Docs skal opdateres lidt, men det meste kan bruges)
+
 </p>
 
 
@@ -72,10 +75,20 @@ Pricely er 100% open source – både backend-serveren og frontend-applikationen
 
 ## Environment Variables 
 ### PricelyAPI (Backend projektet)
-Kommer snart.
+(Optional). Pricely bruger generelt set en Proxy, men man kan også sætte den i Dev environment. (I prod env bruges disse ikke. Der bruges HTTP/HTTPS_PROXY)
+|Env  |Value  |
+|--|--|
+| PROXY__URL |  URL til proxy|
+| PROXY__USERNAME |Brugernavn  |
+| PROXY__PASSWORD |Adgangskode  |
+
+
 
 ### PricelyWeb (Blazor projektet)
-Kommer snart.
+(Kun i Production)
+| Env | Value  |
+|--|--|
+| BACKEND__URL | (url til backend) |
 
 ## Road & To-Do-List 
 Denne liste fokuserer på udviklingsopgaver. I fremtiden vil mere funktionalitet blive tilføjet, i takt med at projektet modnes.
