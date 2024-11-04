@@ -14,8 +14,4 @@
     <ProjectReference Include="..\..\Pricely.Libraries.Shared\Pricely.Libraries.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\GetElgigantenResults\" />
-  </ItemGroup>
-
 </Project>

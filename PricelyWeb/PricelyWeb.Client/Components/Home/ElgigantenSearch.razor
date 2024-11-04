@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/elgiganten"
 @using Pricely.Libraries.Shared.Models
 @using PricelyWeb.Services
 @using PricelyWeb.Services.PricelySettings
@@ -8,17 +8,18 @@
 @rendermode InteractiveWebAssembly
 
 @inject HttpClient httpClient
-@inject IGetPriceRunnerResults _getPriceRunnerResults
+@inject IGetElgigantenResults _getElgigantenResults
 @inject PricelySettings _settings
 
 <PageTitle>Hjem</PageTitle>
 
-<MudText Typo="Typo.h4" GutterBottom="true">Søg med Pricely</MudText>
-<MudText Color="Color.Primary" Class="mb-2">NYT! Søg med Elgiganten (Vælg i menuen!)</MudText>
-<MudText Class="mb-8">Pricely er stadig under udvikling og der kan opstå fejl. (Primær søgning tager udgangspunkt i PriceRunner Resultater)</MudText>
+<MudText Typo="Typo.h4" GutterBottom="true">Søg med Pricely: Elgiganten</MudText>
+<MudText Color="Color.Primary" Class="mb-2">Dette er den nye Elgiganten Søgning!</MudText>
+<MudText Class="">(Denne søgning er stadig under udvikling og skal merges sammen i Home page snart)</MudText>
+<MudText Class="mb-8">*Når du trykker på 'Se Produkt' bliver du sendt til Elgigantens side.</MudText>
 <MudTextField @bind-Value="@SearchText"
               OnAdornmentClick="() => GetPrices(SearchText)"
-              Label="Søg på over 3 millioner produkter..."
+              Label="Søg på mange produkter..."
               Variant="Variant.Outlined"
               Adornment="Adornment.End"
               AdornmentIcon="@Icons.Material.Filled.Search"
@@ -36,25 +37,25 @@
     <MudGrid Spacing="0" Justify="Justify.SpaceAround">
         @foreach (var productResult in Results.ProductResults)
         {
-            <ProductListingCard  ImageUrl="@productResult.ImageUrl"
-            LowestOrDefaultPrice="@productResult.LowestPrice"
-            ProductDetailsUrl="@productResult.DetailsUrl"
-            ProductName="@productResult.Name"
-            SearchCompanyName="PriceRunner" />
+            <ProductListingCard ImageUrl="@productResult.ImageUrl"
+                                LowestOrDefaultPrice="@productResult.CurrentPrice"
+                                ProductDetailsUrl="@productResult.StoreUrl"
+                                ProductName="@productResult.Name"
+                                SearchCompanyName="Elgiganten" />
         }
     </MudGrid>
-    <PricelyWeb.Client.Components.Global.Warnings.DataDisclaimer/>
+    <PricelyWeb.Client.Components.Global.Warnings.DataDisclaimer />
 }
 
 @code {
-    public PriceRunnerSearchResults Results { get; set; } 
+    public ElgigantenSearchResults Results { get; set; }
     public string SearchText { get; set; }
 
     public async Task GetPrices(string search)
     {
         // Results = await _getPriceRunnerResults.GetProductsFromSearch(search);
 
-        Results = await _getPriceRunnerResults.GetProductsFromSearch(search);
+        Results = await _getElgigantenResults.GetProductsFromSearch(search);
         StateHasChanged();
     }
 

@@ -6,6 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="..\PricelyWeb.Client\Components\Home\HomePage.razor.cs" Link="HomePage.razor.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
   

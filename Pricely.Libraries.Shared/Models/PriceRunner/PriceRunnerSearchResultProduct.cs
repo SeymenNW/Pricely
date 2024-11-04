@@ -15,7 +15,13 @@ namespace Pricely.Libraries.Shared.Models
 
         public string Description { get; set; }
         public string LowestPrice { get; set; }
+
+        
         public string ProductCategoryNum { get; set; }
+
+        //Denne bruges kun i Frontend delen.
+
+        public string DetailsUrl => $"/pr/details/{ProductCategoryNum}/{Id}";
 
     }
 }

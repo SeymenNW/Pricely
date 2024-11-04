@@ -25,8 +25,13 @@ builder.Services.AddSingleton(settings);
 
 builder.Services.AddTransient<IGetPriceRunnerResults>(sp =>
 {
-    return new GetPriceRunnerResults("");
-}); 
+    return new GetPriceRunnerResults(settings.BackendUrl);
+});
+
+builder.Services.AddTransient<IGetElgigantenResults>(sp =>
+{
+    return new GetElgigantenResults(settings.BackendUrl);
+});
 builder.Services.AddHttpClient();
 
     

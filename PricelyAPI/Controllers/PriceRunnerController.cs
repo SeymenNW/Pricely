@@ -23,13 +23,7 @@ namespace PricelyAPI.Controllers
         }
 
 
-        [HttpGet("getenv", Name = "GetEnv")]
-
-        public async Task<string> GetEnv()
-        {
-
-            return EnvVariablesManager.ProxyUsername;
-        }
+    
  
 
         //Eksempel: https://localhost:7036/v1/pr/search/{search}

@@ -33,6 +33,12 @@ builder.Services.AddTransient<IGetPriceRunnerResults>(sp =>
 {
     return new GetPriceRunnerResults(settings.BackendUrl);
 });
+
+builder.Services.AddTransient<IGetElgigantenResults>(sp =>
+{
+    return new GetElgigantenResults(settings.BackendUrl);
+});
+
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddMudServices();
 
