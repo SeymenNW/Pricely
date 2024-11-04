@@ -9,14 +9,12 @@ using System.Net.Http.Json;
 Env.Load();
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
-// Set up logging
 builder.Logging.SetMinimumLevel(LogLevel.Debug);
 
 var httpClient = new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) };
 var settings = await httpClient.GetFromJsonAsync<PricelySettings>("/api/settings");
-builder.Services.AddSingleton(settings);  // Register the fetched settings
+builder.Services.AddSingleton(settings);  
 
-// Initialize settings
 
 //if (builder.HostEnvironment.IsDevelopment())
 //{
@@ -30,7 +28,6 @@ builder.Services.AddSingleton(settings);  // Register the fetched settings
 //    settings.BackendUrl = backendUrl;
 //}
 
-// Register services
 builder.Services.AddSingleton(settings);
 builder.Services.AddTransient<IGetPriceRunnerResults>(sp =>
 {
