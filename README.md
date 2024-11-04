@@ -7,7 +7,11 @@
 
 <p align="center">
 Et prissammenligningsværktøj, der indsamler data fra forskellige virksomheder. Formålet med Pricely er at vise dig de mest præcise priser – uden reklamer og uden sporing. Pricely holder sig neutral og jordnær uden bindinger til specifikke virksomheder.
+
+Pricely API: https://api.pricely.dk (https://api.pricely.dk/swagger/index.html for docs) (Kan bruges af alle)
+Pricely: https://pricely.dk/
 </p>
+
 
 ## Skærmbilleder (Eksempler for Frontend delen)
 Pricely er ikke færdigudviklet/designet endnu og disse er kun eksempler fra udviklingen indtil videre.
@@ -84,7 +88,9 @@ Denne liste fokuserer på udviklingsopgaver. I fremtiden vil mere funktionalitet
 - [ ] Vise detaljerede produktinformationer
 - [x] Links til produkter for ikke-betalende virksomheder/kunder hos PriceRunner
 - [x] Vise priser uden sporing 
-- [ ] Håndtering af redirect-links uden om PriceRunner
+- [x] Vise pris med eller uden fragt
+- [x] Fuldtekst søgning i virksomhedsresultater.
+- [ ] Håndtering af redirect-links uden om PriceRunner (For at forbedre no tracking oplevelsen)
 
 ### Elgiganten
 - [x] Mulighed for søgning i API'et
