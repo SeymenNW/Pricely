@@ -1,0 +1,79 @@
+﻿@page "/apiurl"
+@inject Blazored.LocalStorage.ILocalStorageService _localStorage
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
+
+<MudText Typo="Typo.h4" GutterBottom="true" Color="Color.Primary">Tilføj API</MudText>
+<div class="flex items-center gap-4">
+    <MudTextField @bind-Value="@ApiUrl"
+                  Label="API Url"
+                  Variant="Variant.Outlined"
+                  Adornment="Adornment.End"
+                  AdornmentIcon="@Icons.Material.Filled.Link"
+                  AdornmentColor="Color.Secondary"
+                  Style="border-radius: 12px; padding: 0.5em;"
+                  Class="w-full max-w-md rounded-full" />
+    <MudButton Variant="Variant.Filled"
+               Color="Color.Primary"
+               Class="h-12 rounded-lg"
+               OnClick="@SaveApiUrl">Tilføj API</MudButton>
+               
+               (URL'en gemmes kun i din browser og sendes ikke videre nogle steder)
+</div>
+
+<MudDivider Class="my-6" />
+
+<MudText Typo="Typo.h4" Color="Color.Primary" GutterBottom="true">Hvad er dette?</MudText>
+<MudText Typo="Typo.h6" Color="Color.Primary" GutterBottom="true">Pricely henter ikke selv data</MudText>
+<MudText Typo="Typo.body1" GutterBottom="true">
+    Alle prisdata, der skal anvendes i Pricely, skal hentes fra en ekstern kilde. Det betyder, at du ikke kan bruge Pricely uden at angive en URL (link) til en backend, der sender disse data. Hvordan du vælger at hente og hvilke data du sender til Pricely, er helt op til dig. Pricely påtager sig ikke ansvaret for indholdet eller kvaliteten af de data, der leveres.
+</MudText>
+
+<MudText Typo="Typo.h6" Color="Color.Primary" GutterBottom="true">Pricely som Præsentationsværktøj</MudText>
+<MudText Typo="Typo.body1" GutterBottom="true">
+    Pricely er et værktøj, der giver dig mulighed for at vise data i et letforståeligt og visuelt tiltalende format. Alt data, der vises via en API, hentes og anvendes af brugeren selv, og Pricely har ingen indflydelse på indholdet eller ejerskab over dataene. Platformen fungerer udelukkende som et Præsentationsværktøj, og alt ansvar for databrug ligger hos brugeren.
+</MudText>
+
+<MudText Typo="Typo.h6" Color="Color.Primary" GutterBottom="true">Hvordan tilføjer man en API?</MudText>
+<MudText Typo="Typo.body1">
+Hvem ved? Du kan måske finde en offentlig API der er kompatibel med Pricely. Ellers kan du selv hoste en. En længere beskrivelse vil komme snart,
+men GitHub repoen (og projektet) er en god vej frem. Noget dokumentation for dette vil blive tilføjet snarest.
+</MudText>
+
+<MudText Typo="Typo.h6" Color="Color.Primary" GutterBottom="true">Terms of Use</MudText>
+<MudText Typo="Typo.body1">
+    Ved at benytte Pricely accepterer du og forstår, at du som bruger har det fulde ansvar for at overholde alle gældende lovkrav og retningslinjer for de data og API’er, du tilgår via platformen.
+</MudText>
+
+@code {
+    public string ApiUrl { get; set; }
+    private bool _isInitialized;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _isInitialized = false;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            string apiUrl = await _localStorage.GetItemAsync<string>("apiUrl");
+            if (apiUrl != null)
+            {
+                ApiUrl = apiUrl;
+                StateHasChanged();
+            }
+            _isInitialized = true;
+        }
+    }
+
+    public async void SaveApiUrl()
+    {
+        if (!string.IsNullOrWhiteSpace(ApiUrl) && ApiUrl.EndsWith("/"))
+        {
+            ApiUrl = ApiUrl.TrimEnd('/');
+        }
+
+        await _localStorage.SetItemAsStringAsync("apiUrl", ApiUrl);
+    }
+}

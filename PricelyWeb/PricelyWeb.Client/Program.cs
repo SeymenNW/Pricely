@@ -5,28 +5,33 @@ using PricelyWeb.Services;
 using Microsoft.Extensions.Logging;
 using PricelyWeb.Services.PricelySettings;
 using System.Net.Http.Json;
+using Blazored.LocalStorage;
+using Microsoft.Extensions.DependencyInjection;
 
 Env.Load();
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
 builder.Logging.SetMinimumLevel(LogLevel.Debug);
+builder.Services.AddBlazoredLocalStorage();
 
 var httpClient = new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) };
-var settings = await httpClient.GetFromJsonAsync<PricelySettings>("/api/settings");
-builder.Services.AddSingleton(settings);  
+var localStorage = builder.Services.BuildServiceProvider().GetRequiredService<ILocalStorageService>();
+
+PricelySettings settings = new();
+
+builder.Services.AddSingleton(settings);
 
 
-//if (builder.HostEnvironment.IsDevelopment())
-//{
-//    string backendUrl = "https://localhost:7036";
-//    settings.BackendUrl = backendUrl;
-//}
-//else if (builder.HostEnvironment.IsProduction())
-//{
-//    string backendUrl = "https://localhost:7036";
-  
-//    settings.BackendUrl = backendUrl;
-//}
+if (builder.HostEnvironment.IsProduction())
+{
+    settings.BackendUrl = await localStorage.GetItemAsync<string>("apiUrl");
+}
+else if (builder.HostEnvironment.IsDevelopment())
+{
+    settings = await httpClient.GetFromJsonAsync<PricelySettings>("http://localhost:5087/api/settings");
+
+   
+}
 
 builder.Services.AddSingleton(settings);
 builder.Services.AddTransient<IGetPriceRunnerResults>(sp =>

@@ -1,78 +1,44 @@
 ﻿@page "/about"
+<MudText Typo="Typo.h4" GutterBottom="true">Om Pricely.</MudText>
 
-<PageTitle>Hjem</PageTitle>
 
-<MudText Typo="Typo.h3" GutterBottom="true">Om den nye Pricely. 💪🏿🙂</MudText>
-<MudText Class="mb-8">Dette er den nyeste og bedste version af Pricely nogensinde!</MudText>
 
-<PricelyWeb.Client.Components.Global.Warnings.DataDisclaimer />
+<MudText Typo="Typo.h6" Color="Color.Primary" GutterBottom="true">Hvordan fungerer Pricely?</MudText>
 
-<br />
-<MudText Typo="Typo.h5" GutterBottom="false">Hvad er Pricely?</MudText>
-<MudText Typo="Typo.body1">
-    Et prissammenligningsværktøj, der indsamler data fra forskellige virksomheder.
-    Formålet med Pricely er at vise dig de mest præcise priser
-    – uden reklamer og uden sporing. Pricely holder sig neutral
-    og jordnær uden bindinger til specifikke virksomheder.
-</MudText>
-<br />
-
-<MudText Typo="Typo.h5" GutterBottom="false">What is Pricely? (English)</MudText>
-<MudText Typo="Typo.body1">
-    A price comparison tool that gathers data from various companies.
-    The purpose of Pricely is to show you the most accurate prices,
-    without ads or tracking.
-    Pricely is fair and independent from specific companies.
-    The page is in danish, 
-    but an English version may be created in the future.
-</MudText>
-<br />
-
-<MudText Typo="Typo.h5" GutterBottom="false">Hvorfor Pricely?</MudText>
-<MudText Typo="Typo.h6" GutterBottom="false">Ingen Sporing</MudText>
-<MudText Typo="Typo.body1">
-    Pricely henter produktdata uden trackere,
-    så du kan søge frit uden at blive sporet.
-    Alt data hentes på serveren og videresendes til dig,
-    hvilket betyder ingen tracking fra tjenester 
-    som Klarna, Google, Adform, Facebook, TikTok m.fl.
+<MudText Typo="Typo.body1" GutterBottom="true">
+    I Pricely-menuen præsenteres forskellige virksomheder og butikker,
+    men platformen opfordrer ikke til, og henter ikke selv data fra disse kilder.
+    Når du tilslutter en API til Pricely, har du mulighed for at hente data fra den specifikke API,
+    så længe datastrukturen matcher de krav, der er fastsat af systemet. Pricely fungerer som en visualiseringstjeneste,
+    der præsenterer de data, der modtages fra den eksterne API. Det er vigtigt at understrege,
+    at alle data skal komme fra en ekstern kilde, såsom din egen API. Uanset om de data, der præsenteres,
+    er dummy data, virksomhedsdata eller andet, påtager Pricely sig ikke ansvaret for indholdet eller kvaliteten af disse data.
 </MudText>
 
-<br />
-<MudText Typo="Typo.h6" GutterBottom="false">
-    Ingen betalte Reklamer/Annoncer
-</MudText>
-<MudText Typo="Typo.body1">
-    Pricely præsenterer uafhængige søgeresultater uden indflydelse fra betalte annoncer. Målet er at sikre gennemsigtighed og neutralitet.
-</MudText>
-<br />
 
-<MudText Typo="Typo.h6" GutterBottom="false">Open Source (Snart..)</MudText>
-<MudText Typo="Typo.body1">
-    Pricely er 100% open source – både backend-serveren og frontend-applikationen. Hvis Pricely.dk lukker, kan du selv hoste det. Der er en Docker Compose-fil, der gør det let at køre både backend og Blazor frontend. Bemærk, at funktionaliteten kan ændre sig, hvis de anvendte API'er ændrer sig.
-</MudText>
-<br />
+<MudText Typo="Typo.h6" Color="Color.Primary" GutterBottom="true">Ingen Backend Server</MudText>
 
-
-<MudText Typo="Typo.h5" GutterBottom="true">Pricely er blevet skrevet 95% om</MudText>
-<MudText Typo="Typo.body1">
-    Den gamle Pricely (Som midlertidigt stadig kan tilgås ved <MudLink Href="https://old.pricely.dk" Target="_blank" Typo="Typo.body2" Color="Color.Primary">
-        <b>old.pricely.dk</b>
-    </MudLink>)
-    er blevet omskrevet 95%. Kun omkring 5% af koden er overført fra Pricely 0.4.5 til Pricely 1.0. (Estimeret)
-    </MudText>
-
-<MudText Typo="Typo.h5" GutterBottom="true">Unøjagtigheder, fejl og mangler</MudText>
-<MudText Typo="Typo.body1">
-  Som kunde bør du ikke kun tage udgangspunkt i det data som Pricely viser. Derudover er der stadig
-  en del der skal laves endnu. 
+<MudText Typo="Typo.body1" GutterBottom="true">
+    I Pricely version 1.1 er Pricely-platformen ikke længere forbundet til nogen backend-server og
+    indsamler, lagrer eller behandler derfor ingen data fra eksterne virksomheder eller kilder.
+    Som bruger af Pricely har du selv ansvaret for at sikre en kompatibel API, hvis du ønsker at
+    hente og vise data gennem applikationen.
 </MudText>
 
-<MudText Typo="Typo.h5" GutterBottom="true">Til virksomheder</MudText>
-<MudText Typo="Typo.body1">
-    Hvis din virksomhed gerne vil have fjernet jeres ressourcer (fx API) fra
-    Pricely kan i kontakte mig på seymen@live.dk.
-    Så skal jeg nok sørge for at det bliver fjernet.
-</MudText>
- 
 
+<MudText Typo="Typo.h6" Color="Color.Primary" GutterBottom="true">Pricely som Præsentationsværktøj</MudText>
+<MudText Typo="Typo.body1" GutterBottom="true">
+    Pricely er et værktøj, der giver dig mulighed for at vise data i et letforståeligt
+    og visuelt tiltalende format. Alt data, der vises via en API,
+    hentes og anvendes af brugeren selv,
+    og Pricely har ingen indflydelse på indholdet eller ejerskab over dataene.
+    Platformen fungerer udelukkende som et Præsentationsværktøj,
+    og alt ansvar for databrug ligger hos brugeren.
+</MudText>
+
+<MudText Typo="Typo.h6" Color="Color.Primary" GutterBottom="true">Terms of Use</MudText>
+
+<MudText Typo="Typo.body1">
+    Ved at benytte Pricely accepterer du og forstår, at du som bruger har det fulde ansvar for at overholde
+    alle gældende lovkrav og retningslinjer for de data og API’er, du tilgår via platformen.
+</MudText>

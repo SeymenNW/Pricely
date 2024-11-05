@@ -1,3 +1,4 @@
+using Blazored.LocalStorage;
 using MudBlazor.Services;
 using PricelyWeb.Client.Components.Home;
 using PricelyWeb.Components;
@@ -10,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add MudBlazor services
 DotNetEnv.Env.Load();
 builder.Services.AddMudServices();
+builder.Services.AddBlazoredLocalStorage();
 PricelySettings settings = PricelySettings.Instance;
 if (builder.Environment.IsDevelopment())
 {

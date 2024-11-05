@@ -13,23 +13,35 @@
 
 <PageTitle>Hjem</PageTitle>
 
-<MudText Typo="Typo.h4" GutterBottom="true">Søg med Pricely</MudText>
-<MudText Color="Color.Primary" Class="mb-2">NYT! Søg med Elgiganten (Vælg i menuen!)</MudText>
-<MudText Class="mb-8">Pricely er stadig under udvikling og der kan opstå fejl. (Primær søgning tager udgangspunkt i PriceRunner Resultater)</MudText>
-<MudTextField @bind-Value="@SearchText"
-              OnAdornmentClick="() => GetPrices(SearchText)"
-              Label="Søg på over 3 millioner produkter..."
-              Variant="Variant.Outlined"
-              Adornment="Adornment.End"
-              AdornmentIcon="@Icons.Material.Filled.Search"
-              AdornmentColor="Color.Secondary"
-              Style="border-radius: 12px;"
-              Class="rounded-full" />
+<MudCard Class="rounded-xl p-4" >
+    <MudCardHeader>
+        <MudText Typo="Typo.h4">Søg med Pricely</MudText>
+    </MudCardHeader>
+    <MudCardContent >
+        <MudText Color="Color.Primary" Class="mb-2">
+            OBS: Du skal tilføje URL til en API for at Pricely kan søge.
+            Læs mere om det <MudLink  Color="Color.Tertiary" Href="/apiurl">her.</MudLink>
+            <br />
+        </MudText>
+        <MudText Class="mb-4">
+            Pricely er stadig under udvikling, og der kan opstå fejl.
+            <br />
+            (Primær søgning tager udgangspunkt i PriceRunner Resultater)
+        </MudText>
+        <MudTextField @bind-Value="@SearchText"
+                      OnAdornmentClick="() => GetPrices(SearchText)"
+                      Label="Søg på over 3 millioner produkter..."
+                      Variant="Variant.Outlined"
+                      Adornment="Adornment.End"
+                      AdornmentIcon="@Icons.Material.Filled.Search"
+                      AdornmentColor="Color.Secondary"
+                      Class="mb-4"
+                      Style="border-radius: 12px;" />
+    </MudCardContent>
+</MudCard>
 
 <br />
-<br />
-<br />
-<br />
+
 @if (Results != null)
 {
 

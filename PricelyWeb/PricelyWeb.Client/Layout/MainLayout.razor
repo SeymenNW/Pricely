@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@inject Blazored.LocalStorage.ILocalStorageService _localStorage
 
 <MudThemeProvider Theme="@_theme" IsDarkMode="_isDarkMode" />
 <MudPopoverProvider />
@@ -9,6 +10,7 @@
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
         <MudText Typo="Typo.h5" Class="ml-3">Pricely</MudText>
         <MudSpacer />
+            <MudButton Variant="Variant.Filled" Color="Color.Tertiary" Href="/apiurl" DropShadow="false">@ApiButtonText</MudButton>
         <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
         <MudIconButton DropShadow="true" Href="https://github.com/SeymenNW/Pricely" Icon="@Icons.Material.Filled.StarBorder" Color="Color.Inherit" Edge="Edge.End" />
     </MudAppBar>
@@ -31,6 +33,40 @@
 
 
 @code {
+
+    public string ApiUrl { get; set; }
+    public string ApiButtonText { get; set; } = "TILFØJ API";
+    private bool _isInitialized;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _isInitialized = false;
+
+       
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            string apiUrl = await _localStorage.GetItemAsync<string>("apiUrl");
+            if (apiUrl != null)
+            {
+                ApiUrl = apiUrl;
+                StateHasChanged();
+            }
+
+            if (!string.IsNullOrEmpty(ApiUrl))
+            {
+                ApiButtonText = $"API Tilføjet: {ApiUrl} ";
+            }
+            StateHasChanged();
+
+            _isInitialized = true;
+        }
+    }
+
+
     private bool _drawerOpen = false;
     private bool _isDarkMode = true;
     private MudTheme? _theme = null;
