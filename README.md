@@ -6,25 +6,36 @@
 
 
 <p align="center">
-Et prissammenligningsværktøj, der indsamler data fra forskellige virksomheder. Formålet med Pricely er at vise dig de mest præcise priser – uden reklamer og uden sporing. Pricely holder sig neutral og jordnær uden bindinger til specifikke virksomheder.
-
- - Pricely API: https://api.pricely.dk (https://api.pricely.dk/swagger/index.html for docs) (Kan bruges af
-   alle)
- - Pricely: https://pricely.dk/
- - (Readme/Docs skal opdateres lidt, men det meste kan bruges)
+Et prissammenligningsværktøj, der indsamler data fra forskellige virksomheder. Formålet med Pricely er at vise de mest præcise priser – uden reklamer og uden sporing. Pricely holder sig neutral og jordnær uden bindinger til specifikke virksomheder.
 
 </p>
 
 
-## Skærmbilleder (Eksempler for Frontend delen)
-Pricely er ikke færdigudviklet/designet endnu og disse er kun eksempler fra udviklingen indtil videre.
-### Eksempel for søgning.
- <img width="500" align="center" src="https://i.imgur.com/FodpZCs.png"/>
- 
-### Eksempel for produktdetaljer.
-  <img width="500" align="center" src="https://i.imgur.com/q6WwbfS.png"/>
+## ToS
+**Dette repository er kun beregnet til lærings- og forskningsformål.**  
+Ved at anvende dette repository accepterer du at:  
+1. Overholde alle gældende lokale, nationale og internationale love.  
+2. Undgå handlinger, der krænker andre platformes vilkår, overtræder andres rettigheder eller kan betragtes som ondsindede.  
+3. Tage fuldt ansvar for eventuelle konsekvenser, der måtte opstå som følge af forkert brug af koden.
 
+Som udvikler fraskriver jeg mig ethvert ansvar for brug af koden, der ikke følger disse retningslinjer. 
 
+Fra https://www.pricerunner.dk/info/terms:  
+> ### Framing, linking osv.  
+> Brugen af indhold på andre hjemmesider eller enheder i netværket er forbudt.  
+> Framing, spejling, scraping eller data mining af hjemmesiden samt alle handlinger, der efter vores vurdering forhindrer eller besværliggør andres brug af hjemmesiden (eller nogen tilhørende hjemmesider), er ikke tilladt.
+
+### Disclaimer (English)
+
+**This repository is intended for educational and research purposes only.**
+
+By using or cloning this repository, you agree to:
+
+1. Comply with all local, state, and federal laws.
+2. Avoid any activities that violate the terms of service of other platforms, infringe upon the rights of others, or could be deemed malicious.
+3. Take full responsibility for any consequences resulting from misuse of this code.
+
+The author(s) of this repository do not condone or take responsibility for any use of this code that does not adhere to these guidelines (or any use at all). Misuse of this repository could result in legal action from affected parties.
 ## Indhold
 
 <!-- TOC -->
@@ -50,28 +61,25 @@ Pricely er ikke færdigudviklet/designet endnu og disse er kun eksempler fra udv
 * [Pricely er uafhængig og gratis](#pricely-er-uafhængig-og-gratis)
 <!-- TOC -->
 
+## Skærmbilleder (Eksempler for Frontend delen)
+Pricely er ikke færdigudviklet/designet endnu og disse er kun eksempler fra udviklingen indtil videre.
+### Eksempel for søgning.
+ <img width="500" align="center" src="https://i.imgur.com/FodpZCs.png"/>
+ 
+### Eksempel for produktdetaljer.
+  <img width="500" align="center" src="https://i.imgur.com/q6WwbfS.png"/>
+
 ## Pricely 1.0 
 
 ### Hvad er Pricely?
 Pricely er et prissammenligningsværktøj, der indsamler produktdata fra forskellige virksomheder. Formålet er at vise dig de mest præcise priser, uden reklamer og uden sporing. Pricely er fair og holder sig uafhængig af specifikke virksomheder.
 
-Dette er repositoriet for Pricely 1.0 og **ikke** Pricely 0.4.5. Den gamle Pricely (midlertidigt tilgængelig via [**old.pricely.dk**](https://old.pricely.dk/)) er blevet omskrevet 95%. Kun omkring 5% af koden er overført fra Pricely 0.4.5 til Pricely 1.0.
-
 ### What is Pricely? (English)
 A price comparison tool that gathers data from various companies. The purpose of Pricely is to show you the most accurate prices, without ads or tracking. Pricely is fair and independent from specific companies. The rest of the documentation is in Danish, but an English version may be added in the future.
-
-### Udviklingen
-Pricely er udviklet med .NET 8, Blazor Web App (Auto) og ASP.NET Web API. Målet har været at samle alt i .NET. I fremtiden er planen at udvikle en mobilapp i React Native, som fungerer bedre end andre .NET-multiplatformsrammer som .NET MAUI og Avalonia.
 
 ## Hvorfor Pricely?
 ### Ingen Sporing
 Pricely henter produktdata uden trackere, så du kan søge frit uden at blive sporet. Alt data hentes på serveren og videresendes til dig, hvilket betyder ingen tracking fra tjenester som Klarna, Google, Adform, Facebook, TikTok m.fl.
-
-### Ingen betalte Reklamer/Annoncer
-Pricely præsenterer uafhængige søgeresultater uden indflydelse fra betalte annoncer. Målet er at sikre gennemsigtighed og neutralitet.
-
-### Open Source
-Pricely er 100% open source – både backend-serveren og frontend-applikationen. Hvis Pricely.dk lukker, kan du selv hoste det. Der er en Docker Compose-fil, der gør det let at køre både backend og Blazor frontend. Bemærk, at funktionaliteten kan ændre sig, hvis de anvendte API'er ændrer sig.
 
 ## Environment Variables 
 ### PricelyAPI (Backend projektet)
@@ -81,8 +89,6 @@ Pricely er 100% open source – både backend-serveren og frontend-applikationen
 | PROXY__URL |  URL til proxy|
 | PROXY__USERNAME |Brugernavn  |
 | PROXY__PASSWORD |Adgangskode  |
-
-
 
 ### PricelyWeb (Blazor projektet)
 (Kun i Production)
@@ -152,11 +158,3 @@ PriceRunner anvender rate limits på forespørgsler. For at omgå dette bruges e
 
 **Software**
 - [Visual Studio 2022 (IDE)](https://visualstudio.com/)
-
-## Ressourcer
-...
-
-## Pricely er fuldstændig uafhængig og gratis at bruge.
-Pricely har ingen relationer til de virksomheder, hvis API’er bruges, inklusiv men ikke begrænset til: Elgiganten, PriceRunner, Power, ProShop, ComputerSalg. Pricely gemmer ikke varemærkebeskyttede billeder eller medieindhold; alt medie hentes direkte fra eksterne sider.
-
-Hvis din virksomhed gerne vil have fjernet jeres ressourcer fra Pricely kan i kontakte mig på seymen@live.dk. Så skal jeg nok sørge for at det bliver fjernet.
