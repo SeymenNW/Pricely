@@ -1,129 +1,126 @@
-<p align="center">
-  <img width="200" src="https://i.imgur.com/ee41Wgp.png"/>
-</p>
+<p align="center"> <img width="200" src="https://i.imgur.com/ee41Wgp.png"/> </p>
+<table>
+    <tr>
+        <td width="99999" align="center">This repository is intended solely for educational and research purposes.  
+ <b>
+    </tr>
+</table>
 
-<h1 align="center">Pricely</h1>
+ <h1 align="center">Pricely</h1> <p align="center"> A price comparison tool that collects data from various of companies. The goal of Pricely is to show the most accurate prices – without ads and without tracking. Only prices from Denmark. </p>
+
+## Terms of Use, Service & Disclaimer.
+
+**This repository is intended solely for educational and research purposes. I do not host this project (in its entirety) anywhere publicly.**  
+By using this project or its source code, for any purpose and in any shape or form, you grant your **implicit agreement** to all the following statements:
 
 
-<p align="center">
-Et prissammenligningsværktøj, der indsamler data fra forskellige virksomheder. Formålet med Pricely er at vise de mest præcise priser – uden reklamer og uden sporing. Pricely holder sig neutral og jordnær uden bindinger til specifikke virksomheder.
+-  Comply with all applicable local, national, and international laws.
+-  Avoid actions that violate other platforms' terms, infringe on others' rights, or could be considered malicious.
+-  Take full responsibility for any consequences that may arise from misuse of the code.
 
-</p>
+As the developer, I disclaim any responsibility for the use of this code in any way and those that do not adhere to these guidelines.
+
+From [https://www.pricerunner.dk/info/terms](https://www.pricerunner.dk/info/terms) (Translated to english)
+
+> ### Framing, Linking, etc.
+> 
+> Using content on other websites or networked devices is prohibited. Framing, mirroring, scraping, or data mining of the website, as well as any actions that prevent or hinder others' use of the website (or related sites), are not allowed.
 
 
-## ToS
-**Dette repository er kun beregnet til lærings- og forskningsformål.**  
-Ved at anvende dette repository accepterer du at:  
-1. Overholde alle gældende lokale, nationale og internationale love.  
-2. Undgå handlinger, der krænker andre platformes vilkår, overtræder andres rettigheder eller kan betragtes som ondsindede.  
-3. Tage fuldt ansvar for eventuelle konsekvenser, der måtte opstå som følge af forkert brug af koden.
+## Contents
 
-Som udvikler fraskriver jeg mig ethvert ansvar for brug af koden, der ikke følger disse retningslinjer. 
+-   [What is Pricely?](#what-is-pricely)
+-   [Pricely 1.0](#pricely-10)
+-   [Development](#development)
+-   [Why Pricely?](#why-pricely)
+    -   [No Tracking](#no-tracking)
+    -   [No Paid Ads](#no-paid-ads)
+    -   [Open Source](#open-source)
+-   [Environment Variables](#environment-variables)
+    -   [PricelyAPI (Backend Project)](#pricelyapi-backend-project)
+    -   [PricelyWeb (Blazor Project)](#pricelyweb-blazor-project)
+-   [Road & To-Do List](#road-to-do-list)
+    -   [PriceRunner](#pricerunner)
+    -   [Elgiganten](#elgiganten)
+    -   [Power](#power)
+    -   [Companies to Add](#companies-to-add)
+    -   [General Features](#general-features)
+-   [API Rate Limits by Companies](#api-rate-limits-by-companies)
+-   [Technologies](#technologies)
+-   [Resources](#resources)
+-   [Pricely is Independent and Free](#pricely-is-independent-and-free)
 
-Fra https://www.pricerunner.dk/info/terms:  
-> ### Framing, linking osv.  
-> Brugen af indhold på andre hjemmesider eller enheder i netværket er forbudt.  
-> Framing, spejling, scraping eller data mining af hjemmesiden samt alle handlinger, der efter vores vurdering forhindrer eller besværliggør andres brug af hjemmesiden (eller nogen tilhørende hjemmesider), er ikke tilladt.
+## Screenshots (Frontend Examples)
 
-### Disclaimer (English)
+Pricely is not fully developed/designed yet, and these are only examples from development so far.
 
-**This repository is intended for educational and research purposes only.**
+### Example Search
 
-By using or cloning this repository, you agree to:
+<img width="500" align="center" src="https://i.imgur.com/FodpZCs.png"/>
 
-1. Comply with all local, state, and federal laws.
-2. Avoid any activities that violate the terms of service of other platforms, infringe upon the rights of others, or could be deemed malicious.
-3. Take full responsibility for any consequences resulting from misuse of this code.
+### Example Product Details
 
-The author(s) of this repository do not condone or take responsibility for any use of this code that does not adhere to these guidelines (or any use at all). Misuse of this repository could result in legal action from affected parties.
-## Indhold
+<img width="500" align="center" src="https://i.imgur.com/q6WwbfS.png"/>
 
-<!-- TOC -->
-* [Hvad er Pricely?](#hvad-er-pricely)
-* [Pricely 1.0](#pricely-10)
-* [Udviklingen](#udviklingen)
-* [Hvorfor Pricely?](#hvorfor-pricely)
-  * [Ingen Sporing](#ingen-sporing)
-  * [Ingen betalte Reklamer/Annoncer](#ingen-betalte-reklamerannoncer)
-  * [Open Source](#open-source)
-* [Environment Variables](#environment-variables)
-  * [PricelyAPI (Backend projektet)](#pricelyapi-backend-projektet)
-  * [PricelyWeb (Blazor projektet)](#pricelyweb-blazor-projektet)
-* [Road & To-Do-List](#road--to-do-list)
-  * [PriceRunner](#pricerunner)
-  * [Elgiganten](#elgiganten)
-  * [Power](#power)
-  * [Virksomheder der skal tilføjes](#virksomheder-der-skal-tilføjes)
-  * [Generelle funktioner](#generelle-funktioner)
-* [API Rate Limits fra virksomheder](#api-rate-limits-fra-virksomheder)
-* [Teknologier](#teknologier)
-* [Ressourcer](#ressourcer)
-* [Pricely er uafhængig og gratis](#pricely-er-uafhængig-og-gratis)
-<!-- TOC -->
+## Pricely 1.0
 
-## Skærmbilleder (Eksempler for Frontend delen)
-Pricely er ikke færdigudviklet/designet endnu og disse er kun eksempler fra udviklingen indtil videre.
-### Eksempel for søgning.
- <img width="500" align="center" src="https://i.imgur.com/FodpZCs.png"/>
- 
-### Eksempel for produktdetaljer.
-  <img width="500" align="center" src="https://i.imgur.com/q6WwbfS.png"/>
+### What is Pricely?
 
-## Pricely 1.0 
+Pricely is a price comparison tool that gathers product data from various companies. Its purpose is to show you the most accurate prices, free from ads and tracking. Pricely is fair and independent of specific companies.
 
-### Hvad er Pricely?
-Pricely er et prissammenligningsværktøj, der indsamler produktdata fra forskellige virksomheder. Formålet er at vise dig de mest præcise priser, uden reklamer og uden sporing. Pricely er fair og holder sig uafhængig af specifikke virksomheder.
+## What does it do?
 
-### What is Pricely? (English)
-A price comparison tool that gathers data from various companies. The purpose of Pricely is to show you the most accurate prices, without ads or tracking. Pricely is fair and independent from specific companies. The rest of the documentation is in Danish, but an English version may be added in the future.
+### No Tracking
 
-## Hvorfor Pricely?
-### Ingen Sporing
-Pricely henter produktdata uden trackere, så du kan søge frit uden at blive sporet. Alt data hentes på serveren og videresendes til dig, hvilket betyder ingen tracking fra tjenester som Klarna, Google, Adform, Facebook, TikTok m.fl.
+Pricely retrieves product data without trackers, allowing search freely without being tracked. All data is fetched on the server and passed to the client, meaning no tracking from services like Klarna, Google, Adform, Facebook, TikTok, etc.
 
-## Environment Variables 
-### PricelyAPI (Backend projektet)
-(Optional). Pricely bruger generelt set en Proxy, men man kan også sætte den i Dev environment. (I prod env bruges disse ikke. Der bruges HTTP/HTTPS_PROXY)
-|Env  |Value  |
-|--|--|
-| PROXY__URL |  URL til proxy|
-| PROXY__USERNAME |Brugernavn  |
-| PROXY__PASSWORD |Adgangskode  |
+## Environment Variables
 
-### PricelyWeb (Blazor projektet)
-(Kun i Production)
-| Env | Value  |
-|--|--|
-| BACKEND__URL | (url til backend) |
 
-## Road & To-Do-List 
-Denne liste fokuserer på udviklingsopgaver. I fremtiden vil mere funktionalitet blive tilføjet, i takt med at projektet modnes.
+### PricelyAPI (Backend Project) Environment Variables
+*(Optional)* Pricely generally uses a proxy, which can also be set in the Dev environment. (In production, these are not used; HTTP/HTTPS_PROXY is used instead.)
 
-### PriceRunner
-- [x] Mulighed for at søge i API'et 
-- [x] Klasser til deserialisering af API-data
-- [x] Wrapper-klasser til nem håndtering af API-resultater
-- [x] Hentning af produktdata 
-- [ ] Vise detaljerede produktinformationer
-- [x] Links til produkter for ikke-betalende virksomheder/kunder hos PriceRunner
-- [x] Vise priser uden sporing 
-- [x] Vise pris med eller uden fragt
-- [x] Fuldtekst søgning i virksomhedsresultater.
-- [ ] Håndtering af redirect-links uden om PriceRunner (For at forbedre no tracking oplevelsen)
+| Env             | Value          |
+|-----------------|----------------|
+| PROXY__URL      | Proxy URL      |
+| PROXY__USERNAME | Username       |
+| PROXY__PASSWORD | Password       |
 
-### Elgiganten
-- [x] Mulighed for søgning i API'et
-- [ ] Hentning af produktdata
-- [ ] Detaljeret information
-- [ ] Prøve at få adgang til EAN nummer på produkter
+### PricelyWeb (Blazor Project)
+*(Production Only)*
 
-### Power (Pricely 1.0)
-- [x] Mulighed for søgning i API'et
-- [ ] Hentning af produktdata
-- [ ] Visning af billeder
+| Env            | Value         |
+|----------------|---------------|
+| BACKEND__URL   | Backend URL   |
 
-### Virksomheder der skal tilføjes
-Nogle virksomheder har ikke offentlige API'er. Webscraping kan blive nødvendigt, men vil blive optional grundet øget ressourceforbrug. 
+
+## Road & To-Do-List
+
+#### PriceRunner
+- [x] Ability to search in the API
+- [x] Classes for deserializing API data
+- [x] Wrapper classes for easy handling of API results
+- [x] Fetch product data
+- [ ] Display detailed product information
+- [x] Links to products for non-paying companies/customers of PriceRunner
+- [x] Show prices without tracking
+- [x] Show prices with or without shipping
+- [x] Full-text search in company results
+- [ ] Handle redirect links bypassing PriceRunner (to improve no-tracking experience)
+
+#### Elgiganten
+- [x] Ability to search in the API
+- [ ] Fetch product data
+- [ ] Detailed information
+- [ ] Attempt to access EAN number for products
+
+#### Power (Pricely 1.0)
+- [x] Ability to search in the API
+- [ ] Fetch product data
+- [ ] Display images
+
+#### Companies to Add
+Some companies do not have public APIs. Web scraping may be necessary, but will remain optional due to increased resource demands.
 - [ ] ProShop integration
 - [x] Power integration
 - [ ] Dustin integration
@@ -132,29 +129,43 @@ Nogle virksomheder har ikke offentlige API'er. Webscraping kan blive nødvendigt
 - [ ] Komplett integration
 - [ ] DBA integration
 
-### Generelle funktioner
-For at sikre en effektiv søgemaskine vil klienten (browseren) modtage en omfattende JSON-struktur, der muliggør sortering klient-side og reducerer antallet af serverkald. 
-- [ ] **Ny søgefunktion til alle understøttede virksomheder**
-	- [x] PriceRunner integration
-	- [ ] Elgiganten integration
-- [ ] **Søgefiltrering**
-	- [ ] Filtrer efter pris, alfabetisk orden, brand og produktkategori (PriceRunner)
+#### General Features
+To ensure an efficient search engine, the client (browser) will receive a comprehensive JSON structure, enabling client-side sorting and reducing server calls.
+- [ ] **New search functionality for all supported companies**
+  - [x] PriceRunner integration
+  - [ ] Elgiganten integration
+- [ ] **Search filtering**
+  - [ ] Filter by price, alphabetical order, brand, and product category (PriceRunner)
 
-Mere kommer snart.
- 
-### API Rate Limits fra virksomheder
-PriceRunner anvender rate limits på forespørgsler. For at omgå dette bruges en ***Rotating Proxy***, der distribuerer søgninger over forskellige IP-adresser. Dette gør Pricely lidt langsommere, men påvirker ikke selv-hostede instanser.
+More coming soon.
 
-## Teknologier
-**Teknologier**
-- [C# (Programmeringssprog)](https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/overview)
-- [Blazor (Frontend)](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor)
-- [ASP.NET Web API (Backend Server)](https://dotnet.microsoft.com/en-us/apps/aspnet/apis)
-- [Git](https://git-scm.com/)
+
+To ensure an efficient search engine, the client (browser) will receive a comprehensive JSON structure, allowing for client-side sorting and reducing server calls.
+
+-   **New search functionality for all supported companies**
+    -   PriceRunner integration
+    -   Elgiganten integration
+-   **Search Filtering**
+    -   Filter by price, alphabetical order, brand, and product category (PriceRunner)
+
+More to come soon.
+
+### API Rate Limits by Companies
+Most companies limit their API usage.
+## Technologies
+
+**Technologies**
+
+-   [C# (Programming Language)](https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/overview)
+-   [Blazor (Frontend)](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor)
+-   [ASP.NET Web API (Backend Server)](https://dotnet.microsoft.com/en-us/apps/aspnet/apis)
+-   [Git](https://git-scm.com/)
 
 **Libraries**
-- [Newtonsoft.Json](https://www.newtonsoft.com/json)
-- [Playwright (Webscraping)](https://playwright.dev/dotnet/)
+
+-   [Newtonsoft.Json](https://www.newtonsoft.com/json)
+-   [Playwright (Web scraping)](https://playwright.dev/dotnet/)
 
 **Software**
-- [Visual Studio 2022 (IDE)](https://visualstudio.com/)
+
+-   [Visual Studio 2022 (IDE)](https://visualstudio.com/)
