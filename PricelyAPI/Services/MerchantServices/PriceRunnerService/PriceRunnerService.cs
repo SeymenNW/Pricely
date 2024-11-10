@@ -127,7 +127,7 @@ namespace PricelyAPI.Services.MerchantServices.PriceRunnerService
 
                     foreach (var offer in prProductDetail.Offers)
                     {
-                        string productUrl = "https://www.pricerunner.dk/dk/api/search-compare-gateway" + offer.Url;
+                        string productUrl = $"https://www.pricerunner.dk{offer.Url}";
 
                         HttpResponseMessage productUrlResponse = await httpClient.GetAsync(productUrl);
                         productUrl = productUrlResponse.RequestMessage.RequestUri.ToString();
