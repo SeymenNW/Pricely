@@ -10,7 +10,7 @@
 
 ## Terms of Use, Service & Disclaimer.
 
-**This repository is intended solely for educational and research purposes. I do not host this project (in its entirety) anywhere publicly.**  
+**This repository is intended solely for educational and research purposes. 
 By using this project or its source code, for any purpose and in any shape or form, you grant your **implicit agreement** to all the following statements:
 
 
@@ -67,6 +67,12 @@ Pricely is not fully developed/designed yet, and these are only examples from de
 ### What is Pricely?
 
 Pricely is a price comparison tool that gathers product data from various companies. Its purpose is to show you the most accurate prices, free from ads and tracking. Pricely is fair and independent of specific companies.
+
+### How to search in Pricely.dk?
+You will need to input your own API or a public one hosted by someone else. I am not responsible for what data you send to Pricely and I am **not** hosting the PricelyAPI Project found on this repository anywhere on the web. 
+![Pricely Tilføj API](https://i.imgur.com/wBTQcU9.png)
+
+
 
 ## What does it do?
 
