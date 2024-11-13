@@ -28,7 +28,7 @@ namespace PricelyAPI.Controllers
 
         //Eksempel: https://localhost:7036/v1/pr/search/{search}
         /// <summary>
-        /// Henter prisdata for de produkter man søger på.
+        /// Returns the data from GetProductsFromSearch as a json
         /// </summary>
         [HttpGet("search/{search}", Name = "Search")]
        
@@ -38,7 +38,6 @@ namespace PricelyAPI.Controllers
         return    await  _pricerunnerService.GetProductsFromSearch(search);
 
 
-            //return Ok("Prisdata er hentet");
         }
 
         [HttpGet("details/{productCategoryNum}/{productId}", Name = "Details")]
