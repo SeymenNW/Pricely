@@ -1,0 +1,24 @@
+name: Pricely Backend
+
+on:
+  push:
+    paths:
+      - PricelyAPI/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Docker Hub log in
+        run: echo ${{ secrets.DOCKER_HUB_PASSWORD }} | docker login --username ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
+
+      - name: Build the Docker image
+        run: |
+          docker build ./PricelyAPI --file ./PricelyAPI/Dockerfile --tag ${{ secrets.DOCKER_HUB_USERNAME }}/pricelyapi
+
+      - name: Push the Docker image
+        run: |
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/pricelyapi
