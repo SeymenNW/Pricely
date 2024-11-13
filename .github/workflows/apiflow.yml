@@ -17,7 +17,8 @@ jobs:
 
       - name: Build the Docker image
         run: |
-          docker build ./PricelyAPI --file ./PricelyAPI/Dockerfile --tag ${{ secrets.DOCKER_HUB_USERNAME }}/pricelyapi
+          docker build -t pricelyapi . -f PricelyAPI/Dockerfile --tag ${{ secrets.DOCKER_HUB_USERNAME }}/pricelyapi
+          
 
       - name: Push the Docker image
         run: |
