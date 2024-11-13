@@ -28,7 +28,7 @@ namespace PricelyAPI.Controllers
 
         //Eksempel: https://localhost:7036/v1/pr/search/{search}
         /// <summary>
-        /// Returns the data from GetProductsFromSearch as a json
+        /// Returns the data from GetProductsFromSearch as a json.
         /// </summary>
         [HttpGet("search/{search}", Name = "Search")]
        
