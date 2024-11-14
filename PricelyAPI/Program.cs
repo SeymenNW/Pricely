@@ -49,7 +49,7 @@ builder.Services.AddSwaggerGen(
     {
         Version = "v1",
         Title = "Pricely API",
-        Description = "Dette er den første version af Pricely API. Du kan selv bruge det i dine egne applikationer.\nI den første periode her vil der nok komme nogle ændringer.",
+        Description = "This is the first version of the Pricely API. Many changes are coming to it, so some of the endpoints will probably change (It's sort of a beta)",
     });
 
     //options.SwaggerDoc("v2", new Microsoft.OpenApi.Models.OpenApiInfo
