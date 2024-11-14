@@ -2,6 +2,7 @@ name: Pricely Backend
 
 on:
   push:
+    branches: main
     paths:
       - PricelyAPI/**
 
