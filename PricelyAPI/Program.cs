@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddTransient<IPriceRunnerService, PriceRunnerService>();
 builder.Services.AddTransient<IElgigantenService, ElgigantenService>();
 
-builder.Services.AddCors(o => o.AddPolicy("EZPolicy", builder =>
+builder.Services.AddCors(o => o.AddPolicy("AllowAny", builder =>
 {
     builder.AllowAnyOrigin()  
            .AllowAnyMethod()  
@@ -69,7 +69,7 @@ builder.Services.AddSwaggerGen(
 var app = builder.Build();
 
 
-app.UseCors("EZPolicy");
+app.UseCors("AllowAny");
 
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
