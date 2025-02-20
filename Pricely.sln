@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PricelyWeb.Services", "Pric
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pricely.Libraries.Shared", "Pricely.Libraries.Shared\Pricely.Libraries.Shared.csproj", "{C174DD3A-EFBB-4E11-A7F9-C9857CB2A937}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pricely.Tests", "Pricely.Tests\Pricely.Tests.csproj", "{0B0FCDDE-95FA-478E-A3FC-5F59B982D657}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C174DD3A-EFBB-4E11-A7F9-C9857CB2A937}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C174DD3A-EFBB-4E11-A7F9-C9857CB2A937}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C174DD3A-EFBB-4E11-A7F9-C9857CB2A937}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B0FCDDE-95FA-478E-A3FC-5F59B982D657}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B0FCDDE-95FA-478E-A3FC-5F59B982D657}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B0FCDDE-95FA-478E-A3FC-5F59B982D657}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B0FCDDE-95FA-478E-A3FC-5F59B982D657}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
