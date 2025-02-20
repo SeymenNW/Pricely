@@ -22,16 +22,11 @@ PricelySettings settings = new();
 builder.Services.AddSingleton(settings);
 
 
-if (builder.HostEnvironment.IsProduction())
-{
+//if (builder.HostEnvironment.IsProduction() && )
+//{
     settings.BackendUrl = await localStorage.GetItemAsync<string>("apiUrl");
-}
-else if (builder.HostEnvironment.IsDevelopment())
-{
-    settings = await httpClient.GetFromJsonAsync<PricelySettings>("http://localhost:5087/api/settings");
+//}
 
-   
-}
 
 builder.Services.AddSingleton(settings);
 builder.Services.AddTransient<IGetPriceRunnerResults>(sp =>

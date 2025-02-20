@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace PricelyAPI.Services.MerchantServices.PriceRunnerService.PriceRunner
 {
@@ -121,10 +120,12 @@ namespace PricelyAPI.Services.MerchantServices.PriceRunnerService.PriceRunner
     public class PDLogo
     {
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        [JsonProperty("path")]
-        public string Path { get; set; }
+        [JsonProperty("url")]
+        public string? Url { get; set; }
+
+
     }
 
     public class PDRating

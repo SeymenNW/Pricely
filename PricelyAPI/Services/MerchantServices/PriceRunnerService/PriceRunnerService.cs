@@ -12,7 +12,7 @@ namespace PricelyAPI.Services.MerchantServices.PriceRunnerService
 {
     public class PriceRunnerService : IPriceRunnerService
     {
-        #region Produktsøgning funktion
+        #region Product Searching Function
         //Eksempel Søgning: https://www.pricerunner.dk/dk/api/search-compare-gateway/public/search/v5/DK?q=IPHONE&suggestionsActive=true&suggestionClicked=false&suggestionReverted=false&carouselSize=10
         public async Task<PriceRunnerSearchResults> GetProductsFromSearch(string search)
         {
@@ -79,7 +79,7 @@ namespace PricelyAPI.Services.MerchantServices.PriceRunnerService
         }
         #endregion
 
-        #region Produkt detaljer funktion
+        #region Product Details Function
         public async Task<PriceRunnerProductDetails> GetProductDetailsFromId(string productId, string productCategoryNum)
         {
 
@@ -147,7 +147,7 @@ namespace PricelyAPI.Services.MerchantServices.PriceRunnerService
                             Availability = offer?.Availability == "AVAILABLE" ? true : false,
                             ShippingCost = offer?.ShippingCost?.Amount,
                             MerchantRating = merchantFromId?.Rating?.Average == "0.0" ? null : merchantFromId?.Rating?.Average,
-                            MerchantLogoUrl = "https://owp.klarna.com" + merchantFromId?.Logo?.Path
+                            MerchantLogoUrl =  merchantFromId?.Logo?.Url
 
 
 
