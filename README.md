@@ -1,3 +1,4 @@
+
 <p align="center"> <img width="200" src="https://i.imgur.com/ee41Wgp.png"/> </p>
 <table>
     <tr>
@@ -6,51 +7,15 @@
     </tr>
 </table>
 
- <h1 align="center">Pricely</h1> <p align="center"> A price comparison tool that collects data from various of companies. The goal of Pricely is to show the most accurate prices – without ads and without tracking. Only prices from Denmark. </p>
+ <h1 align="center">Pricely 1.2</h1> <p align="center"> Pricely is a price comparison tool that enhances the **Klarna/PriceRunner** experience by making it more user-friendly and privacy-focused. It acts as a wrapper for PriceRunner/Klarna, providing accurate price data without ads or tracking. Unlike traditional platforms, Pricely supports multi-country comparisons, ensuring users can access the best deals across borders. Currently only focused for Denmark.
+</p>
 
-## Terms of Use, Service & Disclaimer.
-
-**This repository is intended solely for educational and research purposes. 
-By using this project or its source code, for any purpose and in any shape or form, you grant your **implicit agreement** to all the following statements:
-
-
--  Comply with all applicable local, national, and international laws.
--  Avoid actions that violate other platforms' terms, infringe on others' rights, or could be considered malicious.
--  Take full responsibility for any consequences that may arise from misuse of the code.
-
-As the developer, I disclaim any responsibility for the use of this code in any way and those that do not adhere to these guidelines.
-
-From [https://www.pricerunner.dk/info/terms](https://www.pricerunner.dk/info/terms) (Translated to english)
-
-> ### Framing, Linking, etc.
-> 
-> Using content on other websites or networked devices is prohibited. Framing, mirroring, scraping, or data mining of the website, as well as any actions that prevent or hinder others' use of the website (or related sites), are not allowed.
+ <p align="center"> 
+In addition to Klarna/PriceRunner, **Pricely** offers a seamless way to search for products based on a supported store. This functionality mirrors searching directly on the store's website but comes with the added benefits of a tracker-free and ad-free experience.
+ </p>
 
 
-## Contents
-
--   [What is Pricely?](#what-is-pricely)
--   [Pricely 1.0](#pricely-10)
--   [Development](#development)
--   [Why Pricely?](#why-pricely)
-    -   [No Tracking](#no-tracking)
-    -   [No Paid Ads](#no-paid-ads)
-    -   [Open Source](#open-source)
--   [Environment Variables](#environment-variables)
-    -   [PricelyAPI (Backend Project)](#pricelyapi-backend-project)
-    -   [PricelyWeb (Blazor Project)](#pricelyweb-blazor-project)
--   [Road & To-Do List](#road-to-do-list)
-    -   [PriceRunner](#pricerunner)
-    -   [Elgiganten](#elgiganten)
-    -   [Power](#power)
-    -   [Companies to Add](#companies-to-add)
-    -   [General Features](#general-features)
--   [API Rate Limits by Companies](#api-rate-limits-by-companies)
--   [Technologies](#technologies)
--   [Resources](#resources)
--   [Pricely is Independent and Free](#pricely-is-independent-and-free)
-
-## Screenshots (Frontend Examples)
+## Screenshots
 
 Pricely is not fully developed/designed yet, and these are only examples from development so far.
 
@@ -80,8 +45,8 @@ You will need to input your own API or a public one hosted by someone else. I am
 
 Pricely retrieves product data without trackers, allowing search freely without being tracked. All data is fetched on the server and passed to the client, meaning no tracking from services like Klarna, Google, Adform, Facebook, TikTok, etc.
 
-## Environment Variables
 
+## Environment Variables
 
 ### PricelyAPI (Backend Project) Environment Variables
 *(Optional)* Pricely generally uses a proxy, which can also be set in the Dev environment. (In production, these are not used; HTTP/HTTPS_PROXY is used instead.)
@@ -120,15 +85,17 @@ Pricely retrieves product data without trackers, allowing search freely without 
 - [ ] Detailed information
 - [ ] Attempt to access EAN number for products
 
-#### Power (Pricely 1.0)
+#### Power (ONLY on Pricely 0.4.5 (old.pricely.dk)
 - [x] Ability to search in the API
 - [ ] Fetch product data
 - [ ] Display images
 
-#### Companies to Add
-Some companies do not have public APIs. Web scraping may be necessary, but will remain optional due to increased resource demands.
-- [ ] ProShop integration
-- [x] Power integration
+#### Countries to add
+Klarna (PriceRunner) operates in multiple countries, with price comparisons typically limited to retailers within each respective country (market). For example, PriceRunner.de features German stores, while PriceRunner.dk has Danish stores.
+
+However, many retailers often offer international shipping, making price comparisons across countries (Europe) relevant for Danish consumers. Even when a retailer does not provide direct international shipping, third-party services—such as P.O. box forwarding—can facilitate cross-border purchases.
+- [ ] German PriceRunner
+- [x] UK Klarna 
 - [ ] Dustin integration
 - [ ] ComputerSalg integration
 - [ ] CDON integration
@@ -175,3 +142,16 @@ Most companies limit their API usage.
 **Software**
 
 -   [Visual Studio 2022 (IDE)](https://visualstudio.com/)
+
+## Terms of Use, Service & Disclaimer.
+
+**This repository is intended solely for educational and research purposes. 
+By using this project or its source code, for any purpose and in any shape or form, you grant your **implicit agreement** to all the following statements:
+
+
+-  Comply with all applicable local, national, and international laws.
+-  Avoid actions that violate other platforms' terms, infringe on others' rights, or could be considered malicious.
+-  Take full responsibility for any consequences that may arise from misuse of the code.
+
+As the developer, I disclaim any responsibility for the use of this code in any way and those that do not adhere to these guidelines.
+
