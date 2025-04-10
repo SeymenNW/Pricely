@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Pricely.Libraries.Shared.Models
 {
-    public class UnifiedSearchResultProduct
+    public class UnifiedProductPreview
     {
         public string? IdSku { get; set; }
         public string? Name { get; set; }
         public string? ImageUrl { get; set; }
 
-        public string? StoreUrl { get; set; }
+        public string? Url { get; set; }
         public string? CurrentPrice { get; set; }
     }
 }
