@@ -4,6 +4,7 @@ using Pricely.Libraries.Shared.Models;
 using PricelyAPI.Helpers.Extensions;
 using PricelyAPI.Helpers.Handlers;
 using PricelyAPI.Services.MerchantServices.ElgigantenService.Elgiganten;
+using PricelyAPI.Services.MerchantServices.ElgigantenService.ServiceModels;
 using System;
 using System.Text;
 
@@ -26,7 +27,7 @@ namespace PricelyAPI.Services.MerchantServices.ElgigantenService
                 var response = await client.PostAsync(elgiSearchUrl, new StringContent(jsonPayload, Encoding.UTF8, "application/json"));
                 var jsonString = await response.Content.ReadAsStringAsync();
 
-                dynamic egSr = JsonConvert.DeserializeObject<dynamic>(jsonString);
+                var egSr = JsonConvert.DeserializeObject<EGProductSearchResponse>(jsonString);
 
                 ElgigantenSearchResults elgiResults = new();
                 elgiResults.SearchQuery = search;
@@ -40,21 +41,16 @@ namespace PricelyAPI.Services.MerchantServices.ElgigantenService
                  * Skal undersøges hvordan man gør med dynamiske objekter.
                  */
 
-                foreach (var product in egSr.data.records)
+                foreach (var product in egSr.Data.Records)
                 {
                     ElgigantenSearchResultProduct elgiToPricely = new ElgigantenSearchResultProduct
                     {
-                        Name = (string)product?.name,
-                        CurrentPrice = (string)product?.price?.current[0],
-                        Sku = (string)product?.sku,
-                        StoreUrl = $"https://www.elgiganten.dk{(string)product?.href}",
-                        ImageUrl = (string)product?.imageUrl.ToString(),
-
+                        Name = product.Name,
+                        CurrentPrice = product.Price?.Current?[0],
+                        Sku = product.Sku,
+                        StoreUrl = $"https://www.elgiganten.dk{product.Href}",
+                        ImageUrl = product.ImageUrl
                     };
-
-
-
-
 
                     elgiSearchProductsList.Add(elgiToPricely);
                 }

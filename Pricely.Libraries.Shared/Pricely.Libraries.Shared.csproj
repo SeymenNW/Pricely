@@ -7,12 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DotNetEnv" Version="3.1.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <Compile Remove="ServiceModels\**" />
+    <EmbeddedResource Remove="ServiceModels\**" />
+    <None Remove="ServiceModels\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ServiceModels\" />
+    <PackageReference Include="DotNetEnv" Version="3.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>
