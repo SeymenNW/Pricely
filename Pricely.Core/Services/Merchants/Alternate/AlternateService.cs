@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.IO.Compression;
-using System.Linq;
-using System.Net.Http;
+﻿using System.IO.Compression;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using HtmlAgilityPack;
+using Newtonsoft.Json.Linq;
 using Pricely.Libraries.Shared.Models;
+using Pricely.Libraries.Shared.ResponseModels.Alternate;
 
 namespace Pricely.Core.Services.Merchants.Alternate
 {
@@ -23,6 +18,10 @@ namespace Pricely.Core.Services.Merchants.Alternate
         public AlternateService(HttpClient httpClient)
         {
             _httpClient = httpClient;
+            _httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
+            _httpClient.DefaultRequestHeaders.Add("Accept-Language", "en-US,en;q=0.9");
+            _httpClient.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate, br");
+            _httpClient.DefaultRequestHeaders.Add("Connection", "keep-alive");
         }
 
         public async IAsyncEnumerable<UnifiedProductPreview> GetProductsFromSearchAsync(string query)
@@ -31,10 +30,7 @@ namespace Pricely.Core.Services.Merchants.Alternate
             //query needs to be fixed
             string alternateUrl = $"https://www.alternate.dk/listing.xhtml?q={query}";
 
-            _httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
-            _httpClient.DefaultRequestHeaders.Add("Accept-Language", "en-US,en;q=0.9");
-            _httpClient.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate, br");
-            _httpClient.DefaultRequestHeaders.Add("Connection", "keep-alive");
+         
 
             HttpResponseMessage response = await _httpClient.GetAsync(alternateUrl);
 
@@ -137,7 +133,42 @@ namespace Pricely.Core.Services.Merchants.Alternate
             }
         }
 
+        public async Task<(AlternateProductSchema Product, BreadcrumbList BreadCrumb)> GetProductDetailsAsync(string productUrl)
+        {
 
+            HttpResponseMessage response = await _httpClient.GetAsync(productUrl);
+
+
+            string html = await DecompressResponseAsync(response);
+
+            var doc = new HtmlDocument();
+            doc.LoadHtml(html);
+
+            var scriptNodes = doc.DocumentNode.SelectNodes("//script[@type='application/ld+json']");
+            if (scriptNodes == null || !scriptNodes.Any())
+                return (null, null);
+
+            var firstScript = scriptNodes.First().InnerText;
+            var jsonArray = JArray.Parse(firstScript);
+
+            AlternateProductSchema product = null;
+            BreadcrumbList breadcrumbs = null;
+
+            foreach (var item in jsonArray)
+            {
+                var type = item["@type"]?.ToString();
+                if (type == "Product")
+                {
+                    product = item.ToObject<AlternateProductSchema>();
+                }
+                else if (type == "BreadcrumbList")
+                {
+                    breadcrumbs = item.ToObject<BreadcrumbList>();
+                }
+            }
+
+            return (product, breadcrumbs);
+        }
         private async Task<string> DecompressResponseAsync(HttpResponseMessage response)
         {
             string contentEncoding = response.Content.Headers.ContentEncoding.ToString();
