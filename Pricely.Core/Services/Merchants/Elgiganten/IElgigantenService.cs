@@ -2,7 +2,7 @@
 
 namespace Pricely.Core.Services.Merchants.Elgiganten
 {
-    public interface IElgigantenService : IMerchantService
+    public interface IElgigantenService : IMerchant
     {
         
     }

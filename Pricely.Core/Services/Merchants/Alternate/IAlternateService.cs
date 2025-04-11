@@ -1,6 +1,6 @@
 ﻿namespace Pricely.Core.Services.Merchants.Alternate
 {
-    public interface IAlternateService : IMerchantService
+    public interface IAlternateService : IMerchant
     {
        
     }

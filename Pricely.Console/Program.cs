@@ -9,7 +9,7 @@ using Pricely.Libraries.Shared.ResponseModels.Alternate;
 
 
 HttpClient client = new();
-IMerchantService service = new ElgigantenService(client);
+IMerchant service = new ElgigantenService(client);
 
 
 await foreach (var item in service.GetProductsFromSearchAsync("9070"))

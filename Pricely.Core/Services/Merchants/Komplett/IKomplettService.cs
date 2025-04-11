@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pricely.Core.Services.Merchants.Komplett
 {
-    public interface IKomplettService : IMerchantService
+    public interface IKomplettService : IMerchant
     {
     }
 }

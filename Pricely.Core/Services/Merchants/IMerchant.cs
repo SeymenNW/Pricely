@@ -7,7 +7,7 @@ using Pricely.Libraries.Shared.Models;
 
 namespace Pricely.Core.Services.Merchants
 {
-    public interface IMerchantService
+    public interface IMerchant
     {
        public IAsyncEnumerable<UnifiedProductPreview> GetProductsFromSearchAsync(string query);
 

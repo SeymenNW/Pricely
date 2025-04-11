@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pricely.Core.Services.Merchants.Proshop
 {
-    public interface IProshopService : IMerchantService
+    public interface IProshopService : IMerchant
     {
     }
 }

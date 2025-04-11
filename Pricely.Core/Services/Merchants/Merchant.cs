@@ -8,7 +8,7 @@ using Pricely.Libraries.Shared.Models;
 
 namespace Pricely.Core.Services.Merchants
 {
-    public abstract class Merchant : IMerchantService
+    public abstract class Merchant : IMerchant
     {
         public abstract Task<UnifiedProductDetails?> GetProductDetailsAsync(string productUrl);
 
