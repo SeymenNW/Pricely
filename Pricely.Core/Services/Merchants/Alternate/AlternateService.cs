@@ -30,7 +30,7 @@ namespace Pricely.Core.Services.Merchants.Alternate
             //query needs to be fixed
             string alternateUrl = $"https://www.alternate.dk/listing.xhtml?q={query}";
 
-         
+
 
             HttpResponseMessage response = await _httpClient.GetAsync(alternateUrl);
 
@@ -133,7 +133,7 @@ namespace Pricely.Core.Services.Merchants.Alternate
             }
         }
 
-        public async Task<(AlternateProductSchema Product, BreadcrumbList BreadCrumb)> GetProductDetailsAsync(string productUrl)
+        public override async Task<UnifiedProductDetails?> GetProductDetailsAsync(string productUrl)
         {
 
             HttpResponseMessage response = await _httpClient.GetAsync(productUrl);
@@ -146,7 +146,7 @@ namespace Pricely.Core.Services.Merchants.Alternate
 
             HtmlNodeCollection scriptNodes = doc.DocumentNode.SelectNodes("//script[@type='application/ld+json']");
             if (scriptNodes == null || !scriptNodes.Any())
-                return (null, null);
+                return null;
 
             string firstScript = scriptNodes.First().InnerText;
             JArray jsonArray = JArray.Parse(firstScript);
@@ -167,7 +167,19 @@ namespace Pricely.Core.Services.Merchants.Alternate
                 }
             }
 
-            return (product, breadcrumbs);
+            List<string> images = new();
+            images.Add(product.Image);
+            return new UnifiedProductDetails
+            {
+                Name = product.Name,
+                Gtin = product.Gtin8,
+                Description = product.Description,
+                Brand = product.Brand.Name,
+                Merchant = "Alternate",
+                ImageUrls = images,
+                Price = product.Offers.Price
+
+            };
         }
     }
 }

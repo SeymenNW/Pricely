@@ -8,12 +8,12 @@ using Pricely.Libraries.Shared.Models;
 
 namespace Pricely.Core.Services.Merchants
 {
-    public class Merchant : IMerchantService
+    public abstract class Merchant : IMerchantService
     {
-        public virtual IAsyncEnumerable<UnifiedProductPreview> GetProductsFromSearchAsync(string query)
-        {
-            throw new NotImplementedException("Implement in Derived Class.");
-        }
+        public abstract Task<UnifiedProductDetails?> GetProductDetailsAsync(string productUrl);
+
+        public abstract IAsyncEnumerable<UnifiedProductPreview> GetProductsFromSearchAsync(string query);
+      
 
 
 

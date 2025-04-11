@@ -6,13 +6,12 @@ HttpClient client = new();
 AlternateService service = new(client);
 
 
-await foreach (var item in service.GetProductsFromSearchAsync("9070"))
-{
-    Console.WriteLine(item.Name);
-}
+//await foreach (var item in service.GetProductsFromSearchAsync("9070"))
+//{
+//    Console.WriteLine(item.Name);
+//}
 
 
-//var (product, breadcrumbs) = await service.GetProductDetailsAsync("https://www.alternate.dk/AMD/Ryzen-7-9800X3D-Processor/html/product/100093605");
+var d = await service.GetProductDetailsAsync("https://www.alternate.dk/AMD/Ryzen-7-9800X3D-Processor/html/product/100093605");
 
-//Console.WriteLine(product.Name);
-//Console.WriteLine(breadcrumbs.ItemListElement[5].Item.Name);
+Console.WriteLine(d.Name);

@@ -18,6 +18,11 @@ namespace Pricely.Core.Services.Merchants.Elgiganten
             _httpClient = httpClient;
         }
 
+        public override async Task<UnifiedProductDetails?> GetProductDetailsAsync(string productUrl)
+        {
+            throw new NotImplementedException();
+        }
+
         public override async IAsyncEnumerable<UnifiedProductPreview> GetProductsFromSearchAsync(string query)
         {
             ElgigantenProductSearch payload = new(query);
