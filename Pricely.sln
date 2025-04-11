@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pricely.Core.Tests", "Price
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pricely.API.Tests", "Pricely.API.Tests\Pricely.API.Tests.csproj", "{E25C108C-E37A-45D8-9D08-70DAC3ACBF17}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pricely.Console", "Pricely.Console\Pricely.Console.csproj", "{3D3297E6-FD72-4D7E-B8EF-156E1D983130}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{E25C108C-E37A-45D8-9D08-70DAC3ACBF17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E25C108C-E37A-45D8-9D08-70DAC3ACBF17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E25C108C-E37A-45D8-9D08-70DAC3ACBF17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D3297E6-FD72-4D7E-B8EF-156E1D983130}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D3297E6-FD72-4D7E-B8EF-156E1D983130}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D3297E6-FD72-4D7E-B8EF-156E1D983130}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D3297E6-FD72-4D7E-B8EF-156E1D983130}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +78,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{17A32220-3721-4615-B2FE-528CCE0CA7FC} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{E25C108C-E37A-45D8-9D08-70DAC3ACBF17} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{3D3297E6-FD72-4D7E-B8EF-156E1D983130} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A2844700-9FA1-4C72-AC33-EA89EBF7D3B9}

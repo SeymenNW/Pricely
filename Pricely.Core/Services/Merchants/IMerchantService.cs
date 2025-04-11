@@ -9,6 +9,6 @@ namespace Pricely.Core.Services.Merchants
 {
     public interface IMerchantService
     {
-       public Task<IAsyncEnumerable<UnifiedProductPreview>> GetProductsFromSearchAsync(string query);
+       public IAsyncEnumerable<UnifiedProductPreview> GetProductsFromSearchAsync(string query);
     }
 }
