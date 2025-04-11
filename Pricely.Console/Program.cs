@@ -12,6 +12,12 @@ AlternateService service = new(client);
 //}
 
 
-var d = await service.GetProductDetailsAsync("https://www.alternate.dk/AMD/Ryzen-7-9800X3D-Processor/html/product/100093605");
+var d = await service.GetProductDetailsAsync("1288807");
+
+await foreach (var item in service.GetProductsFromSearchAsync("9070"))
+{
+    Console.WriteLine(item.IdSku + " "+ item.Name);
+}
+
 
 Console.WriteLine(d.Name);

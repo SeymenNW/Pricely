@@ -118,13 +118,14 @@ namespace Pricely.Core.Services.Merchants.Alternate
                     }
                     productDetails = details;
                 }
+                string productSku = productUrl.Substring(productUrl.LastIndexOf('/') + 1);
 
 
                 yield return new UnifiedProductPreview
                 {
                     Name = $"{productBrand} {productName} {productDetails[0]}",
                     CurrentPrice = productPrice,
-                    IdSku = "",
+                    IdSku = productSku,
                     Url = productUrl,
                     ImageUrl = productImageUrl,
                     Merchant = "Alternate"
@@ -133,9 +134,9 @@ namespace Pricely.Core.Services.Merchants.Alternate
             }
         }
 
-        public override async Task<UnifiedProductDetails?> GetProductDetailsAsync(string productUrl)
+        public override async Task<UnifiedProductDetails?> GetProductDetailsAsync(string id)
         {
-
+            string productUrl = $"https://www.alternate.dk/api/product/{id}";
             HttpResponseMessage response = await _httpClient.GetAsync(productUrl);
 
 
