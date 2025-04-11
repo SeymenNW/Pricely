@@ -38,7 +38,6 @@ namespace Pricely.Core.Services.Merchants.Elgiganten
 
 
             string jsonResponse = await response.DecodeAsStringAsync();
-            Console.WriteLine("DD");
             ElgigantenProductDetails productDetails = JsonConvert.DeserializeObject<ElgigantenProductDetails>(jsonResponse);
 
             var image = new List<string>(); 
@@ -70,7 +69,7 @@ namespace Pricely.Core.Services.Merchants.Elgiganten
                 throw new Exception("Failed to load Price Data from Elgiganten.");
             }
 
-            string responseJson = await response.Content.ReadAsStringAsync();
+            string responseJson = await response.DecodeAsStringAsync();
             ElgigantenResponse elgigantenResponse = JsonConvert.DeserializeObject<ElgigantenResponse>(responseJson);
 
             //Note: Needs to be separated to adhere to SOLID.

@@ -107,7 +107,7 @@ namespace Pricely.Core.Services.Merchants.Alternate
                     productAvailaibility = deliveryInfo.InnerText.Trim();
                 }
 
-                //// Product Details - Not Implemented yet.
+                //// Product Details
                 var infoList = card.SelectNodes(".//ul[contains(@class, 'product-info')]/li");
                 if (infoList != null)
                 {
