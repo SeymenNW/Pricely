@@ -34,12 +34,6 @@ namespace PricelyAPI.Services.MerchantServices.ElgigantenService
 
                 List<ElgigantenSearchResultProduct> elgiSearchProductsList = new();
 
-                /*
-                 * Lille problem med image Url: Det er ikke altid selve imageUrl som har linket, men nogen responser har yderligere 
-                 * property members som skal hentes.
-                 * 
-                 * Skal undersøges hvordan man gør med dynamiske objekter.
-                 */
 
                 foreach (var product in egSr.Data.Records)
                 {

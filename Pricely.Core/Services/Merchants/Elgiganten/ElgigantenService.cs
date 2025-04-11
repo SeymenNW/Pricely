@@ -22,6 +22,7 @@ namespace Pricely.Core.Services.Merchants.Elgiganten
         {
             ElgigantenProductSearch payload = new(query);
             string jsonPayload = JsonConvert.SerializeObject(payload);
+
             HttpResponseMessage response = await _httpClient.PostAsync("https://www.elgiganten.dk/api/search", new StringContent(jsonPayload, Encoding.UTF8, "application/json"));
             string jsonResponse = await response.Content.ReadAsStringAsync();
 
@@ -39,7 +40,8 @@ namespace Pricely.Core.Services.Merchants.Elgiganten
                         CurrentPrice = product.Price?.Current?[0],
                         IdSku = product.Sku,
                         Url = $"https://www.elgiganten.dk{product.Href}",
-                        ImageUrl = product.ImageUrl
+                        ImageUrl = product.ImageUrl,
+                        Merchant = "Elgiganten"
                     };
 
                 }
