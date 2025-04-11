@@ -76,7 +76,7 @@ namespace Pricely.Core.Services.Merchants.Alternate
                     productName = nameDiv.InnerText.Trim();
                 }
 
-                //Product Variant (Could be colors for example or amount of RAM idk)
+                //Product Variant
                 var nameSub = card.SelectSingleNode(".//span[contains(@class, 'product-name-sub')]");
                 if (nameSub != null)
                 {
