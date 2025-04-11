@@ -23,7 +23,9 @@ namespace Pricely.Core.Services.Merchants.Alternate
 
         public async IAsyncEnumerable<UnifiedProductPreview> GetProductsFromSearchAsync(string query)
         {
-            string alternateUrl = $"https://www.alternate.dk/search-suggestions.xhtml?q={query}";
+
+            //query needs to be fixed
+            string alternateUrl = $"https://www.alternate.dk/listing.xhtml?q={query}";
 
             _httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
             _httpClient.DefaultRequestHeaders.Add("Accept-Language", "en-US,en;q=0.9");
@@ -42,31 +44,94 @@ namespace Pricely.Core.Services.Merchants.Alternate
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(htmlContent);
 
-            var suggestions = htmlDoc.DocumentNode.SelectNodes("//a[contains(@class, 'suggest-entry')]");
-            if (suggestions == null)
+            var productCards = htmlDoc.DocumentNode.SelectNodes("//a[contains(@class, 'productBox')]");
+            List<Dictionary<string, string>> products = new List<Dictionary<string, string>>();
+
+            if (productCards == null)
             {
-                throw new Exception("No suggestions found.");
+                throw new Exception("No products found.");
             }
 
-            foreach (var suggestion in suggestions)
+            foreach (var card in productCards)
             {
-                string productName = suggestion.InnerText.Trim();
-                string productLink = suggestion.GetAttributeValue("href", string.Empty);
-                string rawPrice = suggestion.SelectSingleNode(".//span[contains(@class, 'suggest-price')]")?.InnerText?.Trim() ?? "";
-                string productPrice = Regex.Replace(rawPrice, @"[^\d,.-]", ""); // Remove "kr" and keep only numbers
-                string imageUrl = suggestion.SelectSingleNode(".//img")?.GetAttributeValue("src", string.Empty) ?? "";
+                string productName = "";
+                string productBrand = "";
+                string productVariant = "";
+                string productUrl = "";
+                string productImageUrl = "";
+                string productPrice = "";
+                string productAvailaibility = "";
+
+                //Product Name & Brand.
+                var nameDiv = card.SelectSingleNode(".//div[contains(@class, 'product-name')]");
+                if (nameDiv != null)
+                {
+                    var brandSpan = nameDiv.SelectSingleNode(".//span");
+                    if (brandSpan != null)
+                    {
+                        productBrand = brandSpan.InnerText.Trim();
+                        brandSpan.Remove();
+                    }
+                    productName = nameDiv.InnerText.Trim();
+                }
+
+                //Product Variant (Could be colors for example or amount of RAM idk)
+                var nameSub = card.SelectSingleNode(".//span[contains(@class, 'product-name-sub')]");
+                if (nameSub != null)
+                {
+                    productVariant = nameSub.InnerText.Trim();
+                }
+
+                //Product Url
+                productUrl = card.GetAttributeValue("href", "").Trim();
+
+                //Product Image Url
+                var img = card.SelectSingleNode(".//img[contains(@class, 'productPicture')]");
+                if (img != null)
+                {
+                    productImageUrl = img.GetAttributeValue("src", "").Trim();
+                }
+
+                //Product Price
+                var priceSpan = card.SelectSingleNode(".//span[contains(@class, 'price')]");
+                if (priceSpan != null)
+                {
+                    productPrice = priceSpan.InnerText.Trim();
+                }
+
+                //Product Availability
+                var deliveryInfo = card.SelectSingleNode(".//div[contains(@class, 'delivery-info')]");
+                if (deliveryInfo != null)
+                {
+                    productAvailaibility = deliveryInfo.InnerText.Trim();
+                }
+
+                //// Product Details - Not Implemented yet.
+                //var infoList = card.SelectNodes(".//ul[contains(@class, 'product-info')]/li");
+                //if (infoList != null)
+                //{
+                //    List<string> details = new List<string>();
+                //    foreach (var li in infoList)
+                //    {
+                //        details.Add(li.InnerText.Trim());
+                //    }
+                //    product["details"] = string.Join(", ", details);
+                //}
+
 
                 yield return new UnifiedProductPreview
                 {
-                    Name = productName,
+                    Name = productBrand + " " + productName,
                     CurrentPrice = productPrice,
                     IdSku = "",
-                    Url = productLink,
-                    ImageUrl = imageUrl,
+                    Url = productUrl,
+                    ImageUrl = productImageUrl,
                     Merchant = "Alternate"
                 };
+
             }
         }
+
 
         private async Task<string> DecompressResponseAsync(HttpResponseMessage response)
         {

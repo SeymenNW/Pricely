@@ -15,5 +15,6 @@ namespace Pricely.Libraries.Shared.Models
 
         public string? Url { get; set; }
         public string? CurrentPrice { get; set; }
+        public bool? Availability { get; set; }
     }
 }
