@@ -7,7 +7,7 @@ using Pricely.Libraries.Shared.Models;
 
 namespace Pricely.Core.Services.Merchants.Elgiganten
 {
-    public class ElgigantenService : IMerchantService
+    public class ElgigantenService : IElgigantenService
     {
         private readonly HttpClient _httpClient;
         public ElgigantenService(HttpClient httpClient)
