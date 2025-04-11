@@ -26,9 +26,12 @@ namespace Pricely.Core.Services.Merchants.Elgiganten
             HttpResponseMessage response = await _httpClient.PostAsync("https://www.elgiganten.dk/api/search", new StringContent(jsonPayload, Encoding.UTF8, "application/json"));
             string jsonResponse = await response.Content.ReadAsStringAsync();
 
-            if (response.IsSuccessStatusCode)
+            if (!response.IsSuccessStatusCode)
             {
-                string responseJson = await response.Content.ReadAsStringAsync();
+                throw new Exception("Failed to load Price Data from Elgiganten.");
+            }
+
+            string responseJson = await response.Content.ReadAsStringAsync();
                 ElgigantenResponse elgigantenResponse = JsonConvert.DeserializeObject<ElgigantenResponse>(responseJson);
 
                 //Note: Needs to be separated to adhere to SOLID.
@@ -45,10 +48,8 @@ namespace Pricely.Core.Services.Merchants.Elgiganten
                     };
 
                 }
-            } else
-            {
-                throw new Exception("Failed to load Price Data from Elgiganten.");
-            }
+           
+           
         }
     }
 }

@@ -12,6 +12,10 @@ using Pricely.Libraries.Shared.Models;
 
 namespace Pricely.Core.Services.Merchants.Alternate
 {
+
+    /*
+     This class does unfortunately not adhere to the SOLID principles for now.
+     */
     public class AlternateService : IAlternateService
     {
         private readonly HttpClient _httpClient;
@@ -61,6 +65,7 @@ namespace Pricely.Core.Services.Merchants.Alternate
                 string productImageUrl = "";
                 string productPrice = "";
                 string productAvailaibility = "";
+                List<string> productDetails = new List<string>();
 
                 //Product Name & Brand.
                 var nameDiv = card.SelectSingleNode(".//div[contains(@class, 'product-name')]");
@@ -107,21 +112,21 @@ namespace Pricely.Core.Services.Merchants.Alternate
                 }
 
                 //// Product Details - Not Implemented yet.
-                //var infoList = card.SelectNodes(".//ul[contains(@class, 'product-info')]/li");
-                //if (infoList != null)
-                //{
-                //    List<string> details = new List<string>();
-                //    foreach (var li in infoList)
-                //    {
-                //        details.Add(li.InnerText.Trim());
-                //    }
-                //    product["details"] = string.Join(", ", details);
-                //}
+                var infoList = card.SelectNodes(".//ul[contains(@class, 'product-info')]/li");
+                if (infoList != null)
+                {
+                    List<string> details = new List<string>();
+                    foreach (var li in infoList)
+                    {
+                        details.Add(li.InnerText.Trim());
+                    }
+                    productDetails = details;
+                }
 
 
                 yield return new UnifiedProductPreview
                 {
-                    Name = productBrand + " " + productName,
+                    Name = $"{productBrand} {productName} {productDetails[0]}",
                     CurrentPrice = productPrice,
                     IdSku = "",
                     Url = productUrl,
