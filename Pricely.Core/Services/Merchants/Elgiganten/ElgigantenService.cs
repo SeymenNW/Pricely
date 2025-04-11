@@ -10,7 +10,7 @@ using Pricely.Libraries.Shared.ResponseModels.Elgiganten;
 
 namespace Pricely.Core.Services.Merchants.Elgiganten
 {
-    public class ElgigantenService : IElgigantenService
+    public class ElgigantenService : Merchant, IElgigantenService
     {
         private readonly HttpClient _httpClient;
         public ElgigantenService(HttpClient httpClient)
@@ -18,7 +18,7 @@ namespace Pricely.Core.Services.Merchants.Elgiganten
             _httpClient = httpClient;
         }
 
-        public async IAsyncEnumerable<UnifiedProductPreview> GetProductsFromSearchAsync(string query)
+        public override async IAsyncEnumerable<UnifiedProductPreview> GetProductsFromSearchAsync(string query)
         {
             ElgigantenProductSearch payload = new(query);
             string jsonPayload = JsonConvert.SerializeObject(payload);

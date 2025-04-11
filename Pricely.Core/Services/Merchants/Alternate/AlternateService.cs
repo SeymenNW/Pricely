@@ -11,7 +11,7 @@ namespace Pricely.Core.Services.Merchants.Alternate
     /*
      This class does unfortunately not adhere to the SOLID principles for now.
      */
-    public class AlternateService : IAlternateService
+    public class AlternateService : Merchant, IAlternateService
     {
         private readonly HttpClient _httpClient;
 
@@ -24,7 +24,7 @@ namespace Pricely.Core.Services.Merchants.Alternate
             _httpClient.DefaultRequestHeaders.Add("Connection", "keep-alive");
         }
 
-        public async IAsyncEnumerable<UnifiedProductPreview> GetProductsFromSearchAsync(string query)
+        public override async IAsyncEnumerable<UnifiedProductPreview> GetProductsFromSearchAsync(string query)
         {
 
             //query needs to be fixed
@@ -141,15 +141,15 @@ namespace Pricely.Core.Services.Merchants.Alternate
 
             string html = await DecompressResponseAsync(response);
 
-            var doc = new HtmlDocument();
+            HtmlDocument doc = new HtmlDocument();
             doc.LoadHtml(html);
 
-            var scriptNodes = doc.DocumentNode.SelectNodes("//script[@type='application/ld+json']");
+            HtmlNodeCollection scriptNodes = doc.DocumentNode.SelectNodes("//script[@type='application/ld+json']");
             if (scriptNodes == null || !scriptNodes.Any())
                 return (null, null);
 
-            var firstScript = scriptNodes.First().InnerText;
-            var jsonArray = JArray.Parse(firstScript);
+            string firstScript = scriptNodes.First().InnerText;
+            JArray jsonArray = JArray.Parse(firstScript);
 
             AlternateProductSchema product = null;
             BreadcrumbList breadcrumbs = null;
@@ -168,29 +168,6 @@ namespace Pricely.Core.Services.Merchants.Alternate
             }
 
             return (product, breadcrumbs);
-        }
-        private async Task<string> DecompressResponseAsync(HttpResponseMessage response)
-        {
-            string contentEncoding = response.Content.Headers.ContentEncoding.ToString();
-            Stream contentStream = await response.Content.ReadAsStreamAsync();
-
-            if (contentEncoding.Contains("gzip"))
-            {
-                using var decompressedStream = new GZipStream(contentStream, CompressionMode.Decompress);
-                using var reader = new StreamReader(decompressedStream, Encoding.UTF8);
-                return await reader.ReadToEndAsync();
-            }
-            else if (contentEncoding.Contains("deflate"))
-            {
-                using var decompressedStream = new DeflateStream(contentStream, CompressionMode.Decompress);
-                using var reader = new StreamReader(decompressedStream, Encoding.UTF8);
-                return await reader.ReadToEndAsync();
-            }
-            else
-            {
-                using var reader = new StreamReader(contentStream, Encoding.UTF8);
-                return await reader.ReadToEndAsync();
-            }
         }
     }
 }
