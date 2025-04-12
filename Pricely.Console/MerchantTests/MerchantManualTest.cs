@@ -20,22 +20,22 @@ namespace Pricely.Con.MerchantTests
             HttpClient client = new();
             IMerchant service = new CompuMailService(client);
 
-          
 
-            //Console.WriteLine("Search TEST:");
-            //List<UnifiedProductPreview> prodList = new();
 
-            //await foreach (var item in service.GetProductsFromSearchAsync("iphone"))
-            //{
-            //    Console.WriteLine(item.Name);
-            //    prodList.Add(item);
-            //}
+            Console.WriteLine("Search TEST:");
+            List<UnifiedProductPreview> prodList = new();
 
-            //Console.WriteLine("");
-            //Console.WriteLine("");
-            //Console.WriteLine("Product Details TEST:");
+            await foreach (var item in service.GetProductsFromSearchAsync("rx 9070 "))
+            {
+                Console.WriteLine($"{item.Name} - {item.CurrentPrice} - {item.Url}");
+                prodList.Add(item);
+            }
 
-            var product = await service.GetProductDetailsAsync("1003147208");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("Product Details TEST:");
+
+            var product = await service.GetProductDetailsAsync(prodList[0].IdSku);
             Console.WriteLine($"{product.Name} - {product.Merchant} - {product.Description}");
         }
     }

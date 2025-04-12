@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HtmlAgilityPack;
 using Newtonsoft.Json;
 using Pricely.Core.Extensions;
 using Pricely.Libraries.Shared.Models;
 using Pricely.Libraries.Shared.ResponseModels.CompuMail;
+using Pricely.Libraries.Shared.ResponseModels.Elgiganten;
 using Pricely.Libraries.Shared.ResponseModels.Komplett;
 using Pricely.Libraries.Shared.ResponseModels.Proshop;
 
@@ -36,11 +38,7 @@ namespace Pricely.Core.Services.Merchants.CompuMail
                 throw new Exception("Failed to load Price Data from Komplett.");
             }
 
-
             CompuMailProductDetails product = await response.GetJsonLdFromHtmlAsync<CompuMailProductDetails>("Product");
-
-            
-
 
             return new UnifiedProductDetails
             {
@@ -54,9 +52,87 @@ namespace Pricely.Core.Services.Merchants.CompuMail
             };
         }
 
-        public  override IAsyncEnumerable<UnifiedProductPreview> GetProductsFromSearchAsync(string query)
+        public async override IAsyncEnumerable<UnifiedProductPreview> GetProductsFromSearchAsync(string query)
         {
-            throw new NotImplementedException();
+            string url = $"https://www.compumail.dk/da/quicksearch?q={Uri.EscapeDataString(query)}";
+            HttpResponseMessage response = await _httpClient.GetAsync(url);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Could not load product details");
+            }
+
+
+            string jsonResponse = await response.DecompressAsStringAsync();
+            CompuMailSearchResponse searchResponse = JsonConvert.DeserializeObject<CompuMailSearchResponse>(jsonResponse);
+
+          
+            var htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(searchResponse.Html.ProductsHtml);
+
+            var productItems = htmlDoc.DocumentNode.SelectNodes("//li[contains(@class, 'clearfix') and not(contains(@class, 'header'))]");
+
+
+            if (productItems == null)
+            {
+                throw new Exception("Products are null");
+            }
+
+            foreach (var item in productItems)
+            {
+               
+                var productLink = item.SelectSingleNode(".//a[contains(@class, 'product-link')]");
+                if (productLink == null) continue;
+
+                var name = productLink.GetAttributeValue("data-product-name", "");
+                var id = productLink.GetAttributeValue("data-product-id", "");
+                var brand = productLink.GetAttributeValue("data-product-brand", "");
+                var variant = productLink.GetAttributeValue("data-product-variant", "");
+
+                // Images
+                var img = productLink.SelectSingleNode(".//img");
+                var imageUrl = img?.GetAttributeValue("src", "");
+
+                // Product URL
+                var productUrl = productLink.GetAttributeValue("href", "");
+                if (!string.IsNullOrEmpty(productUrl) && !productUrl.StartsWith("http"))
+                {
+                    productUrl = "https://www.compumail.dk" + productUrl;
+                }
+
+                // Price
+                var priceNode = item.SelectSingleNode(".//span[@class='price' and contains(@data-price, '')]");
+                var price = priceNode?.InnerText?.Trim();
+
+                // Availability
+                var availabilityNode = item.SelectSingleNode(".//span[@class='pid' and contains(@style, 'display: inline')]");
+                var availability = availabilityNode?.InnerText?.Trim();
+
+                // Filter
+                if (!string.IsNullOrEmpty(query) &&
+                    !name.Contains(query, StringComparison.OrdinalIgnoreCase) &&
+                    !brand.Contains(query, StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+
+
+                yield return new UnifiedProductPreview
+                {
+                    Name = name,
+                    CurrentPrice = price,
+                    IdSku = id,
+                    Url = productUrl,
+                    ImageUrl = imageUrl,
+                    Merchant = "CompuMail",
+                    //Availability = availability
+
+                };
+
+             
+            }
+
         }
     }
 }
