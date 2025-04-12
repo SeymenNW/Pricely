@@ -23,22 +23,22 @@ namespace Pricely.Con.MerchantTests
 
 
 
-            //Console.WriteLine("SEARCH RESULTS (For Testing):");
-            //List<UnifiedProductPreview> prodList = new();
-            //int i = 0;
-            //await foreach (var item in service.GetProductsFromSearchAsync("rx 9070 "))
-            //{
-            //    Console.WriteLine($"{i}: {item.Name} - {item.CurrentPrice} - {item.Url}");
-            //    Console.WriteLine("");
+            Console.WriteLine("SEARCH RESULTS (For Testing):");
+            List<UnifiedProductPreview> prodList = new();
+            int i = 0;
+            await foreach (var item in service.GetProductsFromSearchAsync("headset"))
+            {
+                Console.WriteLine($"{i}: {item.Name} - {item.CurrentPrice} - {item.Url}");
+                Console.WriteLine("");
 
-            //    prodList.Add(item);
-            //    i++; 22351
-            //}
+                prodList.Add(item);
+                i++;
+            }
 
             Console.WriteLine("");
             Console.WriteLine("PRODUCT DETAILS (For Testing):");
 
-            var product = await service.GetProductDetailsAsync("22351");
+            var product = await service.GetProductDetailsAsync(prodList[0].IdSku);
             Console.WriteLine($"{product.Name}");
             //Console.WriteLine($"{product.Merchant}");
             Console.WriteLine($"{product.Price}");

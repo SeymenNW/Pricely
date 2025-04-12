@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using HtmlAgilityPack;
+using Newtonsoft.Json;
 using Pricely.Core.Extensions;
 using Pricely.Libraries.Shared.Models;
 using Pricely.Libraries.Shared.ResponseModels.MaxGaming;
@@ -45,9 +48,54 @@ namespace Pricely.Core.Services.Merchants.MaxGaming
 
             };
         }
-        public override IAsyncEnumerable<UnifiedProductPreview> GetProductsFromSearchAsync(string query)
+        public override async IAsyncEnumerable<UnifiedProductPreview> GetProductsFromSearchAsync(string query)
         {
-            throw new NotImplementedException();
+            string url = $"https://www.maxgaming.dk/sog?q={query}";
+
+
+            HttpResponseMessage response;
+            HttpClient client = new();
+
+            response = await client.GetAsync(url);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Could not get Data");
+            }
+
+            string html = await response.DecompressAsStringAsync();
+            HtmlDocument doc = new HtmlDocument();
+            doc.LoadHtml(html);
+
+            var scriptNode = doc.DocumentNode
+                .SelectSingleNode("//script[@type='text/javascript' and @consent_type='5']");
+
+            if (scriptNode != null)
+            {
+                string scriptContent = scriptNode.InnerText;
+                string correctedContent = scriptContent.Replace("  gtag(\"event\", \"view_item_list\", ", "");
+                string fullContent = correctedContent.Replace(");", "");
+
+                MaxGamingSearchResults results = JsonConvert.DeserializeObject<MaxGamingSearchResults>(fullContent);
+                Console.WriteLine(results.Items[0].ItemName);
+
+                foreach (var item in results.Items)
+                {
+
+                    yield return new UnifiedProductPreview
+                    {
+                       Name = item.ItemName,
+                       IdSku = item.ItemId,
+                       CurrentPrice = item.Price.ToString(),
+                       ImageUrl = "None.",
+                       Url = $"https://www.maxgaming.dk/sog?q={item.ItemId}",
+                       Merchant = "MaxGaming",
+                     
+
+                    }; 
+                }
+
+            }
         }
     }
 }
