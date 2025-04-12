@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -26,9 +28,30 @@ namespace Pricely.Core.Services.Merchants.Komplett
         }
 
 
-        public override Task<UnifiedProductDetails?> GetProductDetailsAsync(string productUrl)
+        public override async Task<UnifiedProductDetails?> GetProductDetailsAsync(string sku)
         {
-            throw new NotImplementedException();
+            HttpResponseMessage response = await _httpClient.GetAsync($"https://www.komplett.dk/api/v1/searchpage?q={sku}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Failed to load Price Data from Komplett.");
+            }
+
+            string responseJson = await response.DecompressAsStringAsync();
+            KomplettProductSearch komplettResponse = JsonConvert.DeserializeObject<KomplettProductSearch>(responseJson);
+
+            var product = komplettResponse.Products[0];
+
+            return new UnifiedProductDetails
+            {
+                Name = product.Name,
+                Price = product.Price.ListPrice,
+                Description = product.Description,
+                ImageUrls = product.Images,
+                Gtin = "0",
+                Merchant = "Komplett",
+                Brand = "Not Specified"
+            };
         }
 
         public override async IAsyncEnumerable<UnifiedProductPreview> GetProductsFromSearchAsync(string query)
@@ -40,7 +63,7 @@ namespace Pricely.Core.Services.Merchants.Komplett
             {
                 throw new Exception("Failed to load Price Data from Komplett.");
             }
-            
+
             string responseJson = await response.DecompressAsStringAsync();
             KomplettProductSearch komplettResponse = JsonConvert.DeserializeObject<KomplettProductSearch>(responseJson);
 
