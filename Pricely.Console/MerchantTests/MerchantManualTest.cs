@@ -8,6 +8,7 @@ using Pricely.Core.Services.Merchants.Alternate;
 using Pricely.Core.Services.Merchants.CompuMail;
 using Pricely.Core.Services.Merchants.Elgiganten;
 using Pricely.Core.Services.Merchants.Komplett;
+using Pricely.Core.Services.Merchants.MaxGaming;
 using Pricely.Core.Services.Merchants.Proshop;
 using Pricely.Libraries.Shared.Models;
 
@@ -18,25 +19,30 @@ namespace Pricely.Con.MerchantTests
         public static async Task TestGetProductSearchAndDetails()
         {
             HttpClient client = new();
-            IMerchant service = new CompuMailService(client);
+            IMerchant service = new MaxGamingService(client);
 
 
 
-            Console.WriteLine("Search TEST:");
-            List<UnifiedProductPreview> prodList = new();
+            //Console.WriteLine("SEARCH RESULTS (For Testing):");
+            //List<UnifiedProductPreview> prodList = new();
+            //int i = 0;
+            //await foreach (var item in service.GetProductsFromSearchAsync("rx 9070 "))
+            //{
+            //    Console.WriteLine($"{i}: {item.Name} - {item.CurrentPrice} - {item.Url}");
+            //    Console.WriteLine("");
 
-            await foreach (var item in service.GetProductsFromSearchAsync("rx 9070 "))
-            {
-                Console.WriteLine($"{item.Name} - {item.CurrentPrice} - {item.Url}");
-                prodList.Add(item);
-            }
+            //    prodList.Add(item);
+            //    i++; 22351
+            //}
 
             Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("Product Details TEST:");
+            Console.WriteLine("PRODUCT DETAILS (For Testing):");
 
-            var product = await service.GetProductDetailsAsync(prodList[0].IdSku);
-            Console.WriteLine($"{product.Name} - {product.Merchant} - {product.Description}");
+            var product = await service.GetProductDetailsAsync("22351");
+            Console.WriteLine($"{product.Name}");
+            //Console.WriteLine($"{product.Merchant}");
+            Console.WriteLine($"{product.Price}");
+            Console.WriteLine($"{product.ImageUrls[0]}");
         }
     }
 }
