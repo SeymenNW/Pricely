@@ -138,7 +138,7 @@ namespace Pricely.Core.Services.Merchants.Alternate
             string productUrl = $"https://www.alternate.dk/api/product/{id}";
             HttpResponseMessage response = await _httpClient.GetAsync(productUrl);
 
-            AlternateProductSchema product = await response.GetJsonLdFromHtmlAsync<AlternateProductSchema>("Product");
+            AlternateProductSchema product = await response.GetJsonLdFromHtmlAsync<AlternateProductSchema>("Product", "application/ld+json");
 
             List<string> images = new();
             images.Add(product.Image);

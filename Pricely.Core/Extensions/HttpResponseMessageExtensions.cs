@@ -42,13 +42,13 @@ namespace Pricely.Core.Extensions
             }
         }
 
-        public static async Task<T> GetJsonLdFromHtmlAsync<T>(this HttpResponseMessage response, string jType)
+        public static async Task<T> GetJsonLdFromHtmlAsync<T>(this HttpResponseMessage response, string jType, string scriptType)
         {
             string html = await response.DecompressAsStringAsync();
             HtmlDocument doc = new HtmlDocument();
             doc.LoadHtml(html);
 
-            var scriptNodes = doc.DocumentNode.SelectNodes("//script[@type='application/ld+json']");
+            var scriptNodes = doc.DocumentNode.SelectNodes($"//script[@type='{scriptType}']");
             if (scriptNodes == null || scriptNodes.Count == 0)
                 return default;
 
@@ -83,51 +83,7 @@ namespace Pricely.Core.Extensions
             return result;
         }
 
-        //public static async Task<(TProduct? Product, TBreadcrumbs? Breadcrumbs)> GetBreadcrumbsJsonLdFromHtmlAsync<TProduct, TBreadcrumbs>(this HttpResponseMessage response)
-        //{
-        //    string html = await response.Content.ReadAsStringAsync();
-        //    HtmlDocument doc = new HtmlDocument();
-        //    doc.LoadHtml(html);
-
-        //    var scriptNodes = doc.DocumentNode.SelectNodes("//script[@type='application/ld+json']");
-        //    if (scriptNodes == null || scriptNodes.Count == 0)
-        //        return (default, default);
-
-        //    string firstScript = scriptNodes.First().InnerText?.Trim();
-        //    if (string.IsNullOrWhiteSpace(firstScript))
-        //        return (default, default);
-
-        //    var json = JToken.Parse(firstScript);
-
-        //    TProduct? product = default;
-        //    TBreadcrumbs? breadcrumbs = default;
-
-        //    if (json is JArray array)
-        //    {
-        //        foreach (var item in array)
-        //        {
-        //            var type = item["@type"]?.ToString();
-        //            if (type == "Product")
-        //            {
-        //                product = item.ToObject<TProduct>();
-        //            }
-        //            else if (type == "BreadcrumbList")
-        //            {
-        //                breadcrumbs = item.ToObject<TBreadcrumbs>();
-        //            }
-        //        }
-        //    }
-        //    else if (json is JObject obj)
-        //    {
-        //        var type = obj["@type"]?.ToString();
-        //        if (type == "Product")
-        //            product = obj.ToObject<TProduct>();
-        //        else if (type == "BreadcrumbList")
-        //            breadcrumbs = obj.ToObject<TBreadcrumbs>();
-        //    }
-
-        //    return (product, breadcrumbs);
-        //}
+     
 
 
     }

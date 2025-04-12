@@ -38,7 +38,7 @@ namespace Pricely.Core.Services.Merchants.CompuMail
                 throw new Exception("Failed to load Price Data from Komplett.");
             }
 
-            CompuMailProductDetails product = await response.GetJsonLdFromHtmlAsync<CompuMailProductDetails>("Product");
+            CompuMailProductDetails product = await response.GetJsonLdFromHtmlAsync<CompuMailProductDetails>("Product", "application/ld+json");
 
             return new UnifiedProductDetails
             {
