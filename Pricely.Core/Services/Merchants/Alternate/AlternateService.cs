@@ -2,15 +2,14 @@
 using System.Text;
 using HtmlAgilityPack;
 using Newtonsoft.Json.Linq;
+using Pricely.Core.Extensions;
 using Pricely.Libraries.Shared.Models;
 using Pricely.Libraries.Shared.ResponseModels.Alternate;
 
 namespace Pricely.Core.Services.Merchants.Alternate
 {
 
-    /*
-     This class does unfortunately not adhere to the SOLID principles for now.
-     */
+    
     public class AlternateService : Merchant, IAlternateService
     {
         private readonly HttpClient _httpClient;
@@ -39,7 +38,7 @@ namespace Pricely.Core.Services.Merchants.Alternate
                 throw new Exception("Could not get data from Alternate");
             }
 
-            string htmlContent = await DecompressResponseAsync(response);
+            string htmlContent = await response.DecompressAsStringAsync();
 
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(htmlContent);
@@ -139,34 +138,7 @@ namespace Pricely.Core.Services.Merchants.Alternate
             string productUrl = $"https://www.alternate.dk/api/product/{id}";
             HttpResponseMessage response = await _httpClient.GetAsync(productUrl);
 
-
-            string html = await DecompressResponseAsync(response);
-
-            HtmlDocument doc = new HtmlDocument();
-            doc.LoadHtml(html);
-
-            HtmlNodeCollection scriptNodes = doc.DocumentNode.SelectNodes("//script[@type='application/ld+json']");
-            if (scriptNodes == null || !scriptNodes.Any())
-                return null;
-
-            string firstScript = scriptNodes.First().InnerText;
-            JArray jsonArray = JArray.Parse(firstScript);
-
-            AlternateProductSchema product = null;
-            BreadcrumbList breadcrumbs = null;
-
-            foreach (var item in jsonArray)
-            {
-                var type = item["@type"]?.ToString();
-                if (type == "Product")
-                {
-                    product = item.ToObject<AlternateProductSchema>();
-                }
-                else if (type == "BreadcrumbList")
-                {
-                    breadcrumbs = item.ToObject<BreadcrumbList>();
-                }
-            }
+            AlternateProductSchema product = await response.GetJsonLdFromHtmlAsync<AlternateProductSchema>("Product");
 
             List<string> images = new();
             images.Add(product.Image);
