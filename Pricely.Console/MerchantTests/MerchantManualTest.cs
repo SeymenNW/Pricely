@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Pricely.Core.Services.Merchants;
 using Pricely.Core.Services.Merchants.Alternate;
+using Pricely.Core.Services.Merchants.CompuMail;
 using Pricely.Core.Services.Merchants.Elgiganten;
 using Pricely.Core.Services.Merchants.Komplett;
 using Pricely.Core.Services.Merchants.Proshop;
@@ -17,25 +18,25 @@ namespace Pricely.Con.MerchantTests
         public static async Task TestGetProductSearchAndDetails()
         {
             HttpClient client = new();
-            IMerchant service = new KomplettService(client);
+            IMerchant service = new CompuMailService(client);
 
           
 
-            Console.WriteLine("Search TEST:");
-            List<UnifiedProductPreview> prodList = new();
+            //Console.WriteLine("Search TEST:");
+            //List<UnifiedProductPreview> prodList = new();
 
-            await foreach (var item in service.GetProductsFromSearchAsync("iphone"))
-            {
-                Console.WriteLine(item.Name);
-                prodList.Add(item);
-            }
+            //await foreach (var item in service.GetProductsFromSearchAsync("iphone"))
+            //{
+            //    Console.WriteLine(item.Name);
+            //    prodList.Add(item);
+            //}
 
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("Product Details TEST:");
+            //Console.WriteLine("");
+            //Console.WriteLine("");
+            //Console.WriteLine("Product Details TEST:");
 
-            var product = await service.GetProductDetailsAsync(prodList[0].IdSku);
-            Console.WriteLine($"{product.Name} - {product.Merchant} - {product.Price}");
+            var product = await service.GetProductDetailsAsync("1003147208");
+            Console.WriteLine($"{product.Name} - {product.Merchant} - {product.Description}");
         }
     }
 }
