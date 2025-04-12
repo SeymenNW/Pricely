@@ -27,7 +27,7 @@ namespace Pricely.Core.Services.Merchants.Alternate
         {
 
             //query needs to be fixed
-            string alternateUrl = $"https://www.alternate.dk/listing.xhtml?q={query}";
+            string alternateUrl = $"https://www.alternate.dk/listing.xhtml?q={query.Replace(" ", "+")}";
 
 
 
