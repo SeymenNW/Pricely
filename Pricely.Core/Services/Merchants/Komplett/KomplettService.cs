@@ -73,7 +73,7 @@ namespace Pricely.Core.Services.Merchants.Komplett
                 yield return new UnifiedProductPreview
                 {
                     Name = product.Name,
-                    CurrentPrice = product.Price.ListPrice,
+                    CurrentPrice = product.Price.ListPrice.Replace(",-", "").Trim().Replace(".", "").Trim(),
                     IdSku = product.MaterialNumber,
                     Url = $"https://www.komplett.dk{product.Url}",
                     ImageUrl = product.Images[0],

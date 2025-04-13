@@ -12,7 +12,7 @@ using Pricely.Libraries.Shared.ResponseModels.Foniks;
 
 namespace Pricely.Core.Services.Merchants.Føniks
 {
-    class FoniksService : Merchant, IFoniksService
+   public class FoniksService : Merchant, IFoniksService
     {
 
         private readonly HttpClient _httpClient;

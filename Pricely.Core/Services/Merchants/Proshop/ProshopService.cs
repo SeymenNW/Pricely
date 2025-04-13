@@ -110,7 +110,7 @@ namespace Pricely.Core.Services.Merchants.Proshop
                               ?? item.SelectSingleNode(".//h3[contains(@class, 'search__text')]");
                 if (priceNode != null)
                 {
-                    productPrice = priceNode.InnerText.Trim();
+                    productPrice = priceNode.InnerText.Trim().Replace("kr.", "").Replace(",00","").Trim().Replace(".","").Trim();
                 }
 
                 // Product Availability
