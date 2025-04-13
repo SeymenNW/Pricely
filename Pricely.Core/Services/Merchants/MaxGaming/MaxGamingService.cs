@@ -77,7 +77,6 @@ namespace Pricely.Core.Services.Merchants.MaxGaming
                 string fullContent = correctedContent.Replace(");", "");
 
                 MaxGamingSearchResponse results = JsonConvert.DeserializeObject<MaxGamingSearchResponse>(fullContent);
-                Console.WriteLine(results.Items[0].ItemName);
 
                 foreach (var item in results.Items)
                 {

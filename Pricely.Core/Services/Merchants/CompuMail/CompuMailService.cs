@@ -66,73 +66,16 @@ namespace Pricely.Core.Services.Merchants.CompuMail
             string jsonResponse = await response.DecompressAsStringAsync();
             CompuMailSearchResponse searchResponse = JsonConvert.DeserializeObject<CompuMailSearchResponse>(jsonResponse);
 
-          
-            var htmlDoc = new HtmlDocument();
-            htmlDoc.LoadHtml(searchResponse.Html.ProductsHtml);
 
-            var productItems = htmlDoc.DocumentNode.SelectNodes("//li[contains(@class, 'clearfix') and not(contains(@class, 'header'))]");
-
-
-            if (productItems == null)
+            foreach (var product in this.ParseProductsFromHtml(searchResponse.Html.ProductsHtml))
             {
-                throw new Exception("Products are null");
+                yield return product;
+
             }
 
-            foreach (var item in productItems)
-            {
-               
-                var productLink = item.SelectSingleNode(".//a[contains(@class, 'product-link')]");
-                if (productLink == null) continue;
-
-                var name = productLink.GetAttributeValue("data-product-name", "");
-                var id = productLink.GetAttributeValue("data-product-id", "");
-                var brand = productLink.GetAttributeValue("data-product-brand", "");
-                var variant = productLink.GetAttributeValue("data-product-variant", "");
-
-                // Images
-                var img = productLink.SelectSingleNode(".//img");
-                var imageUrl = img?.GetAttributeValue("src", "");
-
-                // Product URL
-                var productUrl = productLink.GetAttributeValue("href", "");
-                if (!string.IsNullOrEmpty(productUrl) && !productUrl.StartsWith("http"))
-                {
-                    productUrl = "https://www.compumail.dk" + productUrl;
-                }
-
-                // Price
-                var priceNode = item.SelectSingleNode(".//span[@class='price' and contains(@data-price, '')]");
-                var price = priceNode?.InnerText?.Trim();
-
-                // Availability
-                var availabilityNode = item.SelectSingleNode(".//span[@class='pid' and contains(@style, 'display: inline')]");
-                var availability = availabilityNode?.InnerText?.Trim();
-
-                // Filter
-                if (!string.IsNullOrEmpty(query) &&
-                    !name.Contains(query, StringComparison.OrdinalIgnoreCase) &&
-                    !brand.Contains(query, StringComparison.OrdinalIgnoreCase))
-                {
-                    continue;
-                }
-
-
-
-                yield return new UnifiedProductPreview
-                {
-                    Name = name,
-                    CurrentPrice = price,
-                    IdSku = id,
-                    Url = productUrl,
-                    ImageUrl = imageUrl,
-                    Merchant = "CompuMail",
-                    //Availability = availability
-
-                };
-
-             
-            }
 
         }
+
     }
 }
+

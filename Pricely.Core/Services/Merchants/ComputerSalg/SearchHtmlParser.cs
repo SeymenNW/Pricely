@@ -1,7 +1,5 @@
 ﻿using HtmlAgilityPack;
 using Pricely.Libraries.Shared.Models;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 namespace Pricely.Core.Services.Merchants.ComputerSalg
 {

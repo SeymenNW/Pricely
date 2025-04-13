@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Pricely.Libraries.Shared.Models;
-using Pricely.Libraries.Shared.ResponseModels.CompuMail;
 using Pricely.Libraries.Shared.ResponseModels.ComputerSalg;
 
 namespace Pricely.Core.Services.Merchants.ComputerSalg

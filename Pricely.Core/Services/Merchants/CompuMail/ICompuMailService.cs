@@ -2,7 +2,7 @@
 
 namespace Pricely.Core.Services.Merchants.CompuMail
 {
-    internal interface ICompuMailService : IMerchant
+    public interface ICompuMailService : IMerchant
     {
 
     }
