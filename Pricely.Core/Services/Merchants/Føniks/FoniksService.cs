@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Pricely.Core.Extensions;
 using Pricely.Libraries.Shared.Models;
+using Pricely.Libraries.Shared.ResponseModels.CompuMail;
 using Pricely.Libraries.Shared.ResponseModels.Foniks;
 
 namespace Pricely.Core.Services.Merchants.Føniks
@@ -33,10 +34,29 @@ namespace Pricely.Core.Services.Merchants.Føniks
             _httpClient.DefaultRequestHeaders.Add("TE", "trailers");
         }
 
-        public override Task<UnifiedProductDetails?> GetProductDetailsAsync(string productUrl)
+        public override async Task<UnifiedProductDetails?> GetProductDetailsAsync(string url)
         {
-            throw new NotImplementedException();
+            HttpResponseMessage response = await _httpClient.GetAsync($"https://www.fcomputer.dk/{url}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Failed to load Price Data from CompuMail.");
+            }
+
+            FoniksProductResponse product = await response.GetJsonLdFromHtmlAsync<FoniksProductResponse>("Product", "application/ld+json");
+
+            return new UnifiedProductDetails
+            {
+                Name = product.Name,
+                Price = product?.Offers?.Price,
+                Description = product?.Description,
+                ImageUrls = product?.Images,
+                Gtin = product?.Gtin14,
+                Merchant = "Føniks",
+                Brand = "Not Specified"
+            };
         }
+
 
         public async override IAsyncEnumerable<UnifiedProductPreview> GetProductsFromSearchAsync(string query)
         {
@@ -63,7 +83,7 @@ namespace Pricely.Core.Services.Merchants.Føniks
                     yield return new UnifiedProductPreview
                     {
                         Name = product.Title,
-                        IdSku = product.Id,
+                        IdSku = product.Url,
                         Url = $"https://www.fcomputer.dk/{product.Url}",
                         CurrentPrice = product.Price.ToString(),
                         ImageUrl = product.Photo,

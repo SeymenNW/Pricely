@@ -55,7 +55,7 @@ namespace Pricely.Con.MerchantTests
                     int x = 1;
                     await foreach (var item in service.GetProductsFromSearchAsync(searchQuery))
                     {
-                        Console.WriteLine($"{x}: {item.Name} - {item.CurrentPrice} - {item.Url}");
+                        Console.WriteLine($"{x}: {item.Name} - {item.CurrentPrice} - {item.Url} ({item.IdSku})");
                         Console.WriteLine("");
 
                         prodList.Add(item);
