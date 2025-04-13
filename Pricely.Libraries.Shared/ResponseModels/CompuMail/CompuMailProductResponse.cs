@@ -9,7 +9,7 @@ namespace Pricely.Libraries.Shared.ResponseModels.CompuMail
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
-    public class CompuMailProductDetails
+    public class CompuMailProductResponse
     {
         [JsonProperty("@context")]
         public string Context { get; set; } = "https://schema.org/";

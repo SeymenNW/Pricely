@@ -38,7 +38,7 @@ namespace Pricely.Core.Services.Merchants.Komplett
             }
 
             string responseJson = await response.DecompressAsStringAsync();
-            KomplettProductSearch komplettResponse = JsonConvert.DeserializeObject<KomplettProductSearch>(responseJson);
+            KomplettProductResponse komplettResponse = JsonConvert.DeserializeObject<KomplettProductResponse>(responseJson);
 
             var product = komplettResponse.Products[0];
 
@@ -65,7 +65,7 @@ namespace Pricely.Core.Services.Merchants.Komplett
             }
 
             string responseJson = await response.DecompressAsStringAsync();
-            KomplettProductSearch komplettResponse = JsonConvert.DeserializeObject<KomplettProductSearch>(responseJson);
+            KomplettProductResponse komplettResponse = JsonConvert.DeserializeObject<KomplettProductResponse>(responseJson);
 
             //Note: Needs to be separated to adhere to SOLID.
             foreach (var product in komplettResponse.Products)

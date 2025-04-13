@@ -38,7 +38,7 @@ namespace Pricely.Core.Services.Merchants.Elgiganten
 
 
             string jsonResponse = await response.DecompressAsStringAsync();
-            ElgigantenProductDetails productDetails = JsonConvert.DeserializeObject<ElgigantenProductDetails>(jsonResponse);
+            ElgigantenProductResponse productDetails = JsonConvert.DeserializeObject<ElgigantenProductResponse>(jsonResponse);
 
             var image = new List<string>(); 
             image.Add(productDetails.ImageUrl);
@@ -58,7 +58,7 @@ namespace Pricely.Core.Services.Merchants.Elgiganten
 
         public override async IAsyncEnumerable<UnifiedProductPreview> GetProductsFromSearchAsync(string query)
         {
-            ElgigantenProductSearch payload = new(query);
+            ElgigantenSearchResponse payload = new(query);
             string jsonPayload = JsonConvert.SerializeObject(payload);
 
             HttpResponseMessage response = await _httpClient.PostAsync("https://www.elgiganten.dk/api/search", new StringContent(jsonPayload, Encoding.UTF8, "application/json"));

@@ -4,9 +4,9 @@ namespace Pricely.Libraries.Shared.ResponseModels.Elgiganten
 {
 
     //Endpoint: https://www.elgiganten.dk/api/search (POST Request). Disse klasser bliver dannet til JSON og sendt som Payload i POST requesten.
-    public class ElgigantenProductSearch
+    public class ElgigantenSearchResponse
     {
-        public ElgigantenProductSearch(string query)
+        public ElgigantenSearchResponse(string query)
         {
             Query = query;
             ContentQuery = query;

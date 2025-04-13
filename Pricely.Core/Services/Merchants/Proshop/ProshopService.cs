@@ -32,7 +32,7 @@ namespace Pricely.Core.Services.Merchants.Proshop
             string productUrl = $"https://www.proshop.dk/{id}";
             HttpResponseMessage response = await _httpClient.GetAsync(productUrl);
 
-            ProshopProductDetails product = await response.GetJsonLdFromHtmlAsync<ProshopProductDetails>("Product", "application/ld+json");
+            ProshopProductResponse product = await response.GetJsonLdFromHtmlAsync<ProshopProductResponse>("Product", "application/ld+json");
 
             List<string> images = new();
             images.Add(product.Image);

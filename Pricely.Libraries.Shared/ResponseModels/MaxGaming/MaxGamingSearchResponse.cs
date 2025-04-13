@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 namespace Pricely.Libraries.Shared.ResponseModels.MaxGaming
 {
  
-    public class MaxGamingSearchResults
+    public class MaxGamingSearchResponse
     {
         [JsonProperty("item_list_id")]
         public string? ItemListId { get; set; }

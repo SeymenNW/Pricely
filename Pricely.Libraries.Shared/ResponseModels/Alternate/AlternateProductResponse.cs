@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Pricely.Libraries.Shared.ResponseModels.Alternate
 {
-    public class AlternateProductSchema
+    public class AlternateProductResponse
     {
         [JsonProperty("@context")]
         public string Context { get; set; } = "https://www.schema.org";

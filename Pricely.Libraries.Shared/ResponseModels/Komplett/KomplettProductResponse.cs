@@ -10,7 +10,7 @@ namespace Pricely.Libraries.Shared.ResponseModels.Komplett
     using System;
     using System.Collections.Generic;
 
-    public class KomplettProductSearch
+    public class KomplettProductResponse
     {
         [JsonProperty("products")]
         public List<Product>? Products { get; set; }

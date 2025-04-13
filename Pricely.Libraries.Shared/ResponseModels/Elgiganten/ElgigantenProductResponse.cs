@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 namespace Pricely.Libraries.Shared.ResponseModels.Elgiganten
 {
  
-    public class ElgigantenProductDetails
+    public class ElgigantenProductResponse
     {
         [JsonProperty("type")]
         public string? Type { get; set; }

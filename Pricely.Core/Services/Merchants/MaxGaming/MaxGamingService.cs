@@ -32,7 +32,7 @@ namespace Pricely.Core.Services.Merchants.MaxGaming
             string productUrl = $"https://www.maxgaming.dk/sog?q={id}";
             HttpResponseMessage response = await _httpClient.GetAsync(productUrl);
 
-            MaxGamingProductDetails product = await response.GetJsonLdFromHtmlAsync<MaxGamingProductDetails>("Product", "application/ld+json");
+            MaxGamingProductResponse product = await response.GetJsonLdFromHtmlAsync<MaxGamingProductResponse>("Product", "application/ld+json");
 
             List<string> images = new();
             images.Add(product.Image);
@@ -76,7 +76,7 @@ namespace Pricely.Core.Services.Merchants.MaxGaming
                 string correctedContent = scriptContent.Replace("  gtag(\"event\", \"view_item_list\", ", "");
                 string fullContent = correctedContent.Replace(");", "");
 
-                MaxGamingSearchResults results = JsonConvert.DeserializeObject<MaxGamingSearchResults>(fullContent);
+                MaxGamingSearchResponse results = JsonConvert.DeserializeObject<MaxGamingSearchResponse>(fullContent);
                 Console.WriteLine(results.Items[0].ItemName);
 
                 foreach (var item in results.Items)

@@ -9,7 +9,7 @@ namespace Pricely.Libraries.Shared.ResponseModels.Proshop
     using Newtonsoft.Json;
     using System;
 
-    public class ProshopProductDetails
+    public class ProshopProductResponse
     {
         [JsonProperty("@context")]
         public string Context { get; set; } = "http://schema.org/";

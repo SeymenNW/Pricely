@@ -9,7 +9,7 @@ namespace Pricely.Libraries.Shared.ResponseModels.MaxGaming
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
-    public class MaxGamingProductDetails
+    public class MaxGamingProductResponse
     {
         [JsonProperty("@context")]
         public string? Context { get; set; }
