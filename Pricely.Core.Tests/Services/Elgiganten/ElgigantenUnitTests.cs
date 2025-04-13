@@ -13,13 +13,13 @@ using Xunit;
 
 namespace Pricely.Core.Tests.Services.Elgiganten
 {
-    public class ElgigantenServiceTests
+    public class ElgigantenUnitTests
     {
         private readonly ElgigantenService _elgigantenService;
         private readonly Mock<HttpMessageHandler> _mockHttpMessageHandler;
         private readonly HttpClient _mockHttpClient;
 
-        public ElgigantenServiceTests()
+        public ElgigantenUnitTests()
         {
             _mockHttpMessageHandler = new Mock<HttpMessageHandler>();
             _mockHttpClient = new HttpClient(_mockHttpMessageHandler.Object);
