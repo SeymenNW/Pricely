@@ -67,13 +67,18 @@ namespace Pricely.Core.Services.Merchants.Power
 
             if (!responseMessage.IsSuccessStatusCode)
             {
-                throw new Exception("Could not search Power.");
+                yield break;
+                //throw new Exception("Could not search Power.");
             }
 
             string jsonString = await responseMessage.DecompressAsStringAsync();
 
             PowerSearchResponse powerResponse = JsonConvert.DeserializeObject<PowerSearchResponse>(jsonString);
 
+            if (powerResponse.Products == null || !powerResponse.Products.Any())
+            {
+                yield break;
+            }
 
             foreach (var product in powerResponse.Products)
             {

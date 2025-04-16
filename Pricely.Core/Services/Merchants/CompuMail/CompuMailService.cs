@@ -59,19 +59,33 @@ namespace Pricely.Core.Services.Merchants.CompuMail
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("Could not load product details");
+                yield break;
+                //throw new Exception("Could not load product details");
             }
 
-
-            string jsonResponse = await response.DecompressAsStringAsync();
-            CompuMailSearchResponse searchResponse = JsonConvert.DeserializeObject<CompuMailSearchResponse>(jsonResponse);
-
-
-            foreach (var product in this.ParseProductsFromHtml(searchResponse.Html.ProductsHtml))
+            if (response != null)
             {
-                yield return product;
 
+                string jsonResponse = await response.DecompressAsStringAsync();
+                CompuMailSearchResponse searchResponse = JsonConvert.DeserializeObject<CompuMailSearchResponse>(jsonResponse);
+
+                var productsList = this.ParseProductsFromHtml(searchResponse.Html.ProductsHtml);
+
+                if (productsList == null || !productsList.Any())
+                {
+                    yield break;
+                }
+
+                foreach (var product in productsList)
+                {
+                    yield return product;
+                }
             }
+            else
+            {
+                yield break;
+            }
+
 
 
         }

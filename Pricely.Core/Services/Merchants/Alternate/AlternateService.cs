@@ -25,22 +25,25 @@ namespace Pricely.Core.Services.Merchants.Alternate
 
         public override async IAsyncEnumerable<UnifiedProductPreview> GetProductsFromSearchAsync(string query)
         {
-
-            //query needs to be fixed
             string alternateUrl = $"https://www.alternate.dk/listing.xhtml?q={query.Replace(" ", "+")}";
-
-
 
             HttpResponseMessage response = await _httpClient.GetAsync(alternateUrl);
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("Could not get data from Alternate");
+                yield break;
+                //throw new Exception("Could not get data from Alternate");
             }
 
             string htmlContent = await response.DecompressAsStringAsync();
+            var productsList = this.ParseProductsFromHtml(htmlContent);
 
-            foreach (var product in this.ParseProductsFromHtml(htmlContent))
+            if (productsList == null || !productsList.Any())
+            {
+                yield break;
+            }
+
+            foreach (var product in productsList)
             {
                 yield return product;
             }

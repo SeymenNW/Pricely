@@ -52,15 +52,12 @@ namespace Pricely.Core.Services.Merchants.MaxGaming
         {
             string url = $"https://www.maxgaming.dk/sog?q={query}";
 
-
-            HttpResponseMessage response;
-            HttpClient client = new();
-
-            response = await client.GetAsync(url);
+            HttpResponseMessage response = await _httpClient.GetAsync(url);
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("Could not get Data");
+                //Exception will be added later.
+                yield break;
             }
 
             string html = await response.DecompressAsStringAsync();
@@ -78,22 +75,27 @@ namespace Pricely.Core.Services.Merchants.MaxGaming
 
                 MaxGamingSearchResponse results = JsonConvert.DeserializeObject<MaxGamingSearchResponse>(fullContent);
 
-                foreach (var item in results.Items)
+                if (results.Items == null || !results.Items.Any())
                 {
-
-                    yield return new UnifiedProductPreview
-                    {
-                       Name = item.ItemName,
-                       IdSku = item.ItemId,
-                       CurrentPrice = item.Price.ToString(),
-                       ImageUrl = "None.",
-                       Url = $"https://www.maxgaming.dk/sog?q={item.ItemId}",
-                       Merchant = "MaxGaming",
-                     
-
-                    }; 
+                    yield break;
                 }
 
+                foreach (var item in results.Items)
+                {
+                    yield return new UnifiedProductPreview
+                    {
+                        Name = item.ItemName,
+                        IdSku = item.ItemId,
+                        CurrentPrice = item.Price.ToString(),
+                        ImageUrl = "None.",
+                        Url = $"https://www.maxgaming.dk/sog?q={item.ItemId}",
+                        Merchant = "MaxGaming",
+                    };
+                }
+            }
+            else
+            {
+                yield break;
             }
         }
     }

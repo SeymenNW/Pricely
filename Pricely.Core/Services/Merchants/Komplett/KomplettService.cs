@@ -61,25 +61,39 @@ namespace Pricely.Core.Services.Merchants.Komplett
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("Failed to load Price Data from Komplett.");
+                yield break;
+                //throw new Exception("Failed to load Price Data from Komplett.");
             }
 
             string responseJson = await response.DecompressAsStringAsync();
             KomplettProductResponse komplettResponse = JsonConvert.DeserializeObject<KomplettProductResponse>(responseJson);
 
-            //Note: Needs to be separated to adhere to SOLID.
-            foreach (var product in komplettResponse.Products)
+            if (komplettResponse != null)
             {
-                yield return new UnifiedProductPreview
-                {
-                    Name = product.Name,
-                    CurrentPrice = product.Price.ListPrice.Replace(",-", "").Trim().Replace(".", "").Trim(),
-                    IdSku = product.MaterialNumber,
-                    Url = $"https://www.komplett.dk{product.Url}",
-                    ImageUrl = product.Images[0],
-                    Merchant = "Komplett"
-                };
 
+                if (komplettResponse.Products == null || !komplettResponse.Products.Any())
+                {
+                    yield break;
+                }
+
+                //Note: Needs to be separated to adhere to SOLID.
+                foreach (var product in komplettResponse.Products)
+                {
+                    yield return new UnifiedProductPreview
+                    {
+                        Name = product.Name,
+                        CurrentPrice = product.Price.ListPrice.Replace(",-", "").Trim().Replace(".", "").Trim(),
+                        IdSku = product.MaterialNumber,
+                        Url = $"https://www.komplett.dk{product.Url}",
+                        ImageUrl = product.Images[0],
+                        Merchant = "Komplett"
+                    };
+
+                }
+            }
+            else
+            {
+                yield break;
             }
 
 

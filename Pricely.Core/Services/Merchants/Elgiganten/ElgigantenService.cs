@@ -33,6 +33,7 @@ namespace Pricely.Core.Services.Merchants.Elgiganten
 
             if (!response.IsSuccessStatusCode)
             {
+
                 throw new Exception("Could not load product details");
             }
 
@@ -40,18 +41,18 @@ namespace Pricely.Core.Services.Merchants.Elgiganten
             string jsonResponse = await response.DecompressAsStringAsync();
             ElgigantenProductResponse productDetails = JsonConvert.DeserializeObject<ElgigantenProductResponse>(jsonResponse);
 
-            var image = new List<string>(); 
+            var image = new List<string>();
             image.Add(productDetails.ImageUrl);
             return new UnifiedProductDetails
             {
-              Name = productDetails.Name,
-              Brand = productDetails.Brand,
-              Description = "No Description Available",
-             Gtin = "No Gtin Available",
-             Merchant = "Elgiganten",
-             Price = productDetails.Price.Current[0].ToString(),
-             ImageUrls = image
-              
+                Name = productDetails.Name,
+                Brand = productDetails.Brand,
+                Description = "No Description Available",
+                Gtin = "No Gtin Available",
+                Merchant = "Elgiganten",
+                Price = productDetails.Price.Current[0].ToString(),
+                ImageUrls = image
+
 
             };
         }
@@ -66,11 +67,17 @@ namespace Pricely.Core.Services.Merchants.Elgiganten
 
             if (!response.IsSuccessStatusCode)
             {
+                yield break;
                 throw new Exception("Failed to load Price Data from Elgiganten.");
             }
 
             string responseJson = await response.DecompressAsStringAsync();
             ElgigantenResponse elgigantenResponse = JsonConvert.DeserializeObject<ElgigantenResponse>(responseJson);
+
+            if (elgigantenResponse == null || !elgigantenResponse.Data.Records.Any())
+            {
+                yield break;
+            }
 
             //Note: Needs to be separated to adhere to SOLID.
             foreach (var product in elgigantenResponse.Data.Records)

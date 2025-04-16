@@ -41,18 +41,22 @@ namespace Pricely.Core.Services.Merchants.ComputerSalg
             var response = await _httpClient.GetAsync(url);
 
             if (!response.IsSuccessStatusCode)
-                throw new Exception("Could not load search results");
+                yield break;
+            //throw new Exception("Could not load search results");
 
-            string json = await response.Content.ReadAsStringAsync();
-            ComputerSalgSearchResponse searchResponse = JsonConvert.DeserializeObject<ComputerSalgSearchResponse>(json);
-
-
-
-            foreach (var product in this.ParseProductsFromHtml(searchResponse.HtmlContent))
+            if (response != null)
             {
+                string json = await response.Content.ReadAsStringAsync();
+                ComputerSalgSearchResponse searchResponse = JsonConvert.DeserializeObject<ComputerSalgSearchResponse>(json);
 
-                yield return product;
-
+                foreach (var product in this.ParseProductsFromHtml(searchResponse.HtmlContent))
+                {
+                    yield return product;
+                }
+            }
+            else
+            {
+                yield break;
             }
         }
 

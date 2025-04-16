@@ -40,6 +40,7 @@ namespace Pricely.Core.Services.Merchants.Føniks
 
             if (!response.IsSuccessStatusCode)
             {
+               
                 throw new Exception("Failed to load Price Data from CompuMail.");
             }
 
@@ -65,7 +66,8 @@ namespace Pricely.Core.Services.Merchants.Føniks
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("Could not get data from Føniks");
+                yield break;
+                //throw new Exception("Could not get data from Føniks");
             }
 
             string responseJson = await response.DecompressAsStringAsync();

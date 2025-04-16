@@ -57,14 +57,21 @@ namespace Pricely.Core.Services.Merchants.Proshop
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("Could not get data from ProShop");
+                yield break;
+                //throw new Exception("Could not get data from ProShop");
             }
 
             string htmlContent = await response.DecompressAsStringAsync();
+            var productsList = this.ParseProductsFromHtml(htmlContent);
 
-            foreach (UnifiedProductPreview product in this.ParseProductsFromHtml(htmlContent))
+            if (productsList == null || !productsList.Any())
             {
-               yield return product;
+                yield break;
+            }
+
+            foreach (UnifiedProductPreview product in productsList)
+            {
+                yield return product;
             }
 
         }
