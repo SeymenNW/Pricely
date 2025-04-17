@@ -1,6 +1,0 @@
-@PricelyAPI_HostAddress = http://localhost:5037
-
-GET {{PricelyAPI_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

@@ -3,14 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PricelyAPI", "PricelyAPI\PricelyAPI.csproj", "{6BBEF3E7-8A1B-40A8-9D75-A98F2673A9C3}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PricelyWeb", "PricelyWeb\PricelyWeb\PricelyWeb.csproj", "{14DFBC43-A895-40F2-88FB-B51E3E4B8CE9}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PricelyWeb.Client", "PricelyWeb\PricelyWeb.Client\PricelyWeb.Client.csproj", "{E6209C37-3FC8-474B-A6CB-21BE14A181EC}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PricelyWeb.Services", "PricelyWeb\PricelyWeb.Services\PricelyWeb.Services.csproj", "{8B55B883-41E0-4AE0-8891-1FB1681B9A65}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pricely.Libraries.Shared", "Pricely.Libraries.Shared\Pricely.Libraries.Shared.csproj", "{C174DD3A-EFBB-4E11-A7F9-C9857CB2A937}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pricely.API", "Pricely.API\Pricely.API.csproj", "{D322D9ED-CC28-4931-B59D-6206A7C45CA2}"
@@ -31,22 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6BBEF3E7-8A1B-40A8-9D75-A98F2673A9C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6BBEF3E7-8A1B-40A8-9D75-A98F2673A9C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6BBEF3E7-8A1B-40A8-9D75-A98F2673A9C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6BBEF3E7-8A1B-40A8-9D75-A98F2673A9C3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{14DFBC43-A895-40F2-88FB-B51E3E4B8CE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14DFBC43-A895-40F2-88FB-B51E3E4B8CE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14DFBC43-A895-40F2-88FB-B51E3E4B8CE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14DFBC43-A895-40F2-88FB-B51E3E4B8CE9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E6209C37-3FC8-474B-A6CB-21BE14A181EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E6209C37-3FC8-474B-A6CB-21BE14A181EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E6209C37-3FC8-474B-A6CB-21BE14A181EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E6209C37-3FC8-474B-A6CB-21BE14A181EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8B55B883-41E0-4AE0-8891-1FB1681B9A65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8B55B883-41E0-4AE0-8891-1FB1681B9A65}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8B55B883-41E0-4AE0-8891-1FB1681B9A65}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8B55B883-41E0-4AE0-8891-1FB1681B9A65}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C174DD3A-EFBB-4E11-A7F9-C9857CB2A937}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C174DD3A-EFBB-4E11-A7F9-C9857CB2A937}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C174DD3A-EFBB-4E11-A7F9-C9857CB2A937}.Release|Any CPU.ActiveCfg = Release|Any CPU
