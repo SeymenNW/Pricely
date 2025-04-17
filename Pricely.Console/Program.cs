@@ -2,6 +2,7 @@
 using HtmlAgilityPack;
 using Newtonsoft.Json;
 using Pricely.Con.MerchantTests;
+using Pricely.Con.PR;
 using Pricely.Core.Extensions;
 using Pricely.Libraries.Shared.ResponseModels.Alternate;
 using Pricely.Libraries.Shared.ResponseModels.MaxGaming;
@@ -11,7 +12,11 @@ internal class Program
     private static async Task Main(string[] args)
     {
 
-       await MerchantManualTest.TestAll();
+       //await MerchantManualTest.TestAll();
+
+         PriceRun run = new();
+
+        await run.GetPrices();
                 
 
     }
