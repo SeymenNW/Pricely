@@ -8,7 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Pricely.Core\Pricely.Core.csproj" />
+    <ProjectReference Include="..\..\Pricely.Backend\Pricely.Core\Pricely.Core.csproj" />
+    <ProjectReference Include="..\..\Pricely.Libraries.Shared\Pricely.Libraries.Shared.csproj" />
   </ItemGroup>
 
 </Project>

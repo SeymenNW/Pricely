@@ -12,11 +12,11 @@ internal class Program
     private static async Task Main(string[] args)
     {
 
-       //await MerchantManualTest.TestAll();
+        await MerchantManualTest.TestAll();
 
-         PriceRun run = new();
+        //PriceRun run = new();
 
-        await run.GetPrices();
+        //await run.GetPrices();
                 
 
     }

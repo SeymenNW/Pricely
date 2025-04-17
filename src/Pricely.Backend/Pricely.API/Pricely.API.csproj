@@ -11,4 +11,9 @@
     <PackageReference Include="Scalar.AspNetCore" Version="2.1.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Pricely.Libraries.Shared\Pricely.Libraries.Shared.csproj" />
+    <ProjectReference Include="..\Pricely.Core\Pricely.Core.csproj" />
+  </ItemGroup>
+
 </Project>

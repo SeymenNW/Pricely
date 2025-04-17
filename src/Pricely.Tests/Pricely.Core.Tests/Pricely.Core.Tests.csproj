@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Pricely.Core\Pricely.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
