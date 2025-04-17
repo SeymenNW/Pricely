@@ -11,7 +11,7 @@ internal class Program
     private static async Task Main(string[] args)
     {
 
-       await MerchantManualTest.TestGetProductSearchAndDetails();
+       await MerchantManualTest.TestAll();
                 
 
     }
