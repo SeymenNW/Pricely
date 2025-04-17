@@ -53,7 +53,7 @@ namespace Pricely.Core.Services.Merchants.Føniks
                 Description = product?.Description,
                 ImageUrls = product?.Images,
                 Gtin = product?.Gtin14,
-                Merchant = "Føniks",
+                Merchant = Libraries.Shared.Enums.MerchantEnum.Føniks,
                 Brand = "Not Specified"
             };
         }
@@ -89,7 +89,7 @@ namespace Pricely.Core.Services.Merchants.Føniks
                         Url = $"https://www.fcomputer.dk/{product.Url}",
                         CurrentPrice = product.Price.ToString(),
                         ImageUrl = product.Photo,
-                        Merchant = "Føniks Computer"
+                        Merchant = Libraries.Shared.Enums.MerchantEnum.Føniks,
                     };
                 }
             }

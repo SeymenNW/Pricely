@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Pricely.Libraries.Shared.Enums;
 
 namespace Pricely.Libraries.Shared.Models
 {
@@ -16,7 +17,7 @@ namespace Pricely.Libraries.Shared.Models
 
         public string? Brand { get; set; }
         public string? Price { get; set; }
-        public string? Merchant { get; set; }
+        public MerchantEnum? Merchant { get; set; }
 
 
     }

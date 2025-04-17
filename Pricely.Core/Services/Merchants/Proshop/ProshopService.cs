@@ -42,7 +42,7 @@ namespace Pricely.Core.Services.Merchants.Proshop
                 Gtin = product.Gtin13,
                 Description = product.Description,
                 Brand = product.Brand.Name,
-                Merchant = "Proshop",
+                Merchant = Libraries.Shared.Enums.MerchantEnum.Power,
                 ImageUrls = images,
                 Price = product.Offer.Price.ToString(),
 

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Pricely.Core.Extensions;
+using Pricely.Libraries.Shared.Enums;
 using Pricely.Libraries.Shared.Models;
 using Pricely.Libraries.Shared.ResponseModels.Elgiganten;
 
@@ -49,7 +50,7 @@ namespace Pricely.Core.Services.Merchants.Elgiganten
                 Brand = productDetails.Brand,
                 Description = "No Description Available",
                 Gtin = "No Gtin Available",
-                Merchant = "Elgiganten",
+                Merchant = MerchantEnum.Elgiganten,
                 Price = productDetails.Price.Current[0].ToString(),
                 ImageUrls = image
 
@@ -89,7 +90,7 @@ namespace Pricely.Core.Services.Merchants.Elgiganten
                     IdSku = product.Sku,
                     Url = $"https://www.elgiganten.dk{product.Href}",
                     ImageUrl = product.ImageUrl,
-                    Merchant = "Elgiganten"
+                    Merchant = MerchantEnum.Elgiganten,
                 };
 
             }

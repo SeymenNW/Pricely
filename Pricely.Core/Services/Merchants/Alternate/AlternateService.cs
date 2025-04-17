@@ -3,6 +3,7 @@ using System.Text;
 using HtmlAgilityPack;
 using Newtonsoft.Json.Linq;
 using Pricely.Core.Extensions;
+using Pricely.Libraries.Shared.Enums;
 using Pricely.Libraries.Shared.Models;
 using Pricely.Libraries.Shared.ResponseModels.Alternate;
 
@@ -64,7 +65,7 @@ namespace Pricely.Core.Services.Merchants.Alternate
                 Gtin = product.Gtin8,
                 Description = product.Description,
                 Brand = product.Brand.Name,
-                Merchant = "Alternate",
+                Merchant = MerchantEnum.Alternate,
                 ImageUrls = images,
                 Price = product.Offers.Price
 

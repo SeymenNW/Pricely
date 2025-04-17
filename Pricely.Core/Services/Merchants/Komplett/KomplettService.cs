@@ -49,7 +49,7 @@ namespace Pricely.Core.Services.Merchants.Komplett
                 Description = product.Description,
                 ImageUrls = product.Images,
                 Gtin = "0",
-                Merchant = "Komplett",
+                Merchant = Libraries.Shared.Enums.MerchantEnum.Komplett,
                 Brand = "Not Specified"
             };
         }
@@ -86,7 +86,7 @@ namespace Pricely.Core.Services.Merchants.Komplett
                         IdSku = product.MaterialNumber,
                         Url = $"https://www.komplett.dk{product.Url}",
                         ImageUrl = product.Images[0],
-                        Merchant = "Komplett"
+                        Merchant = Libraries.Shared.Enums.MerchantEnum.Komplett
                     };
 
                 }

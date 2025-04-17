@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
+using Pricely.Libraries.Shared.Enums;
 using Pricely.Libraries.Shared.Models;
 
 namespace Pricely.Core.Services.Merchants.ComputerSalg
@@ -37,6 +38,7 @@ namespace Pricely.Core.Services.Merchants.ComputerSalg
             //var currencyNode = productNode.SelectSingleNode(".//span[contains(@class, 'm-product-card__currency')]");
             //product.Currency = currencyNode?.InnerText?.Trim();
 
+            product.Merchant = MerchantEnum.ComputerSalg;
             return product;
         }
 

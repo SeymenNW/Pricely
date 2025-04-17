@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using Pricely.Libraries.Shared.Enums;
 using Pricely.Libraries.Shared.Models;
 
 namespace Pricely.Core.Services.Merchants.ComputerSalg
@@ -51,7 +52,7 @@ namespace Pricely.Core.Services.Merchants.ComputerSalg
                 //{
                 //    product.Availability = stockNode.ParentNode?.InnerText.Trim();
                 //}
-
+                product.Merchant = MerchantEnum.ComputerSalg;
                 yield return product;
             }
         }

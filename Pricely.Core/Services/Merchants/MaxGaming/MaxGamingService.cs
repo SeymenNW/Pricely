@@ -42,7 +42,7 @@ namespace Pricely.Core.Services.Merchants.MaxGaming
                 Gtin = product.Gtin8,
                 Description = product.Description,
                 Brand = product.Brand.Name,
-                Merchant = "MaxGaming",
+                Merchant = Libraries.Shared.Enums.MerchantEnum.MaxGaming,
                 ImageUrls = images,
                 Price = product.Offers?.Price
 
@@ -89,7 +89,7 @@ namespace Pricely.Core.Services.Merchants.MaxGaming
                         CurrentPrice = item.Price.ToString(),
                         ImageUrl = "None.",
                         Url = $"https://www.maxgaming.dk/sog?q={item.ItemId}",
-                        Merchant = "MaxGaming",
+                        Merchant = Libraries.Shared.Enums.MerchantEnum.MaxGaming,
                     };
                 }
             }

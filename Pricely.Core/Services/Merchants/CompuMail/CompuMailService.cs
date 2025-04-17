@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using HtmlAgilityPack;
 using Newtonsoft.Json;
 using Pricely.Core.Extensions;
+using Pricely.Libraries.Shared.Enums;
 using Pricely.Libraries.Shared.Models;
 using Pricely.Libraries.Shared.ResponseModels.CompuMail;
 using Pricely.Libraries.Shared.ResponseModels.Elgiganten;
@@ -47,7 +48,7 @@ namespace Pricely.Core.Services.Merchants.CompuMail
                 Description = product.Description,
                 ImageUrls = product.Images,
                 Gtin = "0",
-                Merchant = "CompuMail",
+                Merchant = MerchantEnum.CompuMail,
                 Brand = "Not Specified"
             };
         }

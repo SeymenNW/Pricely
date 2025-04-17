@@ -101,7 +101,7 @@ namespace Pricely.Core.Services.Merchants.Alternate
                     IdSku = productSku,
                     Url = productUrl,
                     ImageUrl = productImageUrl,
-                    Merchant = "Alternate"
+                    Merchant = Libraries.Shared.Enums.MerchantEnum.Alternate
                 };
 
             }
