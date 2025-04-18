@@ -11,9 +11,9 @@ import { ButtonModule } from 'primeng/button';
 export class MainSearchComponent {
   featuredProducts = [
     {
-      name: 'iPhone 15 Pro 128GB Sort',
-      image: 'https://via.placeholder.com/200?text=iPhone+15',
-      price: 8999,
+      name: 'AMD Radeon RX 9070 XT',
+      image: 'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTGppXwviNChqMOKgWOXWLoMjcYAIDDEzKGbukzWS6BFNVVaJBsDZ4EXNa3_GcZeQkIEoyBvWc3NjHM71DHbDvJfJjKZEJThQ0Uq4iHROkSjXOoEO8XAargtg',
+      price: 6290,
       reviews: 124,
       discount: 12
     },
