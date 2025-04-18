@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
-import { FloatLabelModule } from 'primeng/floatlabel';
+import { NavbarComponent } from './layout/navbar/navbar.component';
+import { FooterComponent } from './layout/footer/footer.component';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ButtonModule, FloatLabelModule],
+  standalone: true,
+  imports: [RouterOutlet, NavbarComponent, FooterComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'pricely.client';
-}
+export class AppComponent {}

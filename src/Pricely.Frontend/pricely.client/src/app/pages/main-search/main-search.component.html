@@ -1,0 +1,146 @@
+<!-- Main Search Section -->
+<section class="bg-white py-8">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl md:text-4xl font-bold text-center mb-6">Sammenlign priser på millioner af produkter</h1>
+        
+        <!-- Search Bar -->
+        <div class="relative mb-8">
+          <div class="flex shadow-lg rounded-full border border-gray-200 overflow-hidden">
+            <input type="text" 
+                   class="flex-grow px-6 py-4 focus:outline-none" 
+                   placeholder="Søg efter produkter, brands eller kategorier...">
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 font-medium">
+              Søg
+            </button>
+          </div>
+          <div class="mt-2 text-sm text-gray-500 text-center">
+            Populære søgninger: <a href="#" class="text-blue-600 hover:underline">iPhone 15</a>, 
+            <a href="#" class="text-blue-600 hover:underline">PlayStation 5</a>, 
+            <a href="#" class="text-blue-600 hover:underline">Samsung TV</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Categories Section -->
+  <section class="bg-gray-50 py-12">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-8">Populære kategorier</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <a href="#" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow flex flex-col items-center">
+          <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-2">
+            <span class="pi pi-mobile text-xl text-blue-600"></span>
+          </div>
+          <span class="text-sm font-medium text-center">Mobiltelefoner</span>
+        </a>
+        <a href="#" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow flex flex-col items-center">
+          <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-2">
+            <span class="pi pi-tablet text-xl text-blue-600"></span>
+          </div>
+          <span class="text-sm font-medium text-center">Computere</span>
+        </a>
+        <a href="#" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow flex flex-col items-center">
+          <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-2">
+            <span class="pi pi-tv text-xl text-blue-600"></span>
+          </div>
+          <span class="text-sm font-medium text-center">TV & Lyd</span>
+        </a>
+        <a href="#" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow flex flex-col items-center">
+          <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-2">
+            <span class="pi pi-home text-xl text-blue-600"></span>
+          </div>
+          <span class="text-sm font-medium text-center">Hjem & Have</span>
+        </a>
+        <a href="#" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow flex flex-col items-center">
+          <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-2">
+            <span class="pi pi-heart text-xl text-blue-600"></span>
+          </div>
+          <span class="text-sm font-medium text-center">Sport & Fritid</span>
+        </a>
+        <a href="#" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow flex flex-col items-center">
+          <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-2">
+            <span class="pi pi-shopping-bag text-xl text-blue-600"></span>
+          </div>
+          <span class="text-sm font-medium text-center">Tøj & Sko</span>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Featured Products Section -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-8">Populære produkter lige nu</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div *ngFor="let product of featuredProducts" class="border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
+          <div class="p-4">
+            <img [src]="product.image" [alt]="product.name" class="h-40 mx-auto object-contain mb-4">
+            <h3 class="font-medium text-lg mb-2 line-clamp-2">{{product.name}}</h3>
+            <div class="flex items-center mb-2">
+              <span class="text-yellow-400 pi pi-star-fill"></span>
+              <span class="text-yellow-400 pi pi-star-fill"></span>
+              <span class="text-yellow-400 pi pi-star-fill"></span>
+              <span class="text-yellow-400 pi pi-star-fill"></span>
+              <span class="text-yellow-400 pi pi-star"></span>
+              <span class="text-gray-500 text-sm ml-1">({{product.reviews}})</span>
+            </div>
+            <div class="font-bold text-xl mb-2">{{product.price | currency:'DKK':'symbol':'1.0-0'}}</div>
+            <div class="text-green-600 text-sm mb-2">Prisfald {{product.discount}}%</div>
+            <p-button pButton label="Sammenlign priser" class="w-full p-button-sm"></p-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- How it Works Section -->
+  <section class="py-12 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-bold text-center mb-8">Sådan fungerer Pricely</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center p-6 bg-white rounded-lg shadow-sm">
+          <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="pi pi-search text-2xl text-blue-600"></span>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">1. Søg efter produkter</h3>
+          <p class="text-gray-600">Find det produkt du leder efter blandt millioner af varer.</p>
+        </div>
+        <div class="text-center p-6 bg-white rounded-lg shadow-sm">
+          <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="pi pi-chart-bar text-2xl text-blue-600"></span>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">2. Sammenlign priser</h3>
+          <p class="text-gray-600">Se priser fra alle danske webshops på ét sted.</p>
+        </div>
+        <div class="text-center p-6 bg-white rounded-lg shadow-sm">
+          <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="pi pi-shopping-cart text-2xl text-blue-600"></span>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">3. Køb det billigste</h3>
+          <p class="text-gray-600">Gå direkte til den billigste webshop og køb produktet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Trust Indicators -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div>
+          <div class="text-3xl font-bold text-blue-600 mb-2">5M+</div>
+          <div class="text-gray-600">Produkter at sammenligne</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold text-blue-600 mb-2">10.000+</div>
+          <div class="text-gray-600">Butikker</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold text-blue-600 mb-2">2M+</div>
+          <div class="text-gray-600">Brugere om måneden</div>
+        </div>
+      </div>
+    </div>
+  </section>
