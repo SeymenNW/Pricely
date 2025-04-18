@@ -1,4 +1,4 @@
-import { Merchant } from "./productPreview";
+import { Merchant } from "../merchant";
 
 export interface Product {
     name?: string;
