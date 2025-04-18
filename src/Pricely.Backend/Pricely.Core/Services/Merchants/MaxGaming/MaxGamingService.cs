@@ -43,7 +43,7 @@ namespace Pricely.Core.Services.Merchants.MaxGaming
                 Description = product.Description,
                 Brand = product.Brand.Name,
                 Merchant = Libraries.Shared.Enums.MerchantEnum.MaxGaming,
-                ImageUrls = images,
+                Images = images,
                 Price = product.Offers?.Price
 
             };
@@ -87,7 +87,7 @@ namespace Pricely.Core.Services.Merchants.MaxGaming
                         Name = item.ItemName,
                         IdSku = item.ItemId,
                         CurrentPrice = item.Price.ToString(),
-                        ImageUrl = "None.",
+                        Image = "None.",
                         Url = $"https://www.maxgaming.dk/sog?q={item.ItemId}",
                         Merchant = Libraries.Shared.Enums.MerchantEnum.MaxGaming,
                     };

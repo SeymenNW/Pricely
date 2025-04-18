@@ -53,7 +53,7 @@ namespace Pricely.Core.Services.Merchants.Power
                 Gtin = productDetails.EanGtin12,
                 Merchant = Libraries.Shared.Enums.MerchantEnum.Power,
                 Price = productDetails.Price.ToString(),
-                ImageUrls = image
+                Images = image
 
 
             };
@@ -86,7 +86,7 @@ namespace Pricely.Core.Services.Merchants.Power
                 {
                     Name = product.Title,
                     IdSku = product.ProductId.ToString(),
-                    ImageUrl = $"https://www.power.dk{product.ProductImage?.BasePath}",
+                    Image = $"https://www.power.dk{product.ProductImage?.BasePath}",
                     CurrentPrice = product.Price.ToString(),
                     Url = $"https://www.power.dk{product.Url}",
                     Merchant = Libraries.Shared.Enums.MerchantEnum.Power,

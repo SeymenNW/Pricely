@@ -30,7 +30,7 @@ namespace Pricely.Core.Services.Merchants.ComputerSalg
                 }
 
                 //Image
-                product.ImageUrl = node.SelectSingleNode(".//img")?.GetAttributeValue("src", "");
+                product.Image = node.SelectSingleNode(".//img")?.GetAttributeValue("src", "");
 
                 //Price
                 product.CurrentPrice = node.SelectSingleNode(".//div[contains(@class, 'm-search-item__price')]")?

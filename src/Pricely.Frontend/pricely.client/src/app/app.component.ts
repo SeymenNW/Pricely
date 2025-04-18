@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 interface WeatherForecast {
@@ -21,6 +21,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.getForecasts();
+
+   
   }
 
   getForecasts() {

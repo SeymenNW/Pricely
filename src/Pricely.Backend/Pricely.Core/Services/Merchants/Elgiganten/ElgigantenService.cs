@@ -52,7 +52,7 @@ namespace Pricely.Core.Services.Merchants.Elgiganten
                 Gtin = "No Gtin Available",
                 Merchant = MerchantEnum.Elgiganten,
                 Price = productDetails.Price.Current[0].ToString(),
-                ImageUrls = image
+                Images = image
 
 
             };
@@ -89,7 +89,7 @@ namespace Pricely.Core.Services.Merchants.Elgiganten
                     CurrentPrice = product.Price?.Current?[0],
                     IdSku = product.Sku,
                     Url = $"https://www.elgiganten.dk{product.Href}",
-                    ImageUrl = product.ImageUrl,
+                    Image = product.ImageUrl,
                     Merchant = MerchantEnum.Elgiganten,
                 };
 

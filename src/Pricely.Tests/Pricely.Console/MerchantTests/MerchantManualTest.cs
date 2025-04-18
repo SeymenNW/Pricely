@@ -86,7 +86,7 @@ namespace Pricely.Con.MerchantTests
                         Console.WriteLine($"Price: {product.Price}");
                         Console.WriteLine($"Brand: {product.Brand}");
                         Console.WriteLine($"Description: {product.Description}");
-                        Console.WriteLine($"Image URL: {product.ImageUrls?.FirstOrDefault()}");
+                        Console.WriteLine($"Image URL: {product.Images?.FirstOrDefault()}");
                     }
                     else
                     {

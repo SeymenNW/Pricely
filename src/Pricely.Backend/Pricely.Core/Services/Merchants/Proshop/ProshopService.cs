@@ -43,7 +43,7 @@ namespace Pricely.Core.Services.Merchants.Proshop
                 Description = product.Description,
                 Brand = product.Brand.Name,
                 Merchant = Libraries.Shared.Enums.MerchantEnum.Power,
-                ImageUrls = images,
+                Images = images,
                 Price = product.Offer.Price.ToString(),
 
             };

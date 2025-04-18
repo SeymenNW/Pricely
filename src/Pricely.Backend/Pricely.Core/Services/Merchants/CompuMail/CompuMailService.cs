@@ -46,7 +46,7 @@ namespace Pricely.Core.Services.Merchants.CompuMail
                 Name = product.Name,
                 Price = product.Offer?.Price,
                 Description = product.Description,
-                ImageUrls = product.Images,
+                Images = product.Images,
                 Gtin = "0",
                 Merchant = MerchantEnum.CompuMail,
                 Brand = "Not Specified"

@@ -66,7 +66,7 @@ namespace Pricely.Core.Services.Merchants.Alternate
                 Description = product.Description,
                 Brand = product.Brand.Name,
                 Merchant = MerchantEnum.Alternate,
-                ImageUrls = images,
+                Images = images,
                 Price = product.Offers.Price
 
             };

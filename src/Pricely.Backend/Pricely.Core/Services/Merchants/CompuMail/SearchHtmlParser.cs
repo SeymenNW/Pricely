@@ -38,7 +38,7 @@ namespace Pricely.Core.Services.Merchants.CompuMail
 
                 // Images
                 HtmlNode img = productLink.SelectSingleNode(".//img");
-                product.ImageUrl = img?.GetAttributeValue("src", "");
+                product.Image = img?.GetAttributeValue("src", "");
 
                 // Product URL
                 string productUrl = productLink.GetAttributeValue("href", "");

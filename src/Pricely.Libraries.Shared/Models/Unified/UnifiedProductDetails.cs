@@ -13,7 +13,7 @@ namespace Pricely.Libraries.Shared.Models
         public string? Description { get; set; }
         public string? Gtin { get; set; } 
 
-        public List<string>? ImageUrls { get; set; }
+        public List<string>? Images { get; set; }
 
         public string? Brand { get; set; }
         public string? Price { get; set; }

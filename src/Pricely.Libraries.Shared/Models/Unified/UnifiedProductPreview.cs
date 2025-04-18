@@ -12,7 +12,7 @@ namespace Pricely.Libraries.Shared.Models
         public string? IdSku { get; set; }
         public MerchantEnum? Merchant { get; set; }
         public string? Name { get; set; }
-        public string? ImageUrl { get; set; }
+        public string? Image { get; set; }
 
         public string? Url { get; set; }
         public string? CurrentPrice { get; set; }

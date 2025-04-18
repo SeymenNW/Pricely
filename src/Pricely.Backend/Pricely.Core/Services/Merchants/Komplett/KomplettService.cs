@@ -47,7 +47,7 @@ namespace Pricely.Core.Services.Merchants.Komplett
                 Name = product.Name,
                 Price = product.Price.ListPrice,
                 Description = product.Description,
-                ImageUrls = product.Images,
+                Images = product.Images,
                 Gtin = "0",
                 Merchant = Libraries.Shared.Enums.MerchantEnum.Komplett,
                 Brand = "Not Specified"
@@ -85,7 +85,7 @@ namespace Pricely.Core.Services.Merchants.Komplett
                         CurrentPrice = product.Price.ListPrice.Replace(",-", "").Trim().Replace(".", "").Trim(),
                         IdSku = product.MaterialNumber,
                         Url = $"https://www.komplett.dk{product.Url}",
-                        ImageUrl = product.Images[0],
+                        Image = product.Images[0],
                         Merchant = Libraries.Shared.Enums.MerchantEnum.Komplett
                     };
 

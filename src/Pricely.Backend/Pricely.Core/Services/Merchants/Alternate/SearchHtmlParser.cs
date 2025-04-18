@@ -100,7 +100,7 @@ namespace Pricely.Core.Services.Merchants.Alternate
                     CurrentPrice = productPrice,
                     IdSku = productSku,
                     Url = productUrl,
-                    ImageUrl = productImageUrl,
+                    Image = productImageUrl,
                     Merchant = Libraries.Shared.Enums.MerchantEnum.Alternate
                 };
 

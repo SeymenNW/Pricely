@@ -89,7 +89,7 @@ namespace Pricely.Core.Services.Merchants.Proshop
                     CurrentPrice = productPrice,
                     IdSku = productSku,
                     Url = productUrl,
-                    ImageUrl = productImageUrl,
+                    Image = productImageUrl,
                     Merchant = Libraries.Shared.Enums.MerchantEnum.Proshop,
 
                     //And maybe 
