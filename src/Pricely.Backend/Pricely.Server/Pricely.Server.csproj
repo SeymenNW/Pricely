@@ -21,6 +21,8 @@
     <ProjectReference Include="..\..\Pricely.Frontend\pricely.client\pricely.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\..\Pricely.Libraries.Shared\Pricely.Libraries.Shared.csproj" />
+    <ProjectReference Include="..\Pricely.Core\Pricely.Core.csproj" />
   </ItemGroup>
 
 </Project>

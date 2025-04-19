@@ -56,7 +56,7 @@ namespace Pricely.Core.Services.Merchants.CompuMail
                 HtmlNode availabilityNode = item.SelectSingleNode(".//span[@class='pid' and contains(@style, 'display: inline')]");
                 string availability = availabilityNode?.InnerText?.Trim();
 
-
+                product.Merchant = Libraries.Shared.Enums.MerchantEnum.CompuMail;
                 yield return product;
             }
         }
